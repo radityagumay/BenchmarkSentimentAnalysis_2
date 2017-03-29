@@ -11,7 +11,7 @@ conn = pymysql.connect(
 
 cur = conn.cursor()
 
-cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 50")
+cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 2")
 
 training_data = []
 
@@ -19,28 +19,41 @@ for r in cur:
     print(r)
     training_data.append(r)
 
+cur.close()
+conn.close()
+
 vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 
 feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag) for sentence, tag in
                training_data]
 
-file = open("feature.txt", "w")
-file.write(feature_set)
 
-local_feature = open("feature.txt", "r")
+def save_to_file():
+    with open('feature.txt', mode='wt', encoding='utf-8') as myfile:
+        for lines in feature_set:
+            myfile.write(lines)
+    myfile.close()
 
-classifier = nbc.train(file.read())
 
-test_sentence = "Twitter Great & Fun app to have!!"
-featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
+save_to_file()
 
-print("test_sent:", test_sentence)
-print("tag:", classifier.classify(featurized_test_sentence))
+# file = open("feature.txt", "w")
+# file.write(feature_set)
 
-file.close()
-local_feature.close()
-cur.close()
-conn.close()
+# local_feature = open("feature.txt", "r")
+
+# classifier = nbc.train(feature_set)
+#
+# test_sentence = "Twitter Great & Fun app to have!!"
+# featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
+#
+# print("test_sent:", test_sentence)
+# print("tag:", classifier.classify(featurized_test_sentence))
+#
+# file.close()
+# local_feature.close()
+# cur.close()
+# conn.close()
 
 # training_data = [('I love this sandwich.', 'pos'),
 #                  ('This is an amazing place!', 'pos'),
