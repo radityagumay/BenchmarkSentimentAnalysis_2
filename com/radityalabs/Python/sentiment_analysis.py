@@ -1,7 +1,10 @@
+# http://stackoverflow.com/a/16344128/5435658
+
 from nltk import NaiveBayesClassifier as nbc
 from nltk.tokenize import word_tokenize
 from itertools import chain
-
+import csv
+import json
 import pymysql
 
 conn = pymysql.connect(
@@ -29,31 +32,30 @@ feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary},
 
 
 def save_to_file():
-    with open('feature.txt', mode='wt', encoding='utf-8') as myfile:
-        for lines in feature_set:
-            myfile.write(lines)
-    myfile.close()
+    with open('feature.json', 'w') as outfile:
+        json.dump(feature_set, outfile)
 
 
 save_to_file()
 
-# file = open("feature.txt", "w")
-# file.write(feature_set)
 
-# local_feature = open("feature.txt", "r")
+def load_feature():
+    with open('feature.json', 'r') as infile:
+        print(json.load(infile))
 
-# classifier = nbc.train(feature_set)
-#
-# test_sentence = "Twitter Great & Fun app to have!!"
-# featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
-#
-# print("test_sent:", test_sentence)
-# print("tag:", classifier.classify(featurized_test_sentence))
-#
-# file.close()
-# local_feature.close()
-# cur.close()
-# conn.close()
+
+load_feature()
+
+classifier = nbc.train(feature_set)
+
+test_sentence = "Twitter Great & Fun app to have!!"
+featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
+
+print("test_sent:", test_sentence)
+print("tag:", classifier.classify(featurized_test_sentence))
+
+cur.close()
+conn.close()
 
 # training_data = [('I love this sandwich.', 'pos'),
 #                  ('This is an amazing place!', 'pos'),
