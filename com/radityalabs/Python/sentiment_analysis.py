@@ -54,9 +54,6 @@ featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i
 print("test_sent:", test_sentence)
 print("tag:", classifier.classify(featurized_test_sentence))
 
-cur.close()
-conn.close()
-
 # training_data = [('I love this sandwich.', 'pos'),
 #                  ('This is an amazing place!', 'pos'),
 #                  ('I feel very good about these beers.', 'pos'),
