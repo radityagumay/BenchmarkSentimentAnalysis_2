@@ -14,7 +14,7 @@ conn = pymysql.connect(
 
 cur = conn.cursor()
 
-cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 1")
+cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 2")
 
 training_data = []
 
@@ -25,10 +25,12 @@ for r in cur:
 cur.close()
 conn.close()
 
-#vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
+vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 
-#feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag) for sentence, tag in
-#               training_data]
+feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
+               for sentence, tag in training_data]
+
+print(training_data)
 
 
 # def save_to_file():
