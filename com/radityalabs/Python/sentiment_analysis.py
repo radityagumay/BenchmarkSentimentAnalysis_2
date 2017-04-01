@@ -14,7 +14,7 @@ conn = pymysql.connect(
 
 cur = conn.cursor()
 
-cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 2")
+cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 1")
 
 training_data = []
 
@@ -25,34 +25,34 @@ for r in cur:
 cur.close()
 conn.close()
 
-vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
+#vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 
-feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag) for sentence, tag in
-               training_data]
-
-
-def save_to_file():
-    with open('feature.json', 'w') as outfile:
-        json.dump(feature_set, outfile)
+#feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag) for sentence, tag in
+#               training_data]
 
 
-save_to_file()
+# def save_to_file():
+#     with open('feature.json', 'w') as outfile:
+#         json.dump(feature_set, outfile)
+#
+#
+# save_to_file()
 
 
-def load_feature():
-    with open('feature.json', 'r') as infile:
-        print(json.load(infile))
-
-
-load_feature()
-
-classifier = nbc.train(feature_set)
-
-test_sentence = "Twitter Great & Fun app to have!!"
-featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
-
-print("test_sent:", test_sentence)
-print("tag:", classifier.classify(featurized_test_sentence))
+# def load_feature():
+#     with open('feature.json', 'r') as infile:
+#         print(json.load(infile))
+#
+#
+# load_feature()
+#
+# classifier = nbc.train(feature_set)
+#
+# test_sentence = "Twitter Great & Fun app to have!!"
+# featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
+#
+# print("test_sent:", test_sentence)
+# print("tag:", classifier.classify(featurized_test_sentence))
 
 # training_data = [('I love this sandwich.', 'pos'),
 #                  ('This is an amazing place!', 'pos'),
