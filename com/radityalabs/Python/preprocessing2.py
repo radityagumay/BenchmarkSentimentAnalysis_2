@@ -64,6 +64,7 @@ for i in negids:
                 vocabulary[j] = j
     index += 1
 
+print("\n")
 print("Done added negative movie vocabulary : ", len(vocabulary))
 
 posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
@@ -78,6 +79,7 @@ for i in posids:
                 vocabulary[j] = j
     index += 1
 
+print("\n")
 print("Done added positive movie vocabulary : ", len(vocabulary))
 
 dbbar = progressbar.ProgressBar(maxval=len(cur), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
@@ -93,6 +95,7 @@ for i in cur:
                 vocabulary[j] = j
     index += 1
 
+print("\n")
 print("Done added database movie vocabulary : ", len(vocabulary))
 
 cur.close()
