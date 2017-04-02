@@ -68,6 +68,22 @@ conn.close()
 
 vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 
+
+# write model vocabulary, for usage later
+def write_model_vocabulary():
+    with open("model_vocabulary.pickle", "wb") as handle:
+        cPickle.dump(vocabulary, handle)
+
+
+write_model_vocabulary()
+
+# load our local model vocabulary
+def load_model_vocabulary():
+    with open('model_vocabulary.pickle', 'rb') as handle:
+        return cPickle.load(handle)
+
+
+# create feature set from our data training
 feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
                for sentence, tag in training_data]
 
@@ -79,15 +95,13 @@ def write_feature():
 
 def load_feature():
     with open('features.pickle', 'rb') as handle:
-        b = cPickle.load(handle)
-        print(b)
+        return cPickle.load(handle)
 
 
-load_feature()
+classifier = nbc.train(load_feature())
 
-# def clean_tokenized(sentence):
-#     return word_tokenize(sentence)
-#
-#
-# feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
-#                for sentence, tag in training_data]
+test_sentence = "Draft button media viewing style! 1)PUT THE DRAFT BUTTON BACK AS AN OPTION ON THE 3DOTS AT THE TL PAGE!!! 2)FIX THE STYLE THE MEDIA IS SEEN! MULTIPLE IN A ROW NOT SCROLL DOWN FOR MORE!??????? *DESIGN WISE EACH UPDATE GETS WORSE!!!! "
+featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in load_model_vocabulary()}
+
+print("test_sent:", test_sentence)
+print("tag:", classifier.classify(featurized_test_sentence))
