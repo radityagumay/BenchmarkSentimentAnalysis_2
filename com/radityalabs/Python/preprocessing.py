@@ -2,10 +2,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
 from itertools import chain
-import codecs, sys, glob, os, unicodedata
-from nltk import NaiveBayesClassifier as nbc
-import csv
-import json
+import sys, unicodedata
 import _pickle as cPickle
 import pymysql
 
@@ -73,15 +70,10 @@ vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 def write_model_vocabulary():
     with open("model_vocabulary.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
+        print("done write model vocabulary")
 
 
 write_model_vocabulary()
-
-# load our local model vocabulary
-def load_model_vocabulary():
-    with open('model_vocabulary.pickle', 'rb') as handle:
-        return cPickle.load(handle)
-
 
 # create feature set from our data training
 feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
@@ -91,17 +83,7 @@ feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary},
 def write_feature():
     with open("features.pickle", "wb") as handle:
         cPickle.dump(feature_set, handle)
+        print("done write feature")
 
 
-def load_feature():
-    with open('features.pickle', 'rb') as handle:
-        return cPickle.load(handle)
-
-
-classifier = nbc.train(load_feature())
-
-test_sentence = "Draft button media viewing style! 1)PUT THE DRAFT BUTTON BACK AS AN OPTION ON THE 3DOTS AT THE TL PAGE!!! 2)FIX THE STYLE THE MEDIA IS SEEN! MULTIPLE IN A ROW NOT SCROLL DOWN FOR MORE!??????? *DESIGN WISE EACH UPDATE GETS WORSE!!!! "
-featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in load_model_vocabulary()}
-
-print("test_sent:", test_sentence)
-print("tag:", classifier.classify(featurized_test_sentence))
+write_feature()
