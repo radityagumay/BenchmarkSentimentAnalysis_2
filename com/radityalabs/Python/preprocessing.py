@@ -6,6 +6,7 @@ import codecs, sys, glob, os, unicodedata
 from nltk import NaiveBayesClassifier as nbc
 import csv
 import json
+import _pickle as cPickle
 import pymysql
 
 conn = pymysql.connect(
@@ -70,7 +71,19 @@ vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
                for sentence, tag in training_data]
 
-print(feature_set)
+
+def write_feature():
+    with open("features.pickle", "wb") as handle:
+        cPickle.dump(feature_set, handle)
+
+
+def load_feature():
+    with open('features.pickle', 'rb') as handle:
+        b = cPickle.load(handle)
+        print(b)
+
+
+load_feature()
 
 # def clean_tokenized(sentence):
 #     return word_tokenize(sentence)
