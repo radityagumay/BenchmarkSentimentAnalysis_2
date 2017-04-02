@@ -16,7 +16,7 @@ conn = pymysql.connect(
 
 cur = conn.cursor()
 
-cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity")
+cur.execute("SELECT reviewBody, label FROM review_label_benchmark_with_polarity")
 
 stemmer = EnglishStemmer()
 
@@ -64,8 +64,8 @@ for i in negids:
                 vocabulary[j] = j
     index += 1
 
+print("\n Done added negative movie vocabulary : ", len(vocabulary))
 print("\n")
-print("Done added negative movie vocabulary : ", len(vocabulary))
 
 posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 posbar.start()
@@ -79,10 +79,11 @@ for i in posids:
                 vocabulary[j] = j
     index += 1
 
-print("\n")
 print("Done added positive movie vocabulary : ", len(vocabulary))
+print("\n")
 
-dbbar = progressbar.ProgressBar(maxval=len(cur), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+db_count = 64757
+dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 dbbar.start()
 index = 0
 for i in cur:
@@ -95,8 +96,8 @@ for i in cur:
                 vocabulary[j] = j
     index += 1
 
-print("\n")
 print("Done added database movie vocabulary : ", len(vocabulary))
+print("\n")
 
 cur.close()
 conn.close()
