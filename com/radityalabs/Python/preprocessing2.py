@@ -65,6 +65,7 @@ for i in cur:
         posfeats.append((word_feats(word_tokenize(i[0])), 'pos'))
     index += 1
 
+
 print("\n")
 
 vocabulary = {}
