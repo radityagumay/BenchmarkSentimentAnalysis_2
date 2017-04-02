@@ -9,14 +9,14 @@ import _pickle as cPickle
 import sys, unicodedata
 import pymysql
 
-# conn = pymysql.connect(
-#     host='127.0.0.1',
-#     user='root', passwd='',
-#     db='sentiment_analysis')
-#
-# cur = conn.cursor()
-#
-# cur.execute("SELECT reviewBody, label FROM review_label_benchmark_with_polarity")
+conn = pymysql.connect(
+    host='127.0.0.1',
+    user='root', passwd='',
+    db='sentiment_analysis')
+
+cur = conn.cursor()
+
+cur.execute("select reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'pos' or label = 'neg'")
 
 stemmer = EnglishStemmer()
 
@@ -50,60 +50,77 @@ posids = movie_reviews.fileids('pos')
 negfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'neg') for f in negids]
 posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posids]
 
-# vocabulary = {}
-#
-# negbar = progressbar.ProgressBar(maxval=len(negids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-# negbar.start()
-# index = 0
-# for i in negids:
-#     negbar.update(index + 1)
-#     for j in movie_reviews.words(fileids=[i]):
-#         is_valid_vocab = preprocessing(j)
-#         if is_string_not_empty(is_valid_vocab):
-#             if j not in vocabulary:
-#                 vocabulary[j] = j
-#     index += 1
-#
-# print("\n Done added negative movie vocabulary : ", len(vocabulary))
-# print("\n")
-#
-# posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-# posbar.start()
-# index = 0
-# for i in posids:
-#     posbar.update(index + 1)
-#     for j in movie_reviews.words(fileids=[i]):
-#         is_valid_vocab = preprocessing(j)
-#         if is_string_not_empty(is_valid_vocab):
-#             if j not in vocabulary:
-#                 vocabulary[j] = j
-#     index += 1
-#
-# print("\n Done added positive movie vocabulary : ", len(vocabulary))
-# print("\n")
-#
-# db_count = 64757
-# dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-# dbbar.start()
-# index = 0
-# for i in cur:
-#     dbbar.update(index + 1)
-#     words = word_tokenize(i[0])
-#     for j in words:
-#         is_valid_vocab = preprocessing(j)
-#         if is_string_not_empty(is_valid_vocab):
-#             if j not in vocabulary:
-#                 vocabulary[j] = j
-#     index += 1
-#
-# print("\n Done added database movie vocabulary : ", len(vocabulary))
-# print("\n")
-#
-# cur.close()
-# conn.close()
-#
-# with open("vocabulary.pickle", "wb") as handle:
-#     cPickle.dump(vocabulary, handle)
+db_count = 52150
+
+print("\n Initialize local sentiment review")
+initbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+initbar.start()
+index = 0
+for i in cur:
+    initbar.update(index + 1)
+    label = i[1]
+    if label == 'neg':
+        negfeats.append((word_feats(word_tokenize(i[0])), 'neg'))
+    else:
+        posfeats.append((word_feats(word_tokenize(i[0])), 'pos'))
+    index += 1
+
+print("\n")
+
+vocabulary = {}
+
+negbar = progressbar.ProgressBar(maxval=len(negids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+negbar.start()
+index = 0
+for i in negids:
+    negbar.update(index + 1)
+    for j in movie_reviews.words(fileids=[i]):
+        is_valid_vocab = preprocessing(j)
+        if is_string_not_empty(is_valid_vocab):
+            if j not in vocabulary:
+                vocabulary[j] = j
+    index += 1
+
+print("\n Done added negative movie vocabulary : ", len(vocabulary))
+print("\n")
+
+posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+posbar.start()
+index = 0
+for i in posids:
+    posbar.update(index + 1)
+    for j in movie_reviews.words(fileids=[i]):
+        is_valid_vocab = preprocessing(j)
+        if is_string_not_empty(is_valid_vocab):
+            if j not in vocabulary:
+                vocabulary[j] = j
+    index += 1
+
+print("\n Done added positive movie vocabulary : ", len(vocabulary))
+print("\n")
+
+
+dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+dbbar.start()
+index = 0
+for i in cur:
+    dbbar.update(index + 1)
+    words = word_tokenize(i[0])
+    for j in words:
+        is_valid_vocab = preprocessing(j)
+        if is_string_not_empty(is_valid_vocab):
+            if j not in vocabulary:
+                vocabulary[j] = j
+    index += 1
+
+print("\n Done added database movie vocabulary : ", len(vocabulary))
+print("\n")
+
+cur.close()
+conn.close()
+
+with open("vocabulary.pickle", "wb") as handle:
+    cPickle.dump(vocabulary, handle)
 
 def local_vocabulary():
     with open('vocabulary.pickle', 'rb') as handle:
