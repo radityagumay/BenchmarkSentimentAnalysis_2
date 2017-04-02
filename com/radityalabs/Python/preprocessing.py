@@ -13,7 +13,7 @@ conn = pymysql.connect(
 
 cur = conn.cursor()
 
-cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 10")
+cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity")
 
 # when we load data from database, we should consifer use below approach to make
 # data preprocessing

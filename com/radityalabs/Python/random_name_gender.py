@@ -16,6 +16,7 @@ random.shuffle(labeled_names)
 
 featuresets = [(gender_features(n), gender) for (n, gender) in labeled_names]
 train_set, test_set = featuresets[500:], featuresets[:500]
+
 classifier = nltk.NaiveBayesClassifier.train(train_set)
 
 print(classifier.classify(gender_features('Vita')))

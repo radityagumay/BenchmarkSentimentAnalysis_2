@@ -17,6 +17,8 @@ def load_model_vocabulary():
         return cPickle.load(handle)
 
 
+print(load_model_vocabulary())
+
 def load_feature():
     with open('features.pickle', 'rb') as handle:
         return cPickle.load(handle)
@@ -30,8 +32,7 @@ def is_string_empty(string):
 
 classifier = nbc.train(load_feature())
 
-test_sentence = "Draft button media viewing style! 1)PUT THE DRAFT BUTTON BACK AS AN OPTION ON THE 3DOTS AT THE TL PAGE!!! 2)FIX THE STYLE THE MEDIA IS SEEN! MULTIPLE IN A ROW NOT SCROLL DOWN FOR MORE!??????? *DESIGN WISE EACH UPDATE GETS WORSE!!!! "
-
+test_sentence = "Twitter the best app ever i use"
 
 def preprocessing_testing_data():
     sentence = ""
