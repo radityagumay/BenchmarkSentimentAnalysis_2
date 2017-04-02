@@ -57,62 +57,67 @@ initbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=',
 initbar.start()
 index = 0
 for i in cur:
-    initbar.update(index + 1)
+    index += 1
+    initbar.update(index)
     label = i[1]
     if label == 'neg':
         negfeats.append((word_feats(word_tokenize(i[0])), 'neg'))
     else:
         posfeats.append((word_feats(word_tokenize(i[0])), 'pos'))
-    index += 1
 
-
+initbar.finish()
 print("\n")
 
 vocabulary = {}
 
+print("\n Initialize sentiment review negative")
 negbar = progressbar.ProgressBar(maxval=len(negids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 negbar.start()
 index = 0
 for i in negids:
-    negbar.update(index + 1)
+    index += 1
+    negbar.update(index)
     for j in movie_reviews.words(fileids=[i]):
         is_valid_vocab = preprocessing(j)
         if is_string_not_empty(is_valid_vocab):
             if j not in vocabulary:
                 vocabulary[j] = j
-    index += 1
 
+negbar.finish()
 print("\n Done added negative movie vocabulary : ", len(vocabulary))
 print("\n")
 
+print("\n Initialize sentiment review positive")
 posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 posbar.start()
 index = 0
 for i in posids:
-    posbar.update(index + 1)
+    index += 1
+    posbar.update(index)
     for j in movie_reviews.words(fileids=[i]):
         is_valid_vocab = preprocessing(j)
         if is_string_not_empty(is_valid_vocab):
             if j not in vocabulary:
                 vocabulary[j] = j
-    index += 1
 
+posbar.finish()
 print("\n Done added positive movie vocabulary : ", len(vocabulary))
 print("\n")
 
 
+print("\n Initialize sentiment review database")
 dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 dbbar.start()
 index = 0
 for i in cur:
-    dbbar.update(index + 1)
+    dbbar.update(index)
+    index += 1
     words = word_tokenize(i[0])
     for j in words:
         is_valid_vocab = preprocessing(j)
         if is_string_not_empty(is_valid_vocab):
             if j not in vocabulary:
                 vocabulary[j] = j
-    index += 1
 
 print("\n Done added database movie vocabulary : ", len(vocabulary))
 print("\n")
