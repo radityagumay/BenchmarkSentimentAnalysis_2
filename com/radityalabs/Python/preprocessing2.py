@@ -70,7 +70,7 @@ print("\n")
 
 vocabulary = {}
 
-print("\n Initialize sentiment review negative")
+print("Initialize sentiment review negative")
 negbar = progressbar.ProgressBar(maxval=len(negids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 negbar.start()
 index = 0
@@ -87,7 +87,7 @@ negbar.finish()
 print("\n Done added negative movie vocabulary : ", len(vocabulary))
 print("\n")
 
-print("\n Initialize sentiment review positive")
+print("Initialize sentiment review positive")
 posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 posbar.start()
 index = 0
@@ -105,7 +105,7 @@ print("\n Done added positive movie vocabulary : ", len(vocabulary))
 print("\n")
 
 
-print("\n Initialize sentiment review database")
+print("Initialize sentiment review database")
 dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 dbbar.start()
 index = 0
