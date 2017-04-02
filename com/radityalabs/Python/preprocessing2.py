@@ -104,7 +104,6 @@ posbar.finish()
 print("\n Done added positive movie vocabulary : ", len(vocabulary))
 print("\n")
 
-
 print("Initialize sentiment review database")
 dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 dbbar.start()
@@ -119,6 +118,7 @@ for i in cur:
             if j not in vocabulary:
                 vocabulary[j] = j
 
+dbbar.finish()
 print("\n Done added database movie vocabulary : ", len(vocabulary))
 print("\n")
 
