@@ -68,6 +68,11 @@ async def running_db_sentiment():
     for i in cur:
         dbbar.update(index)
         index += 1
+        label = i[1]
+        if label == 'neg':
+            negfeats.append((word_feats(word_tokenize(i[0])), 'neg'))
+        else:
+            posfeats.append((word_feats(word_tokenize(i[0])), 'pos'))
         words = word_tokenize(i[0])
         for j in words:
             is_valid_vocab = preprocessing(j)
@@ -80,23 +85,25 @@ async def running_db_sentiment():
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
-async def calc_both_neg_and_pos():
-    print("Initialize local sentiment review")
-    initbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-    initbar.start()
-    index = 0
-    for i in cur:
-        index += 1
-        initbar.update(index)
-        label = i[1]
-        print("calc_both_neg_and_pos", label)
-        if label == 'neg':
-            negfeats.append((word_feats(word_tokenize(i[0])), 'neg'))
-        else:
-            posfeats.append((word_feats(word_tokenize(i[0])), 'pos'))
-    initbar.finish()
-
-asyncio.get_event_loop().run_until_complete(calc_both_neg_and_pos())
+# async def calc_both_neg_and_pos():
+#     print("Initialize local sentiment review")
+#     initbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+#     initbar.start()
+#     index = 0
+#     print("calc_both_neg_and_pos")
+#     for i in cur:
+#         print("calc_both_neg_and_pos im in cur")
+#         index += 1
+#         initbar.update(index)
+#         label = i[1]
+#         print("calc_both_neg_and_pos", label)
+#         if label == 'neg':
+#             negfeats.append((word_feats(word_tokenize(i[0])), 'neg'))
+#         else:
+#             posfeats.append((word_feats(word_tokenize(i[0])), 'pos'))
+#     initbar.finish()
+#     close_connection()
+#asyncio.get_event_loop().run_until_complete(calc_both_neg_and_pos())
 
 print("negfeats", len(negfeats))
 print("posfeats", len(posfeats))
