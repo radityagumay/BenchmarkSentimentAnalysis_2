@@ -9,6 +9,19 @@ def local_vocabulary():
 
 loc_vocabulary = local_vocabulary()
 
+print(loc_vocabulary)
+
+def local_negfeats():
+    with open('negfeats.pickle', 'rb') as handle:
+        return cPickle.load(handle)
+
+def local_posfeats():
+    with open('posfeats.pickle', 'rb') as handle:
+        return cPickle.load(handle)
+
+negfeats = local_negfeats()
+posfeats = local_posfeats()
+
 negcutoff = len(negfeats) * 3 / 4
 poscutoff = len(posfeats) * 3 / 4
 
@@ -20,7 +33,7 @@ classifier = NaiveBayesClassifier.train(trainfeats)
 print('accuracy:', nltk.classify.util.accuracy(classifier, testfeats))
 classifier.show_most_informative_features()
 
-test_sentence = "I love it. It behaves exactly like youd expect. Plus I love the inter-app communication (the fact that I can click a follow button in the gmail app and be taken straight into the twitter app). Good job guys."
+test_sentence = "this best app ever"
 featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in loc_vocabulary}
 
 print("example:", test_sentence)
