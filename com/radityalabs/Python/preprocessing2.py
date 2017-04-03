@@ -125,7 +125,9 @@ def running_db_sentiment():
     dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     dbbar.start()
     index = 0
+    print("running_db_sentiment : [cur]", cur)
     for i in cur:
+        print("running_db_sentiment : [cur] call me")
         dbbar.update(index)
         index += 1
         words = word_tokenize(i[0])
@@ -144,8 +146,7 @@ def close_connection():
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(running_db_sentiment())
-loop.call_soon(close_connection())
-loop.close()
+loop.call_later(close_connection())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
@@ -158,7 +159,6 @@ def save_vocabulary_pickle_callback():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(save_vocabulary_pickle())
 loop.call_soon(save_vocabulary_pickle_callback())
-loop.close()
 
 # def local_vocabulary():
 #     with open('vocabulary.pickle', 'rb') as handle:
