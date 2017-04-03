@@ -17,7 +17,7 @@ conn = pymysql.connect(
 
 cur = conn.cursor()
 
-cur.execute("select reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'pos' or label = 'neg'")
+cur.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'neg' or label = 'pos' and length(reviewBody) > 50 limit 0, 31828")
 
 stemmer = EnglishStemmer()
 
@@ -53,14 +53,15 @@ posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posid
 print("negfeats", len(negfeats))
 print("posfeats", len(posfeats))
 
-db_count = 52150
+db_count = 31828
 vocabulary = {}
 
 def close_connection():
     cur.close()
     conn.close()
 
-async def running_db_sentiment():
+@asyncio.coroutine
+def running_db_sentiment():
     print("Initialize sentiment review database")
     dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     dbbar.start()
@@ -85,6 +86,7 @@ async def running_db_sentiment():
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
+# we comment this for a moment
 # async def calc_both_neg_and_pos():
 #     print("Initialize local sentiment review")
 #     initbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
@@ -108,7 +110,8 @@ asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 print("negfeats", len(negfeats))
 print("posfeats", len(posfeats))
 
-async def running_sentiment_review_negative():
+@asyncio.coroutine
+def running_sentiment_review_negative():
     print("Initialize sentiment review negative")
     negbar = progressbar.ProgressBar(maxval=len(negids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     negbar.start()
@@ -126,7 +129,8 @@ async def running_sentiment_review_negative():
 
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_negative())
 
-async def running_sentiment_review_positive():
+@asyncio.coroutine
+def running_sentiment_review_positive():
     print("Initialize sentiment review positive")
     posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     posbar.start()
@@ -145,18 +149,21 @@ async def running_sentiment_review_positive():
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_positive())
 
 ## save negfeats and posfeats to file
-async def save_negfeats():
+@asyncio.coroutine
+def save_negfeats():
     with open("negfeats.pickle", "wb") as handle:
         cPickle.dump(negfeats, handle)
 
-async def save_posfeats():
+@asyncio.coroutine
+def save_posfeats():
     with open("posfeats.pickle", "wb") as handle:
         cPickle.dump(posfeats, handle)
 
 asyncio.get_event_loop().run_until_complete(save_negfeats())
 asyncio.get_event_loop().run_until_complete(save_posfeats())
 
-async def save_vocabulary_pickle():
+@asyncio.coroutine
+def save_vocabulary_pickle():
     with open("vocabulary.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
         print("Saving pickle vocabulary is done")
