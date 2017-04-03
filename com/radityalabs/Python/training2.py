@@ -9,8 +9,6 @@ def local_vocabulary():
 
 loc_vocabulary = local_vocabulary()
 
-print(loc_vocabulary)
-
 def local_negfeats():
     with open('negfeats.pickle', 'rb') as handle:
         return cPickle.load(handle)

@@ -1,3 +1,4 @@
+# http://stackabuse.com/python-async-await-tutorial/
 from nltk.corpus import movie_reviews
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
@@ -49,6 +50,9 @@ posids = movie_reviews.fileids('pos')
 negfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'neg') for f in negids]
 posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posids]
 
+print("negfeats", len(negfeats))
+print("posfeats", len(posfeats))
+
 db_count = 52150
 vocabulary = {}
 
@@ -56,8 +60,7 @@ def close_connection():
     cur.close()
     conn.close()
 
-@asyncio.coroutine
-def running_db_sentiment():
+async def running_db_sentiment():
     print("Initialize sentiment review database")
     dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     dbbar.start()
@@ -77,8 +80,7 @@ def running_db_sentiment():
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
-@asyncio.coroutine
-def calc_both_neg_and_pos():
+async def calc_both_neg_and_pos():
     print("Initialize local sentiment review")
     initbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     initbar.start()
@@ -87,6 +89,7 @@ def calc_both_neg_and_pos():
         index += 1
         initbar.update(index)
         label = i[1]
+        print("calc_both_neg_and_pos", label)
         if label == 'neg':
             negfeats.append((word_feats(word_tokenize(i[0])), 'neg'))
         else:
@@ -95,8 +98,10 @@ def calc_both_neg_and_pos():
 
 asyncio.get_event_loop().run_until_complete(calc_both_neg_and_pos())
 
-@asyncio.coroutine
-def running_sentiment_review_negative():
+print("negfeats", len(negfeats))
+print("posfeats", len(posfeats))
+
+async def running_sentiment_review_negative():
     print("Initialize sentiment review negative")
     negbar = progressbar.ProgressBar(maxval=len(negids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     negbar.start()
@@ -114,8 +119,7 @@ def running_sentiment_review_negative():
 
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_negative())
 
-@asyncio.coroutine
-def running_sentiment_review_positive():
+async def running_sentiment_review_positive():
     print("Initialize sentiment review positive")
     posbar = progressbar.ProgressBar(maxval=len(posids), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     posbar.start()
@@ -134,19 +138,18 @@ def running_sentiment_review_positive():
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_positive())
 
 ## save negfeats and posfeats to file
-@asyncio.coroutine
-def save_negfeats_and_posfeats():
+async def save_negfeats():
     with open("negfeats.pickle", "wb") as handle:
         cPickle.dump(negfeats, handle)
-        print("saving negfeats is done")
+
+async def save_posfeats():
     with open("posfeats.pickle", "wb") as handle:
         cPickle.dump(posfeats, handle)
-        print("saving posfeats is done")
 
-asyncio.get_event_loop().run_until_complete(save_negfeats_and_posfeats())
+asyncio.get_event_loop().run_until_complete(save_negfeats())
+asyncio.get_event_loop().run_until_complete(save_posfeats())
 
-@asyncio.coroutine
-def save_vocabulary_pickle():
+async def save_vocabulary_pickle():
     with open("vocabulary.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
         print("Saving pickle vocabulary is done")
