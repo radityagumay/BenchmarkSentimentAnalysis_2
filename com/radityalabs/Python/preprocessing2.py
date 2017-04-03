@@ -22,20 +22,19 @@ stemmer = EnglishStemmer()
 # Load unicode punctuation
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
-
 def is_string_not_empty(string):
     if string == "":
         return False
     return True
 
 def preprocessing(dirty_word):
-    lower = dirty_word.lower()  # toLower().Case
-    if len(lower) > 3:  # only len > 3
-        stem = stemmer.stem(lower)  # root word
-        punc = stem.translate(tbl)  # remove ? ! @ etc
-        if is_string_not_empty(punc):  # check if not empty
+    lower = dirty_word.lower()          # toLower().Case
+    if len(lower) > 3:                  # only len > 3
+        stem = stemmer.stem(lower)      # root word
+        punc = stem.translate(tbl)      # remove ? ! @ etc
+        if is_string_not_empty(punc):   # check if not empty
             stop = punc not in set(stopwords.words('english'))
-            if stop:  # only true we append
+            if stop:                    # only true we append
                 return dirty_word
     else:
         return None
@@ -69,7 +68,7 @@ async def calc_both_neg_and_pos():
 def calc_both_neg_and_pos_callback():
     print("worker local sentiment review is done")
 
-## do calc_both_neg_and_pos asyncTask ##
+## do asyncTask ##
 p1 = Pool(processes = 1)
 r1 = p1.apply_async(calc_both_neg_and_pos, callback=calc_both_neg_and_pos_callback)
 r1.wait()
@@ -85,7 +84,7 @@ async def save_negfeats_and_posfeats():
 def save_negfeats_and_posfeats_callback():
     print("worker negfeats and posfeats are done")
 
-## do save_negfeats_and_posfeats asyncTask ##
+## do asyncTask ##
 p2 = Pool(processes = 1)
 r2 = p2.apply_async(save_negfeats_and_posfeats, callback=save_negfeats_and_posfeats_callback)
 r2.wait()
@@ -113,7 +112,7 @@ async def running_sentiment_review_negative():
 def running_sentiment_review_negative_callback():
     print("worker sentiment review negative is done")
 
-## do save_negfeats_and_posfeats asyncTask ##
+## do asyncTask ##
 p3 = Pool(processes = 1)
 r3 = p3.apply_async(running_sentiment_review_negative, callback=running_sentiment_review_negative_callback)
 r3.wait()
@@ -139,7 +138,7 @@ async def running_sentiment_review_positive():
 def running_sentiment_review_positive_callback():
     print("worker sentiment review positive is done")
 
-## do save_negfeats_and_posfeats asyncTask ##
+## do asyncTask ##
 p4 = Pool(processes = 1)
 r4 = p4.apply_async(running_sentiment_review_positive, callback=running_sentiment_review_positive_callback)
 r4.wait()
