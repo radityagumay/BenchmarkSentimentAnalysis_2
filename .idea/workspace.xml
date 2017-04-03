@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +18,8 @@
       <file leaf-file-name="preprocessing2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="36" column="40" lean-forward="false" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+            <state relative-caret-position="853">
+              <caret line="149" column="0" lean-forward="true" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -26,24 +27,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pool.py" pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/multiprocessing/pool.py">
+      <file leaf-file-name="events.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/asyncio/events.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="146" column="8" lean-forward="false" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="8" />
+            <state relative-caret-position="326">
+              <caret line="218" column="8" lean-forward="false" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="training2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training2.py">
+      <file leaf-file-name="threading.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="118">
+              <caret line="915" column="0" lean-forward="false" selection-start-line="915" selection-start-column="0" selection-end-line="915" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pool.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/multiprocessing/pool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="616" column="34" lean-forward="true" selection-start-line="616" selection-start-column="34" selection-end-line="616" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,6 +77,7 @@
       <find>true</find>
       <find>hemispheres</find>
       <find>vocabulary</find>
+      <find>save_negfeats_and_posfeats_callback</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -421,23 +431,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/train1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/sentiment_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -770,23 +763,39 @@
         <state relative-caret-position="203">
           <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="915" column="0" lean-forward="false" selection-start-line="915" selection-start-column="0" selection-end-line="915" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/multiprocessing/pool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="146" column="8" lean-forward="false" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="8" />
+        <state relative-caret-position="194">
+          <caret line="616" column="34" lean-forward="true" selection-start-line="616" selection-start-column="34" selection-end-line="616" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/asyncio/events.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="218" column="8" lean-forward="false" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="36" column="40" lean-forward="false" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+        <state relative-caret-position="853">
+          <caret line="149" column="0" lean-forward="true" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
