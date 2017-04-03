@@ -52,6 +52,10 @@ posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posid
 db_count = 52150
 vocabulary = {}
 
+def close_connection():
+    cur.close()
+    conn.close()
+
 @asyncio.coroutine
 def running_db_sentiment():
     print("Initialize sentiment review database")
@@ -68,15 +72,10 @@ def running_db_sentiment():
                 if j not in vocabulary:
                     vocabulary[j] = j
     dbbar.finish()
+    close_connection()
     print("Done added database movie vocabulary : ", len(vocabulary))
 
-def close_connection():
-    cur.close()
-    conn.close()
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(running_db_sentiment())
-loop.call_soon_threadsafe(callback=close_connection())
+asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
 @asyncio.coroutine
 def calc_both_neg_and_pos():
@@ -96,16 +95,6 @@ def calc_both_neg_and_pos():
 
 asyncio.get_event_loop().run_until_complete(calc_both_neg_and_pos())
 
-## save negfeats and posfeats to file
-@asyncio.coroutine
-def save_negfeats_and_posfeats():
-    with open("negfeats.pickle", "wb") as handle:
-        cPickle.dump(negfeats, handle)
-    with open("posfeats.pickle", "wb") as handle:
-        cPickle.dump(posfeats, handle)
-
-asyncio.get_event_loop().run_until_complete(save_negfeats_and_posfeats())
-
 @asyncio.coroutine
 def running_sentiment_review_negative():
     print("Initialize sentiment review negative")
@@ -120,8 +109,8 @@ def running_sentiment_review_negative():
             if is_string_not_empty(is_valid_vocab):
                 if j not in vocabulary:
                     vocabulary[j] = j
-    negbar.finish()
     print("Done added negative movie vocabulary : ", len(vocabulary))
+    negbar.finish()
 
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_negative())
 
@@ -139,18 +128,28 @@ def running_sentiment_review_positive():
             if is_string_not_empty(is_valid_vocab):
                 if j not in vocabulary:
                     vocabulary[j] = j
-    posbar.finish()
     print("Done added positive movie vocabulary : ", len(vocabulary))
+    posbar.finish()
 
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_positive())
+
+## save negfeats and posfeats to file
+@asyncio.coroutine
+def save_negfeats_and_posfeats():
+    with open("negfeats.pickle", "wb") as handle:
+        cPickle.dump(negfeats, handle)
+        print("saving negfeats is done")
+    with open("posfeats.pickle", "wb") as handle:
+        cPickle.dump(posfeats, handle)
+        print("saving posfeats is done")
+
+asyncio.get_event_loop().run_until_complete(save_negfeats_and_posfeats())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
     with open("vocabulary.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
-
-def save_vocabulary_pickle_callback():
-    print("Done saving pickle")
+        print("Saving pickle vocabulary is done")
 
 asyncio.get_event_loop().run_until_complete(save_vocabulary_pickle())
 
