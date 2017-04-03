@@ -77,7 +77,6 @@ def close_connection():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(running_db_sentiment())
 loop.call_soon_threadsafe(callback=close_connection())
-loop.close()
 
 @asyncio.coroutine
 def calc_both_neg_and_pos():
