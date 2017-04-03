@@ -99,7 +99,7 @@ def running_sentiment_review_negative():
     print("\n Done added negative movie vocabulary : ", len(vocabulary))
     print("\n")
 
-asyncio.get_event_loop().run_until_complete(save_negfeats_and_posfeats())
+asyncio.get_event_loop().run_until_complete(running_sentiment_review_negative())
 
 @asyncio.coroutine
 def running_sentiment_review_positive():
@@ -119,7 +119,7 @@ def running_sentiment_review_positive():
     print("\n Done added positive movie vocabulary : ", len(vocabulary))
     print("\n")
 
-asyncio.get_event_loop().run_until_complete(save_negfeats_and_posfeats())
+asyncio.get_event_loop().run_until_complete(running_sentiment_review_positive())
 
 @asyncio.coroutine
 def running_db_sentiment():
@@ -135,6 +135,7 @@ def running_db_sentiment():
             is_valid_vocab = preprocessing(j)
             if is_string_not_empty(is_valid_vocab):
                 if j not in vocabulary:
+                    print("running_db_sentiment", j)
                     vocabulary[j] = j
     dbbar.finish()
     print("\n Done added database movie vocabulary : ", len(vocabulary))
@@ -146,14 +147,19 @@ def close_connection():
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(running_db_sentiment())
-loop.call_soon_threadsafe(callback=close_connection)
+loop.call_soon_threadsafe(callback=close_connection())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
     with open("vocabulary.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
 
-asyncio.get_event_loop().run_until_complete(save_vocabulary_pickle())
+def save_vocabulary_pickle_callback():
+    print("Done saving pickle")
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(save_vocabulary_pickle())
+loop.call_soon_threadsafe(callback=save_vocabulary_pickle_callback())
 
 # def local_vocabulary():
 #     with open('vocabulary.pickle', 'rb') as handle:
