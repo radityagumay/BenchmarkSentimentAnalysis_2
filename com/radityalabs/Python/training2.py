@@ -4,17 +4,17 @@ from nltk.tokenize import word_tokenize
 import _pickle as cPickle
 
 def local_vocabulary():
-    with open('vocabulary.pickle', 'rb') as handle:
+    with open('vocabulary1.pickle', 'rb') as handle:
         return cPickle.load(handle)
 
 loc_vocabulary = local_vocabulary()
 
 def local_negfeats():
-    with open('negfeats.pickle', 'rb') as handle:
+    with open('negfeats1.pickle', 'rb') as handle:
         return cPickle.load(handle)
 
 def local_posfeats():
-    with open('posfeats.pickle', 'rb') as handle:
+    with open('posfeats1.pickle', 'rb') as handle:
         return cPickle.load(handle)
 
 negfeats = local_negfeats()

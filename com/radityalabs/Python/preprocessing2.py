@@ -151,12 +151,12 @@ asyncio.get_event_loop().run_until_complete(running_sentiment_review_positive())
 ## save negfeats and posfeats to file
 @asyncio.coroutine
 def save_negfeats():
-    with open("negfeats.pickle", "wb") as handle:
+    with open("negfeats1.pickle", "wb") as handle:
         cPickle.dump(negfeats, handle)
 
 @asyncio.coroutine
 def save_posfeats():
-    with open("posfeats.pickle", "wb") as handle:
+    with open("posfeats1.pickle", "wb") as handle:
         cPickle.dump(posfeats, handle)
 
 asyncio.get_event_loop().run_until_complete(save_negfeats())
@@ -164,7 +164,7 @@ asyncio.get_event_loop().run_until_complete(save_posfeats())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
-    with open("vocabulary.pickle", "wb") as handle:
+    with open("vocabulary1.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
         print("Saving pickle vocabulary is done")
 
