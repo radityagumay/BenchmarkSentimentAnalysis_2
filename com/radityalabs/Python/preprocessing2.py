@@ -53,7 +53,7 @@ db_count = 52150
 
 @asyncio.coroutine
 def calc_both_neg_and_pos():
-    print("\n Initialize local sentiment review")
+    print("Initialize local sentiment review")
     initbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     initbar.start()
     index = 0
@@ -96,8 +96,7 @@ def running_sentiment_review_negative():
                 if j not in vocabulary:
                     vocabulary[j] = j
     negbar.finish()
-    print("\n Done added negative movie vocabulary : ", len(vocabulary))
-    print("\n")
+    print("Done added negative movie vocabulary : ", len(vocabulary))
 
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_negative())
 
@@ -116,8 +115,7 @@ def running_sentiment_review_positive():
                 if j not in vocabulary:
                     vocabulary[j] = j
     posbar.finish()
-    print("\n Done added positive movie vocabulary : ", len(vocabulary))
-    print("\n")
+    print("Done added positive movie vocabulary : ", len(vocabulary))
 
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_positive())
 
@@ -138,8 +136,7 @@ def running_db_sentiment():
                     print("running_db_sentiment", j)
                     vocabulary[j] = j
     dbbar.finish()
-    print("\n Done added database movie vocabulary : ", len(vocabulary))
-    print("\n")
+    print("Done added database movie vocabulary : ", len(vocabulary))
 
 def close_connection():
     cur.close()
@@ -147,7 +144,8 @@ def close_connection():
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(running_db_sentiment())
-loop.call_soon_threadsafe(callback=close_connection())
+loop.call_soon(close_connection())
+loop.close()
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
@@ -159,7 +157,8 @@ def save_vocabulary_pickle_callback():
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(save_vocabulary_pickle())
-loop.call_soon_threadsafe(callback=save_vocabulary_pickle_callback())
+loop.call_soon(save_vocabulary_pickle_callback())
+loop.close()
 
 # def local_vocabulary():
 #     with open('vocabulary.pickle', 'rb') as handle:
