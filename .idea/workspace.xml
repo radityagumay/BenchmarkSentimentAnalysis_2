@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="" />
+    <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing3.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/training2.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/training2.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +15,33 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="preprocessing2.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="preprocessing2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-367">
+            <state relative-caret-position="1788">
               <caret line="91" column="4" lean-forward="true" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+              <folding>
+                <element signature="e#53#90#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="training2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="571">
+              <caret line="33" column="43" lean-forward="true" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preprocessing3.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="132" column="18" lean-forward="false" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
               <folding>
                 <element signature="e#53#90#0" expanded="true" />
               </folding>
@@ -49,6 +74,7 @@
       <find>sentiment review negative</find>
       <find>posfeats</find>
       <find>cur</find>
+      <find>good</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -68,8 +94,9 @@
         <option value="$PROJECT_DIR$/com/radityalabs/Python/random_name_gender.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/training.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/sample2.py" />
-        <option value="$PROJECT_DIR$/com/radityalabs/Python/training2.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py" />
+        <option value="$PROJECT_DIR$/com/radityalabs/Python/training2.py" />
+        <option value="$PROJECT_DIR$/com/radityalabs/Python/preprocessing3.py" />
       </list>
     </option>
   </component>
@@ -161,6 +188,11 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -173,7 +205,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.preprocessing2">
+  <component name="RunManager" selected="Python.training2">
     <configuration default="false" name="preprocessing2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -280,8 +312,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.preprocessing2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.training2" />
+        <item index="0" class="java.lang.String" itemvalue="Python.training2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.preprocessing2" />
       </list>
     </recent_temporary>
   </component>
@@ -323,7 +355,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.64905286" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7218345" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5333998" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46261215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -402,13 +434,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3393">
-          <caret line="119" column="4" lean-forward="false" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
@@ -754,18 +779,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1788">
+          <caret line="91" column="4" lean-forward="true" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+          <folding>
+            <element signature="e#53#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="571">
+          <caret line="33" column="43" lean-forward="true" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing2.py">
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-367">
-          <caret line="91" column="4" lean-forward="true" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+        <state relative-caret-position="78">
+          <caret line="132" column="18" lean-forward="false" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
           <folding>
             <element signature="e#53#90#0" expanded="true" />
           </folding>
