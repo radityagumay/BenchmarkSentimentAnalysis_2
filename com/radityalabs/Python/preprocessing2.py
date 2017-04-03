@@ -50,6 +50,34 @@ negfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'neg') for f in negid
 posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posids]
 
 db_count = 52150
+vocabulary = {}
+
+@asyncio.coroutine
+def running_db_sentiment():
+    print("Initialize sentiment review database")
+    dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+    dbbar.start()
+    index = 0
+    for i in cur:
+        dbbar.update(index)
+        index += 1
+        words = word_tokenize(i[0])
+        for j in words:
+            is_valid_vocab = preprocessing(j)
+            if is_string_not_empty(is_valid_vocab):
+                if j not in vocabulary:
+                    vocabulary[j] = j
+    dbbar.finish()
+    print("Done added database movie vocabulary : ", len(vocabulary))
+
+def close_connection():
+    cur.close()
+    conn.close()
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(running_db_sentiment())
+loop.call_soon_threadsafe(callback=close_connection())
+loop.close()
 
 @asyncio.coroutine
 def calc_both_neg_and_pos():
@@ -78,8 +106,6 @@ def save_negfeats_and_posfeats():
         cPickle.dump(posfeats, handle)
 
 asyncio.get_event_loop().run_until_complete(save_negfeats_and_posfeats())
-
-vocabulary = {}
 
 @asyncio.coroutine
 def running_sentiment_review_negative():
@@ -118,33 +144,6 @@ def running_sentiment_review_positive():
     print("Done added positive movie vocabulary : ", len(vocabulary))
 
 asyncio.get_event_loop().run_until_complete(running_sentiment_review_positive())
-
-@asyncio.coroutine
-def running_db_sentiment():
-    print("Initialize sentiment review database")
-    dbbar = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-    dbbar.start()
-    index = 0
-    print("running_db_sentiment : [cur]", cur)
-    for i in cur:
-        print("running_db_sentiment : [cur] call me")
-        dbbar.update(index)
-        index += 1
-        words = word_tokenize(i[0])
-        for j in words:
-            is_valid_vocab = preprocessing(j)
-            if is_string_not_empty(is_valid_vocab):
-                if j not in vocabulary:
-                    print("running_db_sentiment", j)
-                    vocabulary[j] = j
-    dbbar.finish()
-    print("Done added database movie vocabulary : ", len(vocabulary))
-
-def close_connection():
-    cur.close()
-    conn.close()
-
-asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
