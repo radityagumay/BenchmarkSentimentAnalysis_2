@@ -1,9 +1,9 @@
 # http://stackabuse.com/python-async-await-tutorial/
+# this code combine both nltk and my own corpus
 from nltk.corpus import movie_reviews
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
-from multiprocessing import Pool
 import asyncio
 import progressbar
 import _pickle as cPickle

@@ -1,9 +1,9 @@
 # http://stackabuse.com/python-async-await-tutorial/
+# this code using our corpus
 from nltk.corpus import movie_reviews
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
-from multiprocessing import Pool
 import asyncio
 import progressbar
 import _pickle as cPickle
@@ -17,7 +17,7 @@ conn = pymysql.connect(
 
 cur = conn.cursor()
 
-cur.execute("select reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'pos' or label = 'neg'")
+cur.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'neg' or label = 'pos' and length(reviewBody) > 50 limit 0, 31828")
 
 stemmer = EnglishStemmer()
 
@@ -50,7 +50,7 @@ posids = movie_reviews.fileids('pos')
 negfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'neg') for f in negids]
 posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posids]
 
-db_count = 52150
+db_count = 31828
 vocabulary = {}
 
 def close_connection():
