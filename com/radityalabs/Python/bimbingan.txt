@@ -1,0 +1,10 @@
+lakukan scenario dibawah
+1. classification dengan corpus sendiri.
+2. classification dengan corpus nltk.
+3. classification dengan corpus nltk and sendiri.
+4. classification dengan bi-gram corpus sendiri.
+5. classification dengan bi-gram corpus nltk.
+6. classification dengan bi-gram corpus sendiri & nltk.
+7. classification dengan three-gram corpus sendiri.
+8. classification dengan three-gram corpus nltk.
+0. classification dengan three-gram corpus sendiri & nltk.
