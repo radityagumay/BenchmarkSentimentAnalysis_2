@@ -144,9 +144,7 @@ def close_connection():
     cur.close()
     conn.close()
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(running_db_sentiment())
-loop.call_later(close_connection())
+asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
@@ -156,9 +154,7 @@ def save_vocabulary_pickle():
 def save_vocabulary_pickle_callback():
     print("Done saving pickle")
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(save_vocabulary_pickle())
-loop.call_soon(save_vocabulary_pickle_callback())
+asyncio.get_event_loop().run_until_complete(save_vocabulary_pickle())
 
 # def local_vocabulary():
 #     with open('vocabulary.pickle', 'rb') as handle:
