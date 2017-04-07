@@ -7,6 +7,7 @@ import progressbar
 import _pickle as cPickle
 import sys, unicodedata
 import pymysql
+import os
 
 conn = pymysql.connect(
     host='127.0.0.1',
@@ -18,6 +19,7 @@ cur = conn.cursor()
 cur.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'neg' or label = 'pos' and length(reviewBody) > 50 limit 0, 31828")
 stemmer = EnglishStemmer()
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
+path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
 # variables
 db_count = 31828
@@ -66,26 +68,16 @@ def running_db_sentiment():
             negative += i[0] + " . "
         else:
             positive += i[0] + " . "
-    pBar1.finish()
-
-    negfeats.append((word_feats(word_tokenize(negative)), 'neg'))
-    posfeats.append((word_feats(word_tokenize(positive)), 'pos'))
-
-    pBar2 = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-    pBar2.start()
-    index = 0
-    print("populate vocabulary")
-    for i in cur:
-        pBar2.update(index)
-        index += 1
         words = word_tokenize(i[0])
         for j in words:
             is_valid_vocab = preprocessing(j)
             if is_string_not_empty(is_valid_vocab):
                 if j not in vocabulary:
                     vocabulary[j] = j
+    pBar1.finish()
 
-    pBar2.finish()
+    negfeats.append((word_feats(word_tokenize(negative)), 'neg'))
+    posfeats.append((word_feats(word_tokenize(positive)), 'pos'))
     close_connection()
     print("Done added vocabulary : ", len(vocabulary))
 
@@ -93,7 +85,7 @@ asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
 @asyncio.coroutine
 def save_negfeats():
-    with open("Python/negfeats/negfeats1.pickle", "wb") as handle:
+    with open(path + "/Python/negfeats/negfeats1.pickle", "wb") as handle:
         cPickle.dump(negfeats, handle)
         print("Saving pickle negfeats is done")
 
@@ -101,7 +93,7 @@ asyncio.get_event_loop().run_until_complete(save_negfeats())
 
 @asyncio.coroutine
 def save_posfeats():
-    with open("Python/posfeats/posfeats1.pickle", "wb") as handle:
+    with open(path + "/Python/posfeats/posfeats1.pickle", "wb") as handle:
         cPickle.dump(posfeats, handle)
         print("Saving pickle posfeats is done")
 
@@ -109,7 +101,7 @@ asyncio.get_event_loop().run_until_complete(save_posfeats())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
-    with open("Python/vocabulary/vocabulary1.pickle", "wb") as handle:
+    with open(path + "/Python/vocabulary/vocabulary1.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
         print("Saving pickle vocabulary is done")
 
