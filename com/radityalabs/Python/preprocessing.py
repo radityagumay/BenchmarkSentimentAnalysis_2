@@ -5,6 +5,7 @@ from itertools import chain
 import sys, unicodedata
 import _pickle as cPickle
 import pymysql
+import os
 
 conn = pymysql.connect(
     host='127.0.0.1',
@@ -12,8 +13,10 @@ conn = pymysql.connect(
     db='sentiment_analysis')
 
 cur = conn.cursor()
-
 cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity")
+stemmer = EnglishStemmer()
+tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
+path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
 # when we load data from database, we should consifer use below approach to make
 # data preprocessing
@@ -23,17 +26,10 @@ cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity")
 # 4. punctuation
 # 5. stopword
 
-stemmer = EnglishStemmer()
-
-# Load unicode punctuation
-tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
-
-
 def is_string_empty(string):
     if string == "":
         return False
     return True
-
 
 def preprocessing(dirty_sentence):
     sentence = ""
@@ -48,42 +44,33 @@ def preprocessing(dirty_sentence):
                     sentence += str(punc) + " "
     return sentence
 
-
 training_data = []
-
 
 def build_train():
     for r in cur:
         clean = preprocessing(word_tokenize(r[0]))
         training_data.append((clean, r[1]))
 
-
 build_train()
-
 cur.close()
 conn.close()
-
 vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 
+print(vocabulary)
 
 # write model vocabulary, for usage later
 def write_model_vocabulary():
-    with open("model_vocabulary.pickle", "wb") as handle:
+    with open(path + "/Python/vocabulary/vocabulary.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
         print("done write model vocabulary")
 
-
-write_model_vocabulary()
-
 # create feature set from our data training
-feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
-               for sentence, tag in training_data]
-
-
-def write_feature():
-    with open("features.pickle", "wb") as handle:
-        cPickle.dump(feature_set, handle)
-        print("done write feature")
-
-
-write_feature()
+# feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
+#                for sentence, tag in training_data]
+#
+# def write_feature():
+#     with open("features.pickle", "wb") as handle:
+#         cPickle.dump(feature_set, handle)
+#         print("done write feature")
+#
+# write_feature()

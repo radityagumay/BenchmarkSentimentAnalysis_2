@@ -9,6 +9,7 @@ import progressbar
 import _pickle as cPickle
 import sys, unicodedata
 import pymysql
+import os
 
 conn = pymysql.connect(
     host='127.0.0.1',
@@ -16,10 +17,9 @@ conn = pymysql.connect(
     db='sentiment_analysis')
 
 cur = conn.cursor()
-
 cur.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'neg' or label = 'pos' and length(reviewBody) > 50 limit 0, 31828")
-
 stemmer = EnglishStemmer()
+path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
 # Load unicode punctuation
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
@@ -57,18 +57,18 @@ def close_connection():
 @asyncio.coroutine
 def running_db_sentiment():
     print("Initialize sentiment review database")
-    dbbar = progressbar.ProgressBar(maxval=db_count + 2000, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+    dbbar = progressbar.ProgressBar(maxval=2000, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     dbbar.start()
     index = 0
-    for i in cur:
-        dbbar.update(index)
-        index += 1
-        words = word_tokenize(i[0])
-        for j in words:
-            is_valid_vocab = preprocessing(j)
-            if is_string_not_empty(is_valid_vocab):
-                if j not in vocabulary:
-                    vocabulary[j] = j
+    # for i in cur:
+    #     dbbar.update(index)
+    #     index += 1
+    #     words = word_tokenize(i[0])
+    #     for j in words:
+    #         is_valid_vocab = preprocessing(j)
+    #         if is_string_not_empty(is_valid_vocab):
+    #             if j not in vocabulary:
+    #                 vocabulary[j] = j
     for i in negids:
         dbbar.update(index)
         index += 1
@@ -86,13 +86,13 @@ def running_db_sentiment():
                 if j not in vocabulary:
                     vocabulary[j] = j
     dbbar.finish()
-    close_connection()
+    #close_connection()
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
 @asyncio.coroutine
 def save_vocabulary_pickle():
-    with open("vocabulary5.pickle", "wb") as handle:
+    with open(path + "/Python/vocabulary/vocabulary5.pickle", "wb") as handle:
         cPickle.dump(vocabulary, handle)
         print("Saving pickle vocabulary is done")
 
