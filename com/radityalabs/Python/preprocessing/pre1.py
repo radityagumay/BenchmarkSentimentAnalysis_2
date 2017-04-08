@@ -2,6 +2,7 @@ from nltk.corpus import movie_reviews
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
+from itertools import chain
 import asyncio
 import progressbar
 import _pickle as cPickle
@@ -23,7 +24,6 @@ path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
 # variables
 db_count = 31828
-vocabulary = {}
 negfeats = []
 posfeats = []
 
@@ -68,18 +68,13 @@ def running_db_sentiment():
             negative += i[0] + " . "
         else:
             positive += i[0] + " . "
-        words = word_tokenize(i[0])
-        for j in words:
-            is_valid_vocab = preprocessing(j)
-            if is_string_not_empty(is_valid_vocab):
-                if j not in vocabulary:
-                    vocabulary[j] = j
     pBar1.finish()
-
+    full_sentence = negative + positive
+    vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in full_sentence]))
+    print(vocabulary)
     negfeats.append((word_feats(word_tokenize(negative)), 'neg'))
     posfeats.append((word_feats(word_tokenize(positive)), 'pos'))
     close_connection()
-    print("Done added vocabulary : ", len(vocabulary))
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
