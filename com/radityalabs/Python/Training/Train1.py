@@ -7,7 +7,6 @@ import os
 # variable
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
-
 # functions
 def local_vocabulary():
     with open(path + "/Python/vocabulary/vocabulary1.pickle", "rb") as handle:
@@ -31,20 +30,16 @@ negfeats = local_negfeats()
 posfeats = local_posfeats()
 
 negcutoff = len(negfeats) * 3 / 4
-poscutoff = len(posfeats) * 3 / 4
+poscutoff = len(posfeats) * 3 / 3
 
 trainfeats = negfeats[:int(negcutoff)] + posfeats[:int(poscutoff)]
 testfeats = negfeats[int(negcutoff):] + posfeats[int(poscutoff):]
 print('train on %d instances, test on %d instances' % (len(trainfeats), len(testfeats)))
-
-feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag) for sentence, tag in
-               training_data]
-classifier = NaiveBayesClassifier.train(feature_set)
-# classifier = NaiveBayesClassifier.train(trainfeats)
+classifier = NaiveBayesClassifier.train(trainfeats)
 print('accuracy:', nltk.classify.util.accuracy(classifier, testfeats))
 classifier.show_most_informative_features()
 
-test_sentence = "This very bad app ever"
+test_sentence = "This app never good enough"
 featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
 
 print("example:", test_sentence)

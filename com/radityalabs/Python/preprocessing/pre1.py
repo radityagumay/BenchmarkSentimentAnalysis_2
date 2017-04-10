@@ -17,13 +17,13 @@ conn = pymysql.connect(
 
 # initialize
 cur = conn.cursor()
-cur.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'neg' or label = 'pos' and length(reviewBody) > 50 limit 0, 31828")
+cur.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where (label = 'neg' or label = 'pos') and length(reviewBody) > 30 limit 0, 34636")
 stemmer = EnglishStemmer()
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
 # variables
-db_count = 31828
+db_count = 34636
 negfeats = []
 posfeats = []
 full_sentence = []
