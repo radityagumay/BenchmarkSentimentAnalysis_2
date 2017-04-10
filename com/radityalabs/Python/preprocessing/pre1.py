@@ -52,11 +52,10 @@ def close_connection():
     cur.close()
     conn.close()
 
+full_sentence = []
+
 @asyncio.coroutine
 def running_db_sentiment():
-    negative = ""
-    positive = ""
-    full_sentence = []
     pBar1 = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     pBar1.start()
     index = 0
@@ -65,21 +64,20 @@ def running_db_sentiment():
         pBar1.update(index)
         index += 1
         label = i[1]
+        clean = preprocessing(word_tokenize(i[0]))
         if label == 'neg':
-            negative += i[0] + " . "
-            full_sentence.append(negative)
+            full_sentence.append((clean, label))
         else:
-            positive += i[0] + " . "
-            full_sentence.append(positive)
-
-    print(full_sentence)
-    #vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in full_sentence]))
+            full_sentence.append((clean, label))
     #print(vocabulary)
     #negfeats.append((word_feats(word_tokenize(negative)), 'neg'))
     #posfeats.append((word_feats(word_tokenize(positive)), 'pos'))
     close_connection()
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
+
+vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in full_sentence]))
+print(vocabulary)
 
 # @asyncio.coroutine
 # def save_negfeats():

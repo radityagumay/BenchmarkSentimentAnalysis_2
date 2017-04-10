@@ -13,7 +13,7 @@ conn = pymysql.connect(
     db='sentiment_analysis')
 
 cur = conn.cursor()
-cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity")
+cur.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where label = 'neg' or label = 'pos' and length(reviewBody) > 50 limit 0, 31828")
 stemmer = EnglishStemmer()
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
@@ -34,13 +34,13 @@ def is_string_empty(string):
 def preprocessing(dirty_sentence):
     sentence = ""
     for i in dirty_sentence:
-        lower = i.lower()  # toLower().Case
-        if len(lower) > 3:  # only len > 3
-            stem = stemmer.stem(lower)  # root word
-            punc = stem.translate(tbl)  # remove ? ! @ etc
-            if is_string_empty(punc):  # check if not empty
+        lower = i.lower()                   # toLower().Case
+        if len(lower) > 3:                  # only len > 3
+            stem = stemmer.stem(lower)      # root word
+            punc = stem.translate(tbl)      # remove ? ! @ etc
+            if is_string_empty(punc):       # check if not empty
                 stop = punc not in set(stopwords.words('english'))
-                if stop:  # only true we append
+                if stop:                    # only true we append
                     sentence += str(punc) + " "
     return sentence
 
@@ -60,10 +60,10 @@ vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 #print(vocabulary)
 
 # write model vocabulary, for usage later
-def write_model_vocabulary():
-    with open(path + "/Python/vocabulary/vocabulary.pickle", "wb") as handle:
-        cPickle.dump(vocabulary, handle)
-        print("done write model vocabulary")
+# def write_model_vocabulary():
+#     with open(path + "/Python/vocabulary/vocabulary.pickle", "wb") as handle:
+#         cPickle.dump(vocabulary, handle)
+#         print("done write model vocabulary")
 
 # create feature set from our data training
 # feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
