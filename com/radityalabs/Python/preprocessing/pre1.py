@@ -64,11 +64,10 @@ def running_db_sentiment():
         pBar1.update(index)
         index += 1
         label = i[1]
-        clean = preprocessing(word_tokenize(i[0]))
         if label == 'neg':
-            full_sentence.append((clean, label))
+            full_sentence.append((i[0], label))
         else:
-            full_sentence.append((clean, label))
+            full_sentence.append((i[0], label))
     #print(vocabulary)
     #negfeats.append((word_feats(word_tokenize(negative)), 'neg'))
     #posfeats.append((word_feats(word_tokenize(positive)), 'pos'))
