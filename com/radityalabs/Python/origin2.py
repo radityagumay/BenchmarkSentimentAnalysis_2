@@ -8,7 +8,11 @@ from nltk.corpus import stopwords
 from nltk.stem.snowball import EnglishStemmer
 import nltk.classify.util
 import sys, unicodedata
+import _pickle as cPickle
+import os
 
+# variable
+path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 stemmer = EnglishStemmer()
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
@@ -62,8 +66,25 @@ classifier = NaiveBayesClassifier.train(trainfeats)
 print('accuracy:', nltk.classify.util.accuracy(classifier, testfeats))
 classifier.show_most_informative_features()
 
-test_sentence = "This app is good enough"
-featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
+def local_model_data_negative():
+    with open(path + "/Python/model/negative_model1.pickle", "rb") as handle:
+        return cPickle.load(handle)
 
-print("example:", test_sentence)
-print("label:", classifier.classify(featurized_test_sentence))
+def training():
+    for i in local_model_data_negative():
+        test_sentence = i
+        featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
+        print("\n")
+        print("==================================")
+        print("sentence :", test_sentence)
+        print("label :", classifier.classify(featurized_test_sentence))
+        print("expected label : negative")
+        print("==================================")
+
+training()
+
+# test_sentence = "This app is good enough"
+# featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
+#
+# print("example:", test_sentence)
+# print("label:", classifier.classify(featurized_test_sentence))
