@@ -50,7 +50,6 @@ def build_vocabulary():
     return vocabulary
 
 vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in build_vocabulary()]))
-print(vocabulary)
 
 negcutoff = len(negfeats) * 3 / 4
 poscutoff = len(posfeats) * 3 / 4
@@ -63,7 +62,7 @@ classifier = NaiveBayesClassifier.train(trainfeats)
 print('accuracy:', nltk.classify.util.accuracy(classifier, testfeats))
 classifier.show_most_informative_features()
 
-test_sentence = "This app is never good enough"
+test_sentence = "This app is good enough"
 featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
 
 print("example:", test_sentence)

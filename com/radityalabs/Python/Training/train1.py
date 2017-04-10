@@ -20,17 +20,20 @@ def local_posfeats():
     with open(path + "/Python/posfeats/posfeats1.pickle", "rb") as handle:
         return cPickle.load(handle)
 
-def local_training_data():
-    with open(path + "/Python/training_data/training1.pickle", "rb") as handle:
+def local_model_data_negative():
+    with open(path + "/Python/model/negative_model1.pickle", "rb") as handle:
+        return cPickle.load(handle)
+
+def local_model_data_positive():
+    with open(path + "/Python/model/positive_model1.pickle", "rb") as handle:
         return cPickle.load(handle)
 
 vocabulary = local_vocabulary()
-training_data = local_training_data()
 negfeats = local_negfeats()
 posfeats = local_posfeats()
 
 negcutoff = len(negfeats) * 3 / 4
-poscutoff = len(posfeats) * 3 / 5
+poscutoff = len(posfeats) * 3 / 4
 
 trainfeats = negfeats[:int(negcutoff)] + posfeats[:int(poscutoff)]
 testfeats = negfeats[int(negcutoff):] + posfeats[int(poscutoff):]
@@ -40,8 +43,15 @@ classifier = NaiveBayesClassifier.train(trainfeats)
 print('accuracy:', nltk.classify.util.accuracy(classifier, testfeats))
 classifier.show_most_informative_features()
 
-test_sentence = "This bad app ever"
-featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
+def training():
+    for i in local_model_data_negative():
+        test_sentence = i
+        featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
+        print("\n")
+        print("==================================")
+        print("sentence :", test_sentence)
+        print("label :", classifier.classify(featurized_test_sentence))
+        print("expected label : negative")
+        print("==================================")
 
-print("example:", test_sentence)
-print("label:", classifier.classify(featurized_test_sentence))
+training()
