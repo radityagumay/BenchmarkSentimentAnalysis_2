@@ -24,7 +24,7 @@ def preprocessing(dirty_sentence):
         if len(lower) > 3:                  # only len > 3
             stem = stemmer.stem(lower)      # root word
             punc = stem.translate(tbl)      # remove ? ! @ etc
-            if is_string_empty(punc):       # check if not empty
+            if is_string_not_empty(punc):       # check if not empty
                 stop = punc not in set(stopwords.words('english'))
                 if stop:                    # only true we append
                     sentence += str(punc) + " "
@@ -42,20 +42,15 @@ posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posid
 def build_vocabulary():
     vocabulary = []
     for n in negids:
-        for j in movie_reviews.words(fileids=[n]):
-            is_valid_vocab = preprocessing(j)
-            if is_string_not_empty(is_valid_vocab):
-                if j not in vocabulary:
-                    vocabulary.append((j, 'neg'))
+        sentence = movie_reviews.raw(fileids=[n])
+        vocabulary.append((sentence, 'neg'))
     for p in posids:
-        for j in movie_reviews.words(fileids=[p]):
-            is_valid_vocab = preprocessing(j)
-            if is_string_not_empty(is_valid_vocab):
-                if j not in vocabulary:
-                    vocabulary.append((j, 'pos'))
+        sentence = movie_reviews.raw(fileids=[p])
+        vocabulary.append((sentence, 'pos'))
     return vocabulary
 
-vocabulary = build_vocabulary()
+vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in build_vocabulary()]))
+print(vocabulary)
 
 negcutoff = len(negfeats) * 3 / 4
 poscutoff = len(posfeats) * 3 / 4
