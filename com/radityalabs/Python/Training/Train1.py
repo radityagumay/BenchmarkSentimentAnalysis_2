@@ -12,7 +12,6 @@ def local_vocabulary():
     with open(path + "/Python/vocabulary/vocabulary1.pickle", "rb") as handle:
         return cPickle.load(handle)
 
-
 def local_negfeats():
     with open(path + "/Python/negfeats/negfeats1.pickle", "rb") as handle:
         return cPickle.load(handle)
@@ -21,9 +20,9 @@ def local_posfeats():
     with open(path + "/Python/posfeats/posfeats1.pickle", "rb") as handle:
         return cPickle.load(handle)
 
-loc_vocabulary = local_vocabulary()
+vocabulary = local_vocabulary()
 negfeats = local_negfeats()
 posfeats = local_posfeats()
 
-print(negfeats)
+print(vocabulary)
 
