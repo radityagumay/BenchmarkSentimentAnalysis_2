@@ -14,78 +14,57 @@ import os
 
 # variable
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
-stemmer = EnglishStemmer()
-tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
-def is_string_not_empty(string):
-    if string == "":
-        return False
-    return True
+# functions
+def local_vocabulary():
+    with open(path + "/Python/vocabulary/vocabulary2.pickle", "rb") as handle:
+        return cPickle.load(handle)
 
-def preprocessing(dirty_sentence):
-    sentence = ""
-    for i in dirty_sentence:
-        lower = i.lower()                   # toLower().Case
-        if len(lower) > 3:                  # only len > 3
-            stem = stemmer.stem(lower)      # root word
-            punc = stem.translate(tbl)      # remove ? ! @ etc
-            if is_string_not_empty(punc):       # check if not empty
-                stop = punc not in set(stopwords.words('english'))
-                if stop:                    # only true we append
-                    sentence += str(punc) + " "
-    return sentence
+def local_negfeats():
+    with open(path + "/Python/negfeats/negfeats2.pickle", "rb") as handle:
+        return cPickle.load(handle)
 
-def word_feats(words):
-    return dict([(word, True) for word in words])
+def local_posfeats():
+    with open(path + "/Python/posfeats/posfeats2.pickle", "rb") as handle:
+        return cPickle.load(handle)
 
-negids = movie_reviews.fileids('neg')
-posids = movie_reviews.fileids('pos')
+def local_model_data():
+    with open(path + "/Python/model/model1.pickle", "rb") as handle:
+        return cPickle.load(handle)
 
-negfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'neg') for f in negids]
-posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posids]
-
-def build_vocabulary():
-    vocabulary = []
-    for n in negids:
-        sentence = movie_reviews.raw(fileids=[n])
-        vocabulary.append((sentence, 'neg'))
-    for p in posids:
-        sentence = movie_reviews.raw(fileids=[p])
-        vocabulary.append((sentence, 'pos'))
-    return vocabulary
-
-vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in build_vocabulary()]))
+vocabulary = local_vocabulary()
+negfeats = local_negfeats()
+posfeats = local_posfeats()
+model = local_model_data()
 
 negcutoff = len(negfeats) * 3 / 4
 poscutoff = len(posfeats) * 3 / 4
 
 trainfeats = negfeats[:int(negcutoff)] + posfeats[:int(poscutoff)]
 testfeats = negfeats[int(negcutoff):] + posfeats[int(poscutoff):]
-print('train on %d instances, test on %d instances' % (len(trainfeats), len(testfeats)))
 
+print('train on %d instances, test on %d instances' % (len(trainfeats), len(testfeats)))
 classifier = NaiveBayesClassifier.train(trainfeats)
 print('accuracy:', nltk.classify.util.accuracy(classifier, testfeats))
 classifier.show_most_informative_features()
 
-def local_model_data_negative():
-    with open(path + "/Python/model/negative_model1.pickle", "rb") as handle:
-        return cPickle.load(handle)
-
 def training():
-    for i in local_model_data_negative():
-        test_sentence = i
+    for i in model:
+        test_sentence = i[0]
         featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
         print("\n")
         print("==================================")
         print("sentence :", test_sentence)
         print("label :", classifier.classify(featurized_test_sentence))
-        print("expected label : negative")
+        print("expected label :", i[1])
         print("==================================")
+#training()
 
-training()
-
-# test_sentence = "This app is good enough"
-# featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
-#
-# print("example:", test_sentence)
-# print("label:", classifier.classify(featurized_test_sentence))
+test_sentence = "The new update makes twitter taking soooo long to load my timeline and mentions. I have to wait for approximately 30 minutes without closing it before it finally loads. Before twitter was one of the lightest app of social media and now it becomes heavy taking around 80% of my RAM. The new automatically saving picture is also not helping we need an option to turn the feature off."
+featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
+print("\n")
+print("==================================")
+print("sentence :", test_sentence)
+print("label :", classifier.classify(featurized_test_sentence))
+print("expected label :", "pos")
+print("==================================")
