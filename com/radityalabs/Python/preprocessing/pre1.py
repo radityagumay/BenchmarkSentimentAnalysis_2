@@ -56,6 +56,7 @@ def close_connection():
 def running_db_sentiment():
     negative = ""
     positive = ""
+    full_sentence = []
     pBar1 = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     pBar1.start()
     index = 0
@@ -66,38 +67,40 @@ def running_db_sentiment():
         label = i[1]
         if label == 'neg':
             negative += i[0] + " . "
+            full_sentence.append(negative)
         else:
             positive += i[0] + " . "
-    pBar1.finish()
-    full_sentence = negative + positive
-    vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in full_sentence]))
-    print(vocabulary)
-    negfeats.append((word_feats(word_tokenize(negative)), 'neg'))
-    posfeats.append((word_feats(word_tokenize(positive)), 'pos'))
+            full_sentence.append(positive)
+
+    print(full_sentence)
+    #vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in full_sentence]))
+    #print(vocabulary)
+    #negfeats.append((word_feats(word_tokenize(negative)), 'neg'))
+    #posfeats.append((word_feats(word_tokenize(positive)), 'pos'))
     close_connection()
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
-@asyncio.coroutine
-def save_negfeats():
-    with open(path + "/Python/negfeats/negfeats1.pickle", "wb") as handle:
-        cPickle.dump(negfeats, handle)
-        print("Saving pickle negfeats is done")
-
-asyncio.get_event_loop().run_until_complete(save_negfeats())
-
-@asyncio.coroutine
-def save_posfeats():
-    with open(path + "/Python/posfeats/posfeats1.pickle", "wb") as handle:
-        cPickle.dump(posfeats, handle)
-        print("Saving pickle posfeats is done")
-
-asyncio.get_event_loop().run_until_complete(save_posfeats())
-
-@asyncio.coroutine
-def save_vocabulary_pickle():
-    with open(path + "/Python/vocabulary/vocabulary1.pickle", "wb") as handle:
-        cPickle.dump(vocabulary, handle)
-        print("Saving pickle vocabulary is done")
-
-asyncio.get_event_loop().run_until_complete(save_vocabulary_pickle())
+# @asyncio.coroutine
+# def save_negfeats():
+#     with open(path + "/Python/negfeats/negfeats1.pickle", "wb") as handle:
+#         cPickle.dump(negfeats, handle)
+#         print("Saving pickle negfeats is done")
+#
+# asyncio.get_event_loop().run_until_complete(save_negfeats())
+#
+# @asyncio.coroutine
+# def save_posfeats():
+#     with open(path + "/Python/posfeats/posfeats1.pickle", "wb") as handle:
+#         cPickle.dump(posfeats, handle)
+#         print("Saving pickle posfeats is done")
+#
+# asyncio.get_event_loop().run_until_complete(save_posfeats())
+#
+# @asyncio.coroutine
+# def save_vocabulary_pickle():
+#     with open(path + "/Python/vocabulary/vocabulary1.pickle", "wb") as handle:
+#         cPickle.dump(vocabulary, handle)
+#         print("Saving pickle vocabulary is done")
+#
+# asyncio.get_event_loop().run_until_complete(save_vocabulary_pickle())

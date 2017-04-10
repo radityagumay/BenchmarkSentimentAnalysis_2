@@ -54,9 +54,10 @@ def build_train():
 build_train()
 cur.close()
 conn.close()
-vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
 
-print(vocabulary)
+print(training_data)
+vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
+#print(vocabulary)
 
 # write model vocabulary, for usage later
 def write_model_vocabulary():
