@@ -39,13 +39,6 @@ def close_connection():
 def word_feats(words):
     return dict([(word, True) for word in words])
 
-# negids = movie_reviews.fileids('neg')[:5]
-# posids = movie_reviews.fileids('pos')[:5]
-#
-# negfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'neg') for f in negids]
-# posfeats = [(word_feats(movie_reviews.words(fileids=[f])), 'pos') for f in posids]
-#print("negfeats", negfeats)
-
 @asyncio.coroutine
 def running_db_sentiment():
     pBar1 = progressbar.ProgressBar(maxval=db_count, widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
@@ -65,6 +58,14 @@ def running_db_sentiment():
     close_connection()
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
+
+@asyncio.coroutine
+def save_training_data():
+    with open(path + "/Python/training_data/training1.pickle", "wb") as handle:
+        cPickle.dump(full_sentence, handle)
+        print("Saving training data is done")
+
+asyncio.get_event_loop().run_until_complete(save_training_data())
 
 @asyncio.coroutine
 def save_negfeats():
