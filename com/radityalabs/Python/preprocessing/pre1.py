@@ -27,8 +27,7 @@ db_count = 34636
 negfeats = []
 posfeats = []
 vocabulary = []
-negative_sentence = []
-positive_sentence = []
+sentence = []
 
 # functions
 def word_feats(words):
@@ -54,30 +53,22 @@ def running_db_sentiment():
         if label == 'neg':
             negfeats.append((word_feats(word_tokenize(i[0])), 'neg'))
             vocabulary.append((i[0], label))
-            negative_sentence.append(i[0])
+            sentence.append((i[0], 'neg'))
         else:
             posfeats.append((word_feats(word_tokenize(i[0])), 'pos'))
             vocabulary.append((i[0], label))
-            positive_sentence.append(i[0])
+            sentence.append((i[0], 'pos'))
     close_connection()
 
 asyncio.get_event_loop().run_until_complete(running_db_sentiment())
 
 @asyncio.coroutine
-def save_model_data_negative():
-    with open(path + "/Python/model/negative_model1.pickle", "wb") as handle:
-        cPickle.dump(negative_sentence, handle)
-        print("Saving negative model is done")
+def save_model_data():
+    with open(path + "/Python/model/model1.pickle", "wb") as handle:
+        cPickle.dump(sentence, handle)
+        print("Saving model is done")
 
-asyncio.get_event_loop().run_until_complete(save_model_data_negative())
-
-@asyncio.coroutine
-def save_model_data_positive():
-    with open(path + "/Python/model/positive_model1.pickle", "wb") as handle:
-        cPickle.dump(positive_sentence, handle)
-        print("Saving negative model is done")
-
-asyncio.get_event_loop().run_until_complete(save_model_data_positive())
+asyncio.get_event_loop().run_until_complete(save_model_data())
 
 @asyncio.coroutine
 def save_negfeats():
