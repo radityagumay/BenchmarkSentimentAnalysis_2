@@ -2,6 +2,7 @@
 import collections
 import nltk.metrics
 from nltk.classify import NaiveBayesClassifier
+from nltk.metrics import *
 from nltk.corpus import movie_reviews
 
 def word_feats(words):
@@ -29,9 +30,9 @@ for i, (feats, label) in enumerate(testfeats):
     observed = classifier.classify(feats)
     testsets[observed].add(i)
 
-print('pos precision:', nltk.metrics.precision(refsets['pos'], testsets['pos']))
-print('pos recall:', nltk.metrics.recall(refsets['pos'], testsets['pos']))
-print('pos F-measure:', nltk.metrics.f_measure(refsets['pos'], testsets['pos']))
-print('neg precision:', nltk.metrics.precision(refsets['neg'], testsets['neg']))
-print('neg recall:', nltk.metrics.recall(refsets['neg'], testsets['neg']))
-print('neg F-measure:', nltk.metrics.f_measure(refsets['neg'], testsets['neg']))
+print('pos precision:', precision(refsets['pos'], testsets['pos']))
+print('pos recall:', recall(refsets['pos'], testsets['pos']))
+print('pos F-measure:', f_measure(refsets['pos'], testsets['pos']))
+print('neg precision:', precision(refsets['neg'], testsets['neg']))
+print('neg recall:', recall(refsets['neg'], testsets['neg']))
+print('neg F-measure:', f_measure(refsets['neg'], testsets['neg']))

@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/origin4.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/origin5.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/origin5_data.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/Training/train2.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/Training/train2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/origin2.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/origin2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/origin3.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/origin3.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/origin4.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/origin4.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,59 +17,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="origin2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin2.py">
+      <file leaf-file-name="origin5.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="59" column="47" lean-forward="false" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
-              <folding>
-                <element signature="e#82#119#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pre2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-162">
-              <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/Training/train2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="857">
-              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding>
-                <element signature="e#105#142#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="origin4.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin4.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="92" lean-forward="false" selection-start-line="0" selection-start-column="92" selection-end-line="0" selection-end-column="92" />
-              <folding>
-                <element signature="e#93#111#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="origin3.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="14" column="49" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
+            <state relative-caret-position="709">
+              <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -89,7 +39,6 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>However</find>
-      <find>...</find>
       <find>&gt;&gt;&gt;</find>
       <find>&gt;&gt; &gt;</find>
       <find>classify</find>
@@ -112,6 +61,7 @@
       <find>negative_sentence</find>
       <find>sentence</find>
       <find>preprocessing</find>
+      <find>...</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,6 +100,8 @@
         <option value="$PROJECT_DIR$/com/radityalabs/Python/origin2.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/origin3.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/origin4.py" />
+        <option value="$PROJECT_DIR$/com/radityalabs/Python/origin5_data.json" />
+        <option value="$PROJECT_DIR$/com/radityalabs/Python/origin5.py" />
       </list>
     </option>
   </component>
@@ -260,84 +212,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SamplePython3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SamplePython3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="radityalabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Python" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Training" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SamplePython3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SamplePython3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="radityalabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Python" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="preprocessing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SamplePython3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SamplePython3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="radityalabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Python" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -346,14 +220,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/Training" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/preprocessing" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python" />
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/preprocessing" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/origin" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/corpus" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/Training" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -368,7 +242,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.origin4">
+  <component name="RunManager" selected="Python.origin5">
     <configuration default="false" name="origin2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -382,24 +256,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SamplePython3" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/origin2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="pre2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/radityalabs/Python/preprocessing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SamplePython3" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -454,6 +310,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SamplePython3" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/origin4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="origin5" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/radityalabs/Python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SamplePython3" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/origin5.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -525,18 +399,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.origin2" />
-      <item index="1" class="java.lang.String" itemvalue="Python.pre2" />
-      <item index="2" class="java.lang.String" itemvalue="Python.train2" />
-      <item index="3" class="java.lang.String" itemvalue="Python.origin3" />
-      <item index="4" class="java.lang.String" itemvalue="Python.origin4" />
+      <item index="1" class="java.lang.String" itemvalue="Python.train2" />
+      <item index="2" class="java.lang.String" itemvalue="Python.origin3" />
+      <item index="3" class="java.lang.String" itemvalue="Python.origin4" />
+      <item index="4" class="java.lang.String" itemvalue="Python.origin5" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.origin4" />
-        <item index="1" class="java.lang.String" itemvalue="Python.origin3" />
-        <item index="2" class="java.lang.String" itemvalue="Python.origin2" />
-        <item index="3" class="java.lang.String" itemvalue="Python.train2" />
-        <item index="4" class="java.lang.String" itemvalue="Python.pre2" />
+        <item index="0" class="java.lang.String" itemvalue="Python.origin5" />
+        <item index="1" class="java.lang.String" itemvalue="Python.origin4" />
+        <item index="2" class="java.lang.String" itemvalue="Python.origin3" />
+        <item index="3" class="java.lang.String" itemvalue="Python.origin2" />
+        <item index="4" class="java.lang.String" itemvalue="Python.train2" />
       </list>
     </recent_temporary>
   </component>
@@ -577,7 +451,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21192758" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45164508" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45164508" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5333998" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46261215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -657,14 +531,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/feature.txt" />
-    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/pymysql/cursors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/itertools.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3103">
@@ -985,11 +851,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="92" lean-forward="false" selection-start-line="0" selection-start-column="92" selection-end-line="0" selection-end-column="92" />
+        <state relative-caret-position="667">
+          <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="33" />
           <folding>
             <element signature="e#93#111#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin5_data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
