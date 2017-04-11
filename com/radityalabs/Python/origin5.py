@@ -24,11 +24,13 @@ test = [
 
 sentence = "the beer was horrible."
 cl = NaiveBayesClassifier(train)
-#print("classifiy", cl.classify(sentence))
 prob_dist = cl.prob_classify(sentence)
 print(prob_dist.max())
 print("probability positive:", round(prob_dist.prob("pos"), 2))
 print("probability negative:", round(prob_dist.prob("neg"), 2))
+print("accuracy:", cl.accuracy(test))
+cl.show_informative_features(5)
 
+# print("classifiy", cl.classify(sentence))
 # with open('train.json', 'r') as fp:
 #     cl = NaiveBayesClassifier(fp, format="json")
