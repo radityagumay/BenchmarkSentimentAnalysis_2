@@ -2,6 +2,7 @@
 import random
 from nltk.corpus import movie_reviews
 from textblob.classifiers import NaiveBayesClassifier
+from textblob import TextBlob
 
 random.seed(1)
 
@@ -26,21 +27,43 @@ test = [
     ("I can't believe I'm doing this.", 'neg')
 ]
 
-cl = NaiveBayesClassifier(train)
+# cl = NaiveBayesClassifier(train)
+#
+# # Grab some movie review data
+# reviews = [(list(movie_reviews.words(fileid)), category)
+#            for category in movie_reviews.categories()
+#            for fileid in movie_reviews.fileids(category)]
+# random.shuffle(reviews)
+# new_train, new_test = reviews[0:100], reviews[101:200]
+#
+# # Update the classifier with the new training data
+# cl.update(new_train)
+#
+# # Compute accuracy
+# accuracy = cl.accuracy(test + new_test)
+# print("Accuracy: {0}".format(accuracy))
+#
+# # Show 5 most informative features
+# cl.show_informative_features(5)
 
-# Grab some movie review data
-reviews = [(list(movie_reviews.words(fileid)), category)
-           for category in movie_reviews.categories()
-           for fileid in movie_reviews.fileids(category)]
-random.shuffle(reviews)
-new_train, new_test = reviews[0:100], reviews[101:200]
+print(train)
+#cl = NaiveBayesClassifier(train)
 
-# Update the classifier with the new training data
-cl.update(new_train)
+# Classify some text
+#print("Their burgers are amazing.", cl.classify("Their burgers are amazing."))  # "pos"
+#print("I don't like their pizza.", cl.classify("I don't like their pizza."))   # "neg"
+
+# Classify a TextBlob
+#blob = TextBlob("The beer was amazing. But the hangover was horrible. My boss was not pleased.", classifier=cl)
+
+#print(blob)
+#print(blob.classify())
+
+# for sentence in blob.sentences:
+#     print(sentence, sentence.classify())
 
 # Compute accuracy
-accuracy = cl.accuracy(test + new_test)
-print("Accuracy: {0}".format(accuracy))
+#print("Accuracy: {0}".format(cl.accuracy(test)))
 
 # Show 5 most informative features
-cl.show_informative_features(5)
+#cl.show_informative_features(5)
