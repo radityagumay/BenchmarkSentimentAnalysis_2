@@ -21,7 +21,8 @@ import pymysql
 #     db='google_play_crawler')
 #
 # cursor_google = db_google.cursor()
-# cursor_google.execute("SELECT reviewBody, label FROM google_play_crawler.authors17 limit 0, 2000")
+# cursor_google.execute("SELECT reviewBody, label FROM google_play_crawler.authors17 "
+#                       "where (label = 'pos' or label = 'neg') and length(reviewBody) > 50 limit 20, 26")
 #
 # def is_string_not_empty(string):
 #     if string == "":
@@ -50,11 +51,11 @@ import pymysql
 #         if preprocessing_word:
 #             clean_sentence += str(i) + " "
 #     #print("clean sentence", clean_sentence)
-#     test.append((clean_sentence, data[1]))
+#     train.append((clean_sentence, data[1]))
 #
 # def save_text_blob_train():
-#     with open(path + "/Python/textblob/text_blob_test.pickle", "wb") as handle:
-#         cPickle.dump(test, handle)
+#     with open(path + "/Python/textblob/text_blob_train.pickle", "wb") as handle:
+#         cPickle.dump(train, handle)
 #
 # save_text_blob_train()
 #
@@ -74,7 +75,7 @@ def load_test_data():
 train = load_train_data()
 test = load_test_data()
 
-sentence = "the app was horrible."
+sentence = "the app better."
 cl = NaiveBayesClassifier(train)
 prob_dist = cl.prob_classify(sentence)
 print(prob_dist.max())
