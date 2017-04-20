@@ -22,7 +22,7 @@ test = [
     ("I can't believe I'm doing this.", 'neg')
 ]
 
-sentence = "the beer was horrible."
+sentence = "the beer was good."
 cl = NaiveBayesClassifier(train)
 prob_dist = cl.prob_classify(sentence)
 print(prob_dist.max())

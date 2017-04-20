@@ -28,17 +28,29 @@ class Benchmark:
     def __init__(self):
         print("constructor")
 
-    def __init__(self, id, text):
-        label = request_nltk_api(text)
-        insert_label(id, label)
+    def __init__(self, index, id, text):
+        try:
+            label = request_nltk_api(index, text)
+            if label == "":
+                return
+            else:
+                insert_label(id, label)
+        except:
+            print("Error")
+            training_benchmark(index)
 
-def request_nltk_api(text):
-    payload = {
-        'language': 'english',
-        'text': text
-    }
-    request = requests.post(url, data=payload)
-    response = json.loads(request.text)
+def request_nltk_api(index, text):
+    try:
+        payload = {
+            'language': 'english',
+            'text': text
+        }
+        request = requests.post(url, data=payload)
+        response = json.loads(request.text)
+    except requests.exceptions.HTTPError as e:
+        print("Error: " + str(e))
+        training_benchmark(index)
+        return None
     negative_val = response['probability']['neg']
     positive_val = response['probability']['pos']
     label = response["label"]
@@ -56,9 +68,13 @@ def insert_label(id, label):
     cursor.execute(query)
     db.commit()
 
-def training_benchmark():
+def training_benchmark(ind):
+    index = 0 if ind == "" else ind
     for data in datas:
-        Benchmark(data[0], data[1])
+        index += 1
+        print("index:", index)
+        if index > 2377:
+            Benchmark(index, data[0], data[1])
     close_connection()
 
-training_benchmark()
+training_benchmark(0)
