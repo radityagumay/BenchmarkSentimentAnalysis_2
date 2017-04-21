@@ -49,13 +49,13 @@ print(test)
 
 @asyncio.coroutine
 def save_train():
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_34636.pickle", "wb") as handle:
+    with open(path + "/Python/bimbingan_data/train_twitter_corpus_34636_1.pickle", "wb") as handle:
         cPickle.dump(train, handle)
         print("Saving train is done")
 
 @asyncio.coroutine
 def save_test():
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317.pickle", "wb") as handle:
+    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317_1.pickle", "wb") as handle:
         cPickle.dump(test, handle)
         print("Saving train is done")
 asyncio.get_event_loop().run_until_complete(save_train())

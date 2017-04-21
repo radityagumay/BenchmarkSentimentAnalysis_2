@@ -18,7 +18,7 @@ def end_word_extractor(document):
     return feats
 
 def load_test():
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317.pickle", "rb") as handle:
+    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317_1.pickle", "rb") as handle:
         return cPickle.load(handle)
 
 def precision_recall(classifier):
@@ -30,9 +30,9 @@ def precision_recall(classifier):
     print('neg recall:', classifier.metrics.recall(refsets['neg'], testsets['neg']))
 
 def testing(sentence):
-    cl = joblib.load(path + '/Python/bimbingan_data/sklearn-joblib-train.pkl')
+    cl = joblib.load(path + '/Python/bimbingan_data/sklearn-joblib-train-twitter-1.pkl')
     print(cl.classify(sentence))
     print("Accuracy: {0}".format(cl.accuracy(load_test())))
     cl.show_informative_features(5)
 
-testing(sentence = "this app is very good")
+testing(sentence = "this app is never good enough")

@@ -1,12 +1,6 @@
 # http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/
-from nltk.corpus import movie_reviews
 from textblob.classifiers import NaiveBayesClassifier
-from nltk.stem.snowball import EnglishStemmer
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-import sys, unicodedata
 from sklearn.externals import joblib
-from textblob import TextBlob
 import _pickle as cPickle
 import os
 import pymysql
@@ -50,13 +44,13 @@ print(test)
 
 @asyncio.coroutine
 def save_train():
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_34636.pickle", "wb") as handle:
+    with open(path + "/Python/bimbingan_data/train_twitter_corpus_34636_1.pickle", "wb") as handle:
         cPickle.dump(train, handle)
         print("Saving train is done")
 
 @asyncio.coroutine
 def save_test():
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317.pickle", "wb") as handle:
+    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317_1.pickle", "wb") as handle:
         cPickle.dump(test, handle)
         print("Saving test is done")
 
@@ -75,11 +69,4 @@ def end_word_extractor(document):
     return feats
 
 cl = NaiveBayesClassifier(train, feature_extractor=end_word_extractor)
-joblib.dump(cl, path + '/Python/bimbingan_data/sklearn-joblib-train.pkl')
-
-# sentence = "this app is very bad"
-# cl = joblib.load(path + '/Python/bimbingan_data/sklearn-joblib-train.pkl')
-# print(cl.classify(sentence))
-# blob = TextBlob(sentence, classifier=cl)
-# print(blob.classify())
-# print("Accuracy: {0}".format(cl2.accuracy(test)))
+joblib.dump(cl, path + '/Python/bimbingan_data/sklearn-joblib-train-twitter-1.pkl')
