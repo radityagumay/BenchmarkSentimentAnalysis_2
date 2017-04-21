@@ -5,6 +5,7 @@ from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import sys, unicodedata
+from sklearn.externals import joblib
 import _pickle as cPickle
 import os
 import pymysql

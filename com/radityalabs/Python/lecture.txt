@@ -1,0 +1,6 @@
+# This is a fast and simple noun phrase extractor (based on NLTK)
+# Feel free to use it, just keep a link back to this post
+# http://thetokenizer.com/2013/05/09/efficient-way-to-extract-the-main-topics-of-a-sentence/
+# https://gist.github.com/shlomibabluki/5539628
+# Create by Shlomi Babluki
+# May, 2013
