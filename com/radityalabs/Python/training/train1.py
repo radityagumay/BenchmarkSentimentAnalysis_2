@@ -1,54 +1,38 @@
 # this use play store twitter corpus
-import nltk.classify.util
-from nltk.classify import NaiveBayesClassifier
-from nltk.tokenize import word_tokenize
+# http://textblob.readthedocs.io/en/dev/classifiers.html#evaluating-classifiers
+# http://streamhacker.com/2010/05/24/text-classification-sentiment-analysis-stopwords-collocations/
+from sklearn.externals import joblib
+import collections
 import _pickle as cPickle
 import os
 
-# variable
+# variables
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
-# functions
-def local_vocabulary():
-    with open(path + "/Python/vocabulary/vocabulary1.pickle", "rb") as handle:
+def end_word_extractor(document):
+    tokens = document.split()
+    first_word, last_word = tokens[0], tokens[-1]
+    feats = {}
+    feats["first({0})".format(first_word)] = True
+    feats["last({0})".format(last_word)] = False
+    return feats
+
+def load_test():
+    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317.pickle", "rb") as handle:
         return cPickle.load(handle)
 
-def local_negfeats():
-    with open(path + "/Python/negfeats/negfeats1.pickle", "rb") as handle:
-        return cPickle.load(handle)
+def precision_recall(classifier):
+    refsets = collections.defaultdict(set)
+    testsets = collections.defaultdict(set)
+    print('pos precision:', classifier.metrics.precision(refsets['pos'], testsets['pos']))
+    print('pos recall:', classifier.metrics.recall(refsets['pos'], testsets['pos']))
+    print('neg precision:', classifier.metrics.precision(refsets['neg'], testsets['neg']))
+    print('neg recall:', classifier.metrics.recall(refsets['neg'], testsets['neg']))
 
-def local_posfeats():
-    with open(path + "/Python/posfeats/posfeats1.pickle", "rb") as handle:
-        return cPickle.load(handle)
+def testing(sentence):
+    cl = joblib.load(path + '/Python/bimbingan_data/sklearn-joblib-train.pkl')
+    print(cl.classify(sentence))
+    print("Accuracy: {0}".format(cl.accuracy(load_test())))
+    cl.show_informative_features(5)
 
-def local_model_data():
-    with open(path + "/Python/model/model1.pickle", "rb") as handle:
-        return cPickle.load(handle)
-
-vocabulary = local_vocabulary()
-negfeats = local_negfeats()
-posfeats = local_posfeats()
-model = local_model_data()
-
-negcutoff = len(negfeats) * 3 / 4
-poscutoff = len(posfeats) * 3 / 4
-
-trainfeats = negfeats[:int(negcutoff)] + posfeats[:int(poscutoff)]
-testfeats = negfeats[int(negcutoff):] + posfeats[int(poscutoff):]
-
-print('train on %d instances, test on %d instances' % (len(trainfeats), len(testfeats)))
-classifier = NaiveBayesClassifier.train(trainfeats)
-print('accuracy:', nltk.classify.util.accuracy(classifier, testfeats))
-classifier.show_most_informative_features()
-
-def training():
-    for i in model:
-        test_sentence = i[0]
-        featurized_test_sentence = {i: (i in word_tokenize(test_sentence)) for i in vocabulary}
-        print("\n")
-        print("==================================")
-        print("sentence :", test_sentence)
-        print("label :", classifier.classify(featurized_test_sentence))
-        print("expected label :", i[1])
-        print("==================================")
-training()
+testing(sentence = "this app is very good")

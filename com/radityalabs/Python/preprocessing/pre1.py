@@ -58,7 +58,7 @@ def save_train():
 def save_test():
     with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317.pickle", "wb") as handle:
         cPickle.dump(test, handle)
-        print("Saving train is done")
+        print("Saving test is done")
 
 asyncio.get_event_loop().run_until_complete(save_train())
 asyncio.get_event_loop().run_until_complete(save_test())
