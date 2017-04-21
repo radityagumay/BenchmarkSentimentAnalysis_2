@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/com/radityalabs/Python/bimbingan_data/sklearn-joblib-train.pkl" afterPath="$PROJECT_DIR$/com/radityalabs/Python/bimbingan_data/sklearn-joblib-train-twitter-1.pkl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/com/radityalabs/Python/bimbingan_data/train_twitter_corpus_2317.pickle" afterPath="$PROJECT_DIR$/com/radityalabs/Python/bimbingan_data/train_twitter_corpus_2317_1.pickle" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/com/radityalabs/Python/bimbingan_data/train_twitter_corpus_34636.pickle" afterPath="$PROJECT_DIR$/com/radityalabs/Python/bimbingan_data/train_twitter_corpus_34636_1.pickle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/training/train2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/bimbingan_pre_1.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/bimbingan_pre_1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre1.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/training/train1.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/training/train1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/training/train2.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/training/train2.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,25 +16,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="train1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/train1.py">
+      <file leaf-file-name="pre3.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="26" column="21" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="51" />
+            <state relative-caret-position="563">
+              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding>
-                <element signature="e#217#253#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train2.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/train2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="37" column="36" lean-forward="false" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-              <folding>
-                <element signature="e#217#253#0" expanded="true" />
+                <element signature="e#93#146#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,11 +31,21 @@
       <file leaf-file-name="pre2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="58" column="94" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="94" />
+            <state relative-caret-position="638">
+              <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
               <folding>
                 <element signature="e#93#146#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/train2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="633">
+              <caret line="32" column="82" lean-forward="false" selection-start-line="32" selection-start-column="82" selection-end-line="32" selection-end-column="82" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -319,16 +311,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/twztblob" />
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/Training" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/training" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/preprocessing" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/training_data" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/origin" />
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/corpus" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/twztblob" />
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/Training" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -534,14 +526,33 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <list size="7">
+    <configuration default="false" name="train3" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SamplePython3" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/training/train3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <list size="8">
       <item index="0" class="java.lang.String" itemvalue="Python.bimbingan_pre_1" />
       <item index="1" class="java.lang.String" itemvalue="Python.train2" />
-      <item index="2" class="java.lang.String" itemvalue="Python.pre1" />
-      <item index="3" class="java.lang.String" itemvalue="Python.bimbingan_pre_ori_1" />
-      <item index="4" class="java.lang.String" itemvalue="Python.sckleari-joblib" />
-      <item index="5" class="java.lang.String" itemvalue="Python.train1" />
-      <item index="6" class="java.lang.String" itemvalue="Python.pre2" />
+      <item index="2" class="java.lang.String" itemvalue="Python.train3" />
+      <item index="3" class="java.lang.String" itemvalue="Python.pre1" />
+      <item index="4" class="java.lang.String" itemvalue="Python.bimbingan_pre_ori_1" />
+      <item index="5" class="java.lang.String" itemvalue="Python.sckleari-joblib" />
+      <item index="6" class="java.lang.String" itemvalue="Python.train1" />
+      <item index="7" class="java.lang.String" itemvalue="Python.pre2" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -608,7 +619,7 @@
     <frame x="0" y="23" width="1920" height="1121" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22044729" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23003195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -634,11 +645,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3659023" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7407777" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5333998" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46261215" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8225324" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18956336" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6211366" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28381255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -692,20 +703,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/pymysql/connections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="183" column="14" lean-forward="false" selection-start-line="183" selection-start-column="14" selection-end-line="183" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="915" column="0" lean-forward="false" selection-start-line="915" selection-start-column="0" selection-end-line="915" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/multiprocessing/pool.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -877,20 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="27" column="46" lean-forward="true" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-191">
-          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin6_textblob.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -912,14 +895,6 @@
           <folding>
             <element signature="e#0#15#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/bimbingan.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1031,13 +1006,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/train3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="37" column="36" lean-forward="false" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+          <folding>
+            <element signature="e#217#253#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/bimbingan.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="54" selection-end-column="36" />
+        <state relative-caret-position="1363">
+          <caret line="47" column="14" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="71" selection-end-column="83" />
           <folding>
             <element signature="e#93#146#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1051,10 +1060,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#93#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing/pre2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="58" column="94" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="94" />
+        <state relative-caret-position="638">
+          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
           <folding>
             <element signature="e#93#146#0" expanded="true" />
           </folding>
@@ -1063,11 +1082,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/train2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="37" column="36" lean-forward="false" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-          <folding>
-            <element signature="e#217#253#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="633">
+          <caret line="32" column="82" lean-forward="false" selection-start-line="32" selection-start-column="82" selection-end-line="32" selection-end-column="82" />
+          <folding />
         </state>
       </provider>
     </entry>
