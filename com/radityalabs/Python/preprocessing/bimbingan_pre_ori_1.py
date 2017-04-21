@@ -27,7 +27,21 @@ test = [
     ("I can't believe I'm doing this.", 'neg')
 ]
 
+def end_word_extractor(document):
+    tokens = document.split()
+    first_word, last_word = tokens[0], tokens[-1]
+    feats = {}
+    feats["first({0})".format(first_word)] = True
+    feats["last({0})".format(last_word)] = False
+    return feats
+
+sentence = "The beer was amazing. But, I do not enjoy it"
 cl = NaiveBayesClassifier(train)
-print("I don't like their pizza.", cl.classify("I don't like their pizza."))  # "neg"
+print(cl.classify(sentence))  # "neg"
 print("Accuracy: {0}".format(cl.accuracy(test)))
-cl.show_informative_features(5)
+#cl.show_informative_features(5)
+
+cl2 = NaiveBayesClassifier(train, feature_extractor=end_word_extractor)
+blob = TextBlob(sentence, classifier=cl2)
+print(blob.classify())
+print("Accuracy: {0}".format(cl2.accuracy(test)))
