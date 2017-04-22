@@ -41,7 +41,7 @@ def run():
     test_data = collection[1500:]
     save_train(train_data)
     save_test(test_data)
-    cl = NaiveBayesClassifier(train_data, feature_extractor=end_word_extractor)
+    cl = NaiveBayesClassifier(train_data)
     joblib.dump(cl, path + '/Python/bimbingan_data/sklearn-joblib-train-nltk-2.pkl')
 
 run()

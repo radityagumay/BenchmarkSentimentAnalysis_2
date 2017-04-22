@@ -14,12 +14,9 @@ training_data = [('I love this sandwich.', 'pos'),
                  ('My boss is horrible.', 'neg')]
 
 vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
-
 feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag) for sentence, tag in
                training_data]
-
 classifier = nbc.train(feature_set)
-
 test_sentence = "This beer never good enough"
 featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
 
