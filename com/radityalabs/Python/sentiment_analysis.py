@@ -12,7 +12,7 @@ def connection():
         user='root', passwd='',
         db='google_play_crawler')
     cur = conn.cursor()
-    cur.execute("SELECT authorId, authorName, authorDetailLink, reviewBody from authors17 limit 1, 4480")
+    cur.execute("SELECT authorId, authorName, authorDetailLink, reviewBody from authors18 limit 0, 4480")
     return cur, conn
 
 conn_polarity = pymysql.connect(
@@ -75,7 +75,7 @@ def get_id(value):
     else:
         return value
 
-last_index = 1302
+last_index = 2784
 
 def select_new_data_twitter():
     cur, conn = connection()
@@ -87,15 +87,3 @@ def select_new_data_twitter():
     close_connection(conn, cur)
 
 print("start script", select_new_data_twitter())
-
-# data = "https://play.google.com//store/people/details?id=117141524971167116964"
-# data = data.split("/")
-# data = data[6].split("=")
-# data = int(data[1])
-#
-# data2 = "https://play.google.com//store/apps/details?id=com.twitter.android&reviewId=bGc6QU9xcFRPR0NmMVBWZk9YUEtOVW5JbDduM2hCS3ZzZ1NTRWVDYjZCU2VpTU1GWUhtRTBNOU9hM1cxZW5qRElZR1JHa0Vfd3hzVTBUV19obnFHZDF0UHc"
-# data2 = data2.split("/")
-# data2 = data2[6].split("=")
-#
-# print(isinstance(data, int))
-# print(data2[1])
