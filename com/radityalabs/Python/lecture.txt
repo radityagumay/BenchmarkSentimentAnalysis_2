@@ -4,3 +4,10 @@
 # https://gist.github.com/shlomibabluki/5539628
 # Create by Shlomi Babluki
 # May, 2013
+
+https://www.knime.org/blog/sentiment-analysis-with-n-grams
+http://blog.chapagain.com.np/machine-learning-sentiment-analysis-text-classification-using-python-nltk/
+http://streamhacker.com/2010/05/24/text-classification-sentiment-analysis-stopwords-collocations/
+
+dataset
+https://www.yelp.com/dataset_challenge

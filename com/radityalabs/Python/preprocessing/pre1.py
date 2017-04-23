@@ -78,7 +78,8 @@ def run_me():
     train_and_test(train, test)
     close_connection(cursor, conn)
 
-run_me()
+if __name__ == '__main__':
+    run_me()
 
 # train
 # @asyncio.coroutine
