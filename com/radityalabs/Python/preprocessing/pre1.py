@@ -1,5 +1,7 @@
 # http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/
+# http://tech.thejoestory.com/2015/01/python-textblob-sentiment-analysis.html
 from textblob.classifiers import NaiveBayesClassifier
+from textblob.sentiments import NaiveBayesAnalyzer
 from sklearn.externals import joblib
 from textblob import TextBlob
 import _pickle as cPickle
@@ -45,7 +47,14 @@ def train_and_test(train, test):
 
     cl = NaiveBayesClassifier(train, feature_extractor=end_word_extractor)
     blob = TextBlob(sentence(), classifier=cl)
-    print(blob.classify())
+    print(sentence() + " label : ", blob.classify())
+    print("polarity", blob.sentiment.polarity) # polarity and subjectivity
+    print("subjectivity", blob.sentiment.subjectivity)
+
+    ## calc neg and pos
+    sentiment = TextBlob(sentence(), classifier=cl, analyzer=NaiveBayesAnalyzer())
+    print("positive", sentiment.sentiment.p_pos)
+    print("negative", sentiment.sentiment.p_neg)
     print("Accuracy: {0}".format(cl.accuracy(test)))
 
 def save_train(train):
