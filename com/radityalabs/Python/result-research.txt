@@ -6,5 +6,8 @@
 1. 71% accuracy
 > 0.7103435090179083
 
+// research using nltk corpus
+> 0.548 accuracy
+
 // research merge twitter and nltk corpus
 >  0.7026743252424186 accuracy
