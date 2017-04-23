@@ -9,16 +9,25 @@ base_url = 'http://text-processing.com/api/sentiment/'
 def connection():
     conn = pymysql.connect(
         host='127.0.0.1',
-        user='root', passwd='')
+        user='root', passwd='',
+        db='google_play_crawler')
     cur = conn.cursor()
-    cur.execute("SELECT authorId, authorName, authorDetailLink, reviewBody from google_play_crawler.authors18 limit 0, 4480")
+    cur.execute("SELECT authorId, authorName, authorDetailLink, reviewBody from authors17 limit 1, 4480")
     return cur, conn
+
+conn_polarity = pymysql.connect(
+    host='127.0.0.1',
+    user='root', passwd='',
+    db='sentiment_analysis')
+cur_polarity = conn_polarity.cursor()
 
 def close_connection(conn, cur):
     conn.close
     cur.close
+    conn_polarity.close()
+    cur_polarity.close()
 
-def insert_new_data_twitter(cur, conn, name, googleId, review, positive, negative, neutral, polarity, label):
+def insert_new_data_twitter(index, name, googleId, review, positive, negative, neutral, polarity, label):
     insert_query = '"' + \
                    name + '", "' + \
                    str(googleId) + '", "' + \
@@ -28,15 +37,15 @@ def insert_new_data_twitter(cur, conn, name, googleId, review, positive, negativ
                    str(neutral) + ', ' + \
                    str(polarity) + ', "' + \
                    label + '"'
-    print("============ INSERT ============")
+    print("============ INSERT ============ ", index)
     print(insert_query)
     query = "INSERT INTO sentiment_analysis.review_label_benchmark_with_polarity (authorName, googleId, reviewBody, positive, negative, neutral, polarity, label) values (" + insert_query + ")"
-    cur.execute(query)
-    conn.commit()
+    cur_polarity.execute(query)
+    conn_polarity.commit()
     print("============ DONE ============")
     print("\n")
 
-def request(data, cur, conn):
+def request(data, index):
     review = data[3]
     review = review.replace('"', '\\"')
     payload = {
@@ -53,7 +62,7 @@ def request(data, cur, conn):
     positive = response['probability']['pos']
     polarity = 1 - neutral
     label = response['label']
-    insert_new_data_twitter(cur, conn, name, googleId, review, positive, negative, neutral, polarity, label)
+    insert_new_data_twitter(index, name, googleId, review, positive, negative, neutral, polarity, label)
 
 def get_id(value):
     data = value
@@ -66,12 +75,15 @@ def get_id(value):
     else:
         return value
 
-last_index = 0
+last_index = 1302
 
 def select_new_data_twitter():
     cur, conn = connection()
+    index = 0
     for data in cur:
-        request(data, cur, conn)
+        index += 1
+        if index > last_index:
+            request(data, index)
     close_connection(conn, cur)
 
 print("start script", select_new_data_twitter())
