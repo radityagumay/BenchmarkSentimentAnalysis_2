@@ -1,6 +1,7 @@
 # http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/
 from textblob.classifiers import NaiveBayesClassifier
 from sklearn.externals import joblib
+from textblob import TextBlob
 import _pickle as cPickle
 import os
 import pymysql
@@ -24,19 +25,32 @@ def close_connection(cursor, conn):
     conn.close()
     cursor.close
 
-#def save_train_and_test(train, test):
+def end_word_extractor(document):
+    tokens = document.split()
+    first_word, last_word = tokens[0], tokens[-1]
+    feats = {}
+    feats["first({0})".format(first_word)] = True
+    feats["last({0})".format(last_word)] = False
+    return feats
+
+def sample_sentence():
+    return "This app is never good enough"
+
+def train_and_test(train, test):
+    cl = NaiveBayesClassifier(train, feature_extractor=end_word_extractor)
+    blob = TextBlob(sample_sentence(), classifier=cl)
+    print(blob.classify())
+    print("Accuracy: {0}".format(cl.accuracy(test)))
 
 def run_me():
     cursor, conn = connection()
     cursor.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where length(reviewBody) > 30 and (label = 'pos' or label = 'neg') limit 0, 39227")
-
     datas = []
     for data in cursor:
         datas.append((data[0], data[1]))
     train = datas[:23536]
     test = datas[23536:]
-    print("train", len(train))
-    print("test", len(test))
+    train_and_test(train, test)
     close_connection(cursor, conn)
 
 run_me()

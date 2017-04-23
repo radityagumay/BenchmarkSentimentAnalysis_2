@@ -1,0 +1,6 @@
+// Research Twitter Corpus
+// train and test using 63k data
+1. 70% accuracy
+
+// train and test using 74k data
+1. 71% accuracy
