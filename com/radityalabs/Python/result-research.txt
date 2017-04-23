@@ -4,3 +4,7 @@
 
 // train and test using 74k data
 1. 71% accuracy
+> 0.7103435090179083
+
+// research merge twitter and nltk corpus
+>  0.7026743252424186 accuracy

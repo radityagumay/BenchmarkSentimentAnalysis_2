@@ -1,8 +1,9 @@
 # http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/
-from textblob.classifiers import NaiveBayesClassifier
-from sklearn.externals import joblib
+# http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/
 from nltk.corpus import movie_reviews
-from sklearn.model_selection import KFold
+from textblob.classifiers import NaiveBayesClassifier
+from textblob import TextBlob
+import pymysql
 import _pickle as cPickle
 import random
 import os
@@ -10,13 +11,24 @@ import os
 # variables
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
-def load_train():
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_34636_1.pickle", "rb") as handle:
-        return cPickle.load(handle)
+items_total = 39227
+items_train_count = 23536
+items_test_count = 15691
 
-def load_test():
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317_1.pickle", "rb") as handle:
-        return cPickle.load(handle)
+def connection():
+    conn = pymysql.connect(
+        host='127.0.0.1',
+        user='root', passwd='',
+        db='sentiment_analysis')
+    cursor = conn.cursor()
+    return cursor, conn
+
+def query(cursor):
+    return cursor.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where length(reviewBody) > 30 and (label = 'pos' or label = 'neg') limit 0, 39227")
+
+def close_connection(cursor, conn):
+    conn.close()
+    cursor.close
 
 def end_word_extractor(document):
     tokens = document.split()
@@ -26,20 +38,10 @@ def end_word_extractor(document):
     feats["last({0})".format(last_word)] = False
     return feats
 
-def word_feats(words):
-    return dict([(word, True) for word in words])
+def sentence():
+    return "This app is never good enough"
 
-def save_train(train):
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_34636_nltk_3.pickle", "wb") as handle:
-        cPickle.dump(train, handle)
-        print("Saving train is done")
-
-def save_test(test):
-    with open(path + "/Python/bimbingan_data/train_twitter_corpus_2317_nltk_3.pickle", "wb") as handle:
-        cPickle.dump(test, handle)
-        print("Saving test is done")
-
-def run():
+def added_from_movie_review_train_and_test():
     negids = movie_reviews.fileids('neg')
     posids = movie_reviews.fileids('pos')
     collection = []
@@ -48,14 +50,42 @@ def run():
     for i in posids:
         collection.append((movie_reviews.raw(fileids=[i]), 'pos'))
     random.shuffle(collection)
-    train_data = collection[:1500]
-    test_data = collection[1500:]
+    train_nltk = collection[:1500]
+    test_nltk = collection[1500:]
+    return train_nltk, test_nltk
 
-    collect_train = load_train() + train_data
-    save_train(collect_train)
-    save_test(load_test() + test_data)
+def train_and_test(train, test):
+    train_nltk, test_nltk = added_from_movie_review_train_and_test()
+    new_train = train + train_nltk
+    new_test = test + test_nltk
 
-    cl = NaiveBayesClassifier(collect_train, feature_extractor=end_word_extractor)
-    joblib.dump(cl, path + '/Python/bimbingan_data/sklearn-joblib-train-combine-twitter-nltk-3.pkl')
+    save_train(new_train)
+    save_test(new_test)
 
-run()
+    cl = NaiveBayesClassifier(new_train, feature_extractor=end_word_extractor)
+    blob = TextBlob(sentence(), classifier=cl)
+    print(blob.classify())
+    print("Accuracy: {0}".format(cl.accuracy(new_test)))
+
+def save_train(train):
+    with open(path + "/Python/bimbingan_data/twitter_nltk_train_25036_3.pickle", "wb") as handle:
+        cPickle.dump(train, handle)
+        print("saving train data's is done")
+
+def save_test(test):
+    with open(path + "/Python/bimbingan_data/twitter_nltk_test_16191_3.pickle", "wb") as handle:
+        cPickle.dump(test, handle)
+        print("saving test data's is done")
+
+def run_me():
+    cursor, conn = connection()
+    query(cursor)
+    datas = []
+    for data in cursor:
+        datas.append((data[0], data[1]))
+    train = datas[:23536]
+    test = datas[23536:]
+    train_and_test(train, test)
+    close_connection(cursor, conn)
+
+run_me()
