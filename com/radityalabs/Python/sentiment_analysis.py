@@ -75,7 +75,7 @@ def get_id(value):
     else:
         return value
 
-last_index = 2784
+last_index = 3951
 
 def select_new_data_twitter():
     cur, conn = connection()
