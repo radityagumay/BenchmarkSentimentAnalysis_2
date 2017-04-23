@@ -7,4 +7,35 @@ lakukan scenario dibawah
 6. classification dengan bi-gram corpus sendiri & nltk.
 7. classification dengan three-gram corpus sendiri.
 8. classification dengan three-gram corpus nltk.
-0. classification dengan three-gram corpus sendiri & nltk.
+9. classification dengan three-gram corpus sendiri & nltk.
+
+
+Hasil:
+1. train and test using twitter corpus
+> i got difference accuracy.
+> first using 64k datas (60:40) = 70%
+> second using 74k datas (60:40) = 71%
+
+2. train and test using nltk corpus
+> using 2000 datas (60:40) = 54%
+
+3. train and test using twitter + nltk corpus
+> using 76k datas (60:40) = 70%
+
+
+============ DETAIL ==========
+// Research Twitter Corpus
+// train and test using 63k data
+1. 70% accuracy
+
+// train and test using 74k data
+1. 71% accuracy
+> 0.7103435090179083
+
+// research using nltk corpus
+> 0.548 accuracy
+
+// research merge twitter and nltk corpus
+>  0.7026743252424186 accuracy
+
+
