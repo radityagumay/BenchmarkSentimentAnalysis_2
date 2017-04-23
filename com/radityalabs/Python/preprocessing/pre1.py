@@ -21,6 +21,9 @@ def connection():
     cursor = conn.cursor()
     return cursor, conn
 
+def query(cursor):
+    return cursor.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where length(reviewBody) > 30 and (label = 'pos' or label = 'neg') limit 0, 39227")
+
 def close_connection(cursor, conn):
     conn.close()
     cursor.close
@@ -33,18 +36,31 @@ def end_word_extractor(document):
     feats["last({0})".format(last_word)] = False
     return feats
 
-def sample_sentence():
+def sentence():
     return "This app is never good enough"
 
 def train_and_test(train, test):
+    save_train(train)
+    save_test(test)
+
     cl = NaiveBayesClassifier(train, feature_extractor=end_word_extractor)
-    blob = TextBlob(sample_sentence(), classifier=cl)
+    blob = TextBlob(sentence(), classifier=cl)
     print(blob.classify())
     print("Accuracy: {0}".format(cl.accuracy(test)))
 
+def save_train(train):
+    with open(path + "/Python/bimbingan_data/twitter_train_23536_1.pickle", "wb") as handle:
+        cPickle.dump(train, handle)
+        print("saving train data's is done")
+
+def save_test(test):
+    with open(path + "/Python/bimbingan_data/twitter_test_15691_1.pickle", "wb") as handle:
+        cPickle.dump(test, handle)
+        print("saving test data's is done")
+
 def run_me():
     cursor, conn = connection()
-    cursor.execute("SELECT reviewBody, label FROM sentiment_analysis.review_label_benchmark_with_polarity where length(reviewBody) > 30 and (label = 'pos' or label = 'neg') limit 0, 39227")
+    query(cursor)
     datas = []
     for data in cursor:
         datas.append((data[0], data[1]))
