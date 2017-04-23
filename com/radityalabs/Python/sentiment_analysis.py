@@ -1,81 +1,89 @@
 # http://stackoverflow.com/a/16344128/5435658
-
-from nltk import NaiveBayesClassifier as nbc
-from nltk.tokenize import word_tokenize
-from itertools import chain
-import csv
-import json
 import pymysql
+import requests
+import json
 
-conn = pymysql.connect(
-    host='127.0.0.1',
-    user='root', passwd='',
-    db='sentiment_analysis')
+# variables
+base_url = 'http://text-processing.com/api/sentiment/'
 
-cur = conn.cursor()
+def connection():
+    conn = pymysql.connect(
+        host='127.0.0.1',
+        user='root', passwd='')
+    cur = conn.cursor()
+    cur.execute("SELECT authorId, authorName, authorDetailLink, reviewBody from google_play_crawler.authors18 limit 0, 4480")
+    return cur, conn
 
-cur.execute("SELECT reviewBody,label FROM review_label_benchmark_with_polarity limit 2")
+def close_connection(conn, cur):
+    conn.close
+    cur.close
 
-training_data = []
+def insert_new_data_twitter(cur, conn, name, googleId, review, positive, negative, neutral, polarity, label):
+    insert_query = '"' + \
+                   name + '", "' + \
+                   str(googleId) + '", "' + \
+                   review + '", ' + \
+                   str(positive) + ', ' + \
+                   str(negative) + ', ' + \
+                   str(neutral) + ', ' + \
+                   str(polarity) + ', "' + \
+                   label + '"'
+    print("============ INSERT ============")
+    print(insert_query)
+    query = "INSERT INTO sentiment_analysis.review_label_benchmark_with_polarity (authorName, googleId, reviewBody, positive, negative, neutral, polarity, label) values (" + insert_query + ")"
+    cur.execute(query)
+    conn.commit()
+    print("============ DONE ============")
+    print("\n")
 
-for r in cur:
-    print(r)
-    training_data.append(r)
+def request(data, cur, conn):
+    review = data[3]
+    review = review.replace('"', '\\"')
+    payload = {
+        'language': 'english',
+        'text': review
+    }
+    request = requests.post(base_url, data=payload, )
+    response = json.loads(request.text)
+    # id = data[0]
+    name = data[1]
+    googleId = get_id(data[2])
+    negative = response['probability']['neg']
+    neutral = response['probability']['neutral']
+    positive = response['probability']['pos']
+    polarity = 1 - neutral
+    label = response['label']
+    insert_new_data_twitter(cur, conn, name, googleId, review, positive, negative, neutral, polarity, label)
 
-cur.close()
-conn.close()
+def get_id(value):
+    data = value
+    data = data.split("/")
+    if data[5] == "apps":
+        return value
+    elif data[5] == "people":
+        data = data[6].split("=")
+        return data[1]
+    else:
+        return value
 
-vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
+last_index = 0
 
-feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag)
-               for sentence, tag in training_data]
+def select_new_data_twitter():
+    cur, conn = connection()
+    for data in cur:
+        request(data, cur, conn)
+    close_connection(conn, cur)
 
-print(training_data)
+print("start script", select_new_data_twitter())
 
-
-# def save_to_file():
-#     with open('feature.json', 'w') as outfile:
-#         json.dump(feature_set, outfile)
+# data = "https://play.google.com//store/people/details?id=117141524971167116964"
+# data = data.split("/")
+# data = data[6].split("=")
+# data = int(data[1])
 #
+# data2 = "https://play.google.com//store/apps/details?id=com.twitter.android&reviewId=bGc6QU9xcFRPR0NmMVBWZk9YUEtOVW5JbDduM2hCS3ZzZ1NTRWVDYjZCU2VpTU1GWUhtRTBNOU9hM1cxZW5qRElZR1JHa0Vfd3hzVTBUV19obnFHZDF0UHc"
+# data2 = data2.split("/")
+# data2 = data2[6].split("=")
 #
-# save_to_file()
-
-
-# def load_feature():
-#     with open('feature.json', 'r') as infile:
-#         print(json.load(infile))
-#
-#
-# load_feature()
-#
-# classifier = nbc.train(feature_set)
-#
-# test_sentence = "Twitter Great & Fun app to have!!"
-# featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
-#
-# print("test_sent:", test_sentence)
-# print("tag:", classifier.classify(featurized_test_sentence))
-
-# training_data = [('I love this sandwich.', 'pos'),
-#                  ('This is an amazing place!', 'pos'),
-#                  ('I feel very good about these beers.', 'pos'),
-#                  ('This is my best work.', 'pos'),
-#                  ("What an awesome view", 'pos'),
-#                  ('I do not like this restaurant', 'neg'),
-#                  ('I am tired of this stuff.', 'neg'),
-#                  ("I can't deal with this", 'neg'),
-#                  ('He is my sworn enemy!', 'neg'),
-#                  ('My boss is horrible.', 'neg')]
-#
-# vocabulary = set(chain(*[word_tokenize(i[0].lower()) for i in training_data]))
-#
-# feature_set = [({i: (i in word_tokenize(sentence.lower())) for i in vocabulary}, tag) for sentence, tag in
-#                training_data]
-#
-# classifier = nbc.train(feature_set)
-#
-# test_sentence = "This is the best band I've ever heard!"
-# featurized_test_sentence = {i: (i in word_tokenize(test_sentence.lower())) for i in vocabulary}
-#
-# print("test_sent:", test_sentence)
-# print("tag:", classifier.classify(featurized_test_sentence))
+# print(isinstance(data, int))
+# print(data2[1])
