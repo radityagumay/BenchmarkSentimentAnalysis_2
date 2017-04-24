@@ -5,6 +5,7 @@ from nltk.corpus import stopwords
 from nltk.collocations import BigramCollocationFinder
 from nltk.metrics import *
 from nltk.tokenize import word_tokenize
+from itertools import chain
 # from nltk.metrics import BigramAssocMeasures
 import _pickle as cPickle
 import itertools
@@ -72,6 +73,9 @@ def bigram_word_feats_stopwords(words, score_fn=BigramAssocMeasures.chi_sq, n=20
     bigrams = bigram_finder.nbest(score_fn, n)
     return dict([(ngram, True) for ngram in itertools.chain(words, bigrams) if ngram not in stopset])
 
+def sentence():
+    return "Twitter Its descent Im on it a lot more now but 1 thing it needs is a way to chat live with people. I think it would be cool to enhance the bubble tweets so people can live chat on Twitter with the followers."
+
 # Calculating Precision, Recall & F-measure
 def evaluate_classifier_default(featx):
     negfeats = [(featx(f), 'neg') for f in word_split(my_neg_data)]
@@ -105,6 +109,8 @@ def evaluate_classifier_default(featx):
     print('---------------------------------------')
     print('SINGLE FOLD RESULT ' + '(' + classifierName + ')')
     print('---------------------------------------')
+    print('sentence:', sentence())
+    print('label:', classifier.classify(word_feats(sentence())))
     print('accuracy:', accuracy)
     print('precision', (pos_precision + neg_precision) / 2)
     print('recall', (pos_recall + neg_recall) / 2)
@@ -133,6 +139,7 @@ def evaluate_classifier(featx):
     pos_fmeasure = []
     neg_fmeasure = []
     cv_count = 1
+    classifier = ""
     for i in range(n):
         testing_this_round = trainfeats[i * int(subset_size):][:int(subset_size)]
         training_this_round = trainfeats[:i * int(subset_size)] + trainfeats[(i + 1) * int(subset_size):]
@@ -164,9 +171,12 @@ def evaluate_classifier(featx):
         neg_fmeasure.append(cv_neg_fmeasure)
 
         cv_count += 1
+
     print('---------------------------------------')
     print('N-FOLD CROSS VALIDATION RESULT ' + '(' + classifierName + ')')
     print('---------------------------------------')
+    print('sentence:', sentence())
+    print('label:', classifier.classify(bigram_word_feats_stopwords(sentence())))
     print('accuracy:', sum(accuracy) / n)
     print('precision', (sum(pos_precision) / n + sum(neg_precision) / n) / 2)
     print('recall', (sum(pos_recall) / n + sum(neg_recall) / n) / 2)
