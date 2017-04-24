@@ -15,9 +15,39 @@ Hasil:
 > i got difference accuracy.
 > first using 64k datas (60:40) = 70%
 > second using 74k datas (60:40) = 71%
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.7591516263893138
+precision 0.8190638820767571
+recall 0.7441627939091505
+f-measure 0.7391603299343747
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8532823454429573
+precision 0.8708751663303538
+recall 0.8460066182214439
+f-measure 0.8491065593224052
 
 2. train and test using nltk corpus
 > using 2000 datas (60:40) = 54%
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.67
+precision 0.7807059258672162
+recall 0.6699999999999999
+f-measure 0.6339044424031843
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8089999999999999
+precision 0.8271727864429687
+recall 0.8092635656223407
+f-measure 0.8062682919398027
 
 3. train and test using twitter + nltk corpus
 > using 76k datas (60:40) = 70%
@@ -39,3 +69,199 @@ Hasil:
 >  0.7026743252424186 accuracy
 
 
+// 10 fold
+
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.7591516263893138
+precision 0.8190638820767571
+recall 0.7441627939091505
+f-measure 0.7391603299343747
+Most Informative Features
+           unfortunately = True              neg : pos    =    107.8 : 1.0
+                   worst = True              neg : pos    =    103.1 : 1.0
+                horrible = True              neg : pos    =     48.2 : 1.0
+               wonderful = True              pos : neg    =     42.7 : 1.0
+                  failed = True              neg : pos    =     38.0 : 1.0
+                  worse. = True              neg : pos    =     37.1 : 1.0
+                    bad. = True              neg : pos    =     32.4 : 1.0
+               annoying! = True              neg : pos    =     30.7 : 1.0
+                    poor = True              neg : pos    =     27.9 : 1.0
+                  broken = True              neg : pos    =     27.2 : 1.0
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.7793727689954105
+precision 0.8366190638033575
+recall 0.7652643309993549
+f-measure 0.7627002574317502
+
+
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8049352503313959
+precision 0.8306773861701844
+recall 0.7952575668832303
+f-measure 0.7968540956207086
+Most Informative Features
+           unfortunately = True              neg : pos    =    107.8 : 1.0
+                   worst = True              neg : pos    =    103.1 : 1.0
+                horrible = True              neg : pos    =     48.2 : 1.0
+               wonderful = True              pos : neg    =     42.7 : 1.0
+                  failed = True              neg : pos    =     38.0 : 1.0
+                  worse. = True              neg : pos    =     37.1 : 1.0
+                    bad. = True              neg : pos    =     32.4 : 1.0
+               annoying! = True              neg : pos    =     30.7 : 1.0
+                    poor = True              neg : pos    =     27.9 : 1.0
+                  broken = True              neg : pos    =     27.2 : 1.0
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8218765935747067
+precision 0.8495639894293063
+recall 0.8122929969209421
+f-measure 0.814501125503238
+
+
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8177832160701539
+precision 0.8465994703819228
+recall 0.8079458132239412
+f-measure 0.8099746376000332
+Most Informative Features
+           unfortunately = True              neg : pos    =    107.8 : 1.0
+                   worst = True              neg : pos    =    103.1 : 1.0
+       ('forever', 'to') = True              neg : pos    =     53.1 : 1.0
+                horrible = True              neg : pos    =     48.2 : 1.0
+         ('wont', 'let') = True              neg : pos    =     43.7 : 1.0
+               wonderful = True              pos : neg    =     42.7 : 1.0
+           ('why', 'is') = True              neg : pos    =     40.5 : 1.0
+     ('phone', 'number') = True              neg : pos    =     38.3 : 1.0
+                  failed = True              neg : pos    =     38.0 : 1.0
+                  worse. = True              neg : pos    =     37.1 : 1.0
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8402600713921469
+precision 0.8664911825584711
+recall 0.8312830668135425
+f-measure 0.8341808148494545
+
+// 5 fold
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.7591516263893138
+precision 0.8190638820767571
+recall 0.7441627939091505
+f-measure 0.7391603299343747
+Most Informative Features
+           unfortunately = True              neg : pos    =    107.8 : 1.0
+                   worst = True              neg : pos    =    103.1 : 1.0
+                horrible = True              neg : pos    =     48.2 : 1.0
+               wonderful = True              pos : neg    =     42.7 : 1.0
+                  failed = True              neg : pos    =     38.0 : 1.0
+                  worse. = True              neg : pos    =     37.1 : 1.0
+                    bad. = True              neg : pos    =     32.4 : 1.0
+               annoying! = True              neg : pos    =     30.7 : 1.0
+                    poor = True              neg : pos    =     27.9 : 1.0
+                  broken = True              neg : pos    =     27.2 : 1.0
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.7791714467813894
+precision 0.8360220362353974
+recall 0.7650821098313799
+f-measure 0.7625349463676461
+
+
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8049352503313959
+precision 0.8306773861701844
+recall 0.7952575668832303
+f-measure 0.7968540956207086
+Most Informative Features
+           unfortunately = True              neg : pos    =    107.8 : 1.0
+                   worst = True              neg : pos    =    103.1 : 1.0
+                horrible = True              neg : pos    =     48.2 : 1.0
+               wonderful = True              pos : neg    =     42.7 : 1.0
+                  failed = True              neg : pos    =     38.0 : 1.0
+                  worse. = True              neg : pos    =     37.1 : 1.0
+                    bad. = True              neg : pos    =     32.4 : 1.0
+               annoying! = True              neg : pos    =     30.7 : 1.0
+                    poor = True              neg : pos    =     27.9 : 1.0
+                  broken = True              neg : pos    =     27.2 : 1.0
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8211344805608668
+precision 0.848284372643738
+recall 0.8116177625067383
+f-measure 0.8138203839883218
+
+
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8177832160701539
+precision 0.8465994703819228
+recall 0.8079458132239412
+f-measure 0.8099746376000332
+Most Informative Features
+           unfortunately = True              neg : pos    =    107.8 : 1.0
+                   worst = True              neg : pos    =    103.1 : 1.0
+       ('forever', 'to') = True              neg : pos    =     53.1 : 1.0
+                horrible = True              neg : pos    =     48.2 : 1.0
+         ('wont', 'let') = True              neg : pos    =     43.7 : 1.0
+               wonderful = True              pos : neg    =     42.7 : 1.0
+           ('why', 'is') = True              neg : pos    =     40.5 : 1.0
+     ('phone', 'number') = True              neg : pos    =     38.3 : 1.0
+                  failed = True              neg : pos    =     38.0 : 1.0
+                  worse. = True              neg : pos    =     37.1 : 1.0
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8384193753983429
+precision 0.8649249189193313
+recall 0.8293731384774534
+f-measure 0.8322222669593045
+
+
+---------------------------------------
+SINGLE FOLD RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.828693790149893
+precision 0.8462928407935386
+recall 0.8209446445671997
+f-measure 0.8234828712465565
+Most Informative Features
+           unfortunately = True              neg : pos    =    107.8 : 1.0
+                   worst = True              neg : pos    =    103.1 : 1.0
+       ('forever', 'to') = True              neg : pos    =     53.1 : 1.0
+                horrible = True              neg : pos    =     48.2 : 1.0
+         ('wont', 'let') = True              neg : pos    =     43.7 : 1.0
+               wonderful = True              pos : neg    =     42.7 : 1.0
+           ('why', 'is') = True              neg : pos    =     40.5 : 1.0
+     ('phone', 'number') = True              neg : pos    =     38.3 : 1.0
+                  failed = True              neg : pos    =     38.0 : 1.0
+                  worse. = True              neg : pos    =     37.1 : 1.0
+
+---------------------------------------
+N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8529764181007012
+precision 0.8705389971247186
+recall 0.8457016418484548
+f-measure 0.8487777931215181

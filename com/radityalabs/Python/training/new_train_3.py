@@ -22,7 +22,7 @@ tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr
 my_pos_data = []
 my_neg_data = []
 def my_train_data():
-    with open(path + "/Python/bimbingan_data/twitter_train_23536_1.pickle", "rb") as handle:
+    with open(path + "/Python/bimbingan_data/twitter_nltk_train_25036_3.pickle", "rb") as handle:
         files = cPickle.load(handle)
         for file in files:
             if file[1] == 'pos':
@@ -31,7 +31,7 @@ def my_train_data():
                 my_neg_data.append(file[0])
 
 def my_test_data():
-    with open(path + "/Python/bimbingan_data/twitter_test_15691_1.pickle", "rb") as handle:
+    with open(path + "/Python/bimbingan_data/twitter_nltk_test_16191_3.pickle", "rb") as handle:
         files = cPickle.load(handle)
         for file in files:
             if file[1] == 'pos':
@@ -109,7 +109,6 @@ def evaluate_classifier_default(featx):
     print('precision', (pos_precision + neg_precision) / 2)
     print('recall', (pos_recall + neg_recall) / 2)
     print('f-measure', (pos_fmeasure + neg_fmeasure) / 2)
-    #classifier.show_most_informative_features()
     print("")
 
 def evaluate_classifier(featx):
@@ -174,6 +173,4 @@ def evaluate_classifier(featx):
     print("")
 
 evaluate_classifier_default(word_feats)
-#evaluate_classifier(stopword_filtered_word_feats)
-#evaluate_classifier(bigram_word_feats)
 evaluate_classifier(bigram_word_feats_stopwords)
