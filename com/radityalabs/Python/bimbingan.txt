@@ -13,10 +13,14 @@ lakukan scenario dibawah
 Hasil:
 1. train and test using twitter corpus
 > i got difference accuracy.
+
+> textblob
 > first using 64k datas (60:40) = 70%
 > second using 74k datas (60:40) = 71%
+
+> nltk
 ---------------------------------------
-SINGLE FOLD RESULT (Naive Bayes)
+DEFAULT (Naive Bayes)
 ---------------------------------------
 accuracy: 0.7591516263893138
 precision 0.8190638820767571
@@ -24,7 +28,7 @@ recall 0.7441627939091505
 f-measure 0.7391603299343747
 
 ---------------------------------------
-N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+CROSS VALIDATION [5] iterate RESULT (Naive Bayes)
 ---------------------------------------
 accuracy: 0.8532823454429573
 precision 0.8708751663303538
@@ -32,9 +36,12 @@ recall 0.8460066182214439
 f-measure 0.8491065593224052
 
 2. train and test using nltk corpus
+> textblob
 > using 2000 datas (60:40) = 54%
+
+> nltk
 ---------------------------------------
-SINGLE FOLD RESULT (Naive Bayes)
+DEFAULT (Naive Bayes)
 ---------------------------------------
 accuracy: 0.67
 precision 0.7807059258672162
@@ -42,7 +49,7 @@ recall 0.6699999999999999
 f-measure 0.6339044424031843
 
 ---------------------------------------
-N-FOLD CROSS VALIDATION RESULT (Naive Bayes)
+CROSS VALIDATION [5] iterate RESULT (Naive Bayes)
 ---------------------------------------
 accuracy: 0.8089999999999999
 precision 0.8271727864429687
@@ -50,7 +57,25 @@ recall 0.8092635656223407
 f-measure 0.8062682919398027
 
 3. train and test using twitter + nltk corpus
+> textblob
 > using 76k datas (60:40) = 70%
+
+> nltk
+---------------------------------------
+DEFAULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.7875230425924129
+precision 0.8191507086461693
+recall 0.777105784727591
+f-measure 0.7772155829164
+
+---------------------------------------
+CROSS VALIDATION [5] iterate RESULT (Naive Bayes)
+---------------------------------------
+accuracy: 0.8565191024863553
+precision 0.8668834007483202
+recall 0.8511333821581282
+f-measure 0.8536734894939495
 
 
 ============ DETAIL ==========
