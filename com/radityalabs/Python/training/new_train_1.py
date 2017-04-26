@@ -4,6 +4,7 @@ from sklearn.svm import LinearSVC, SVC
 from nltk.corpus import stopwords
 from nltk.collocations import BigramCollocationFinder
 from nltk.metrics import *
+from sklearn.externals import joblib
 from nltk.tokenize import word_tokenize
 from itertools import chain
 # from nltk.metrics import BigramAssocMeasures
@@ -122,6 +123,8 @@ def evaluate_classifier(featx):
     negfeats = [(featx(f), 'neg') for f in word_split(my_neg_data)]
     posfeats = [(featx(f), 'pos') for f in word_split(my_pos_data)]
 
+    print(negfeats)
+
     ## CROSS VALIDATION
     trainfeats = negfeats + posfeats
 
@@ -155,6 +158,9 @@ def evaluate_classifier(featx):
             testsets[observed].add(i)
 
         cv_accuracy = nltk.classify.util.accuracy(classifier, testing_this_round)
+
+        print(cv_accuracy)
+
         cv_pos_precision = nltk.precision(refsets['pos'], testsets['pos'])
         cv_pos_recall = nltk.recall(refsets['pos'], testsets['pos'])
         cv_pos_fmeasure = nltk.f_measure(refsets['pos'], testsets['pos'])
@@ -172,6 +178,9 @@ def evaluate_classifier(featx):
 
         cv_count += 1
 
+    # dump classifier to future use #
+    #joblib.dump(classifier, path + '/Python/bimbingan_data/skenario_1.pkl')
+
     print('---------------------------------------')
     print('N-FOLD CROSS VALIDATION RESULT ' + '(' + classifierName + ')')
     print('---------------------------------------')
@@ -183,7 +192,7 @@ def evaluate_classifier(featx):
     print('f-measure', (sum(pos_fmeasure) / n + sum(neg_fmeasure) / n) / 2)
     print("")
 
-evaluate_classifier_default(word_feats)
+#evaluate_classifier_default(word_feats)
 #evaluate_classifier(stopword_filtered_word_feats)
 #evaluate_classifier(bigram_word_feats)
 evaluate_classifier(bigram_word_feats_stopwords)

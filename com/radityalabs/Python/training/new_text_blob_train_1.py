@@ -3,8 +3,11 @@
 # http://streamhacker.com/2010/05/24/text-classification-sentiment-analysis-stopwords-collocations/
 from sklearn.externals import joblib
 from textblob import TextBlob
+from nltk.metrics import *
+from nltk.collocations import BigramCollocationFinder
 from textblob.classifiers import NaiveBayesClassifier
 from textblob.sentiments import NaiveBayesAnalyzer
+import itertools
 import collections
 import random
 import _pickle as cPickle
@@ -37,29 +40,12 @@ def precision_recall(classifier):
     print('neg precision:', classifier.metrics.precision(refsets['neg'], testsets['neg']))
     print('neg recall:', classifier.metrics.recall(refsets['neg'], testsets['neg']))
 
-def sample_sentence():
-    return "this app is never good enough"
-
-def word_split(data):
-    data_new = []
-    for word in data:
-        word_filter = [i.lower() for i in word.split()]
-        data_new.append(word_filter)
-    return data_new
-
-def evaluate_classifier():
-    local_train = train()
-    local_test = test()
-
-    classifier = NaiveBayesClassifier.train(local_train, feature_extractor=end_word_extractor)
-    blob = TextBlob(sample_sentence(), classifier=classifier)
-    print(sample_sentence() + " label : ", blob.classify())
-    print("polarity", blob.sentiment.polarity)  # polarity and subjectivity
-    print("subjectivity", blob.sentiment.subjectivity)
-
-evaluate_classifier()
-
 def testing(sentence):
+    #collection = train() + test()
+    #random.shuffle(collection)
+    #testing_this_round = collection[:int((len(collection) * 40) / 100)]
+    #training_this_round = collection[int((len(collection) * 60) / 100):]
+
     classifier = NaiveBayesClassifier(train(), feature_extractor=end_word_extractor)
     blob = TextBlob(sentence, classifier=classifier)
     print(sentence + " label : ", blob.classify())
@@ -72,4 +58,4 @@ def testing(sentence):
     print("negative", sentiment.sentiment.p_neg)
     print("Accuracy: {0}".format(classifier.accuracy(test())))
 
-#testing(sentence = "this app is never good enough")
+testing(sentence = "Twitter Its descent Im on it a lot more now but 1 thing it needs is a way to chat live with people. I think it would be cool to enhance the bubble tweets so people can live chat on Twitter with the followers.")

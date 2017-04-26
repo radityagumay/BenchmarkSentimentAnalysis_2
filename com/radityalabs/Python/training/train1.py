@@ -50,4 +50,4 @@ def testing(sentence):
     print("negative", sentiment.sentiment.p_neg)
     print("Accuracy: {0}".format(classifier.accuracy(test())))
 
-testing(sentence = "this app is never good enough")
+testing(sentence = "Twitter Its descent Im on it a lot more now but 1 thing it needs is a way to chat live with people. I think it would be cool to enhance the bubble tweets so people can live chat on Twitter with the followers.")
