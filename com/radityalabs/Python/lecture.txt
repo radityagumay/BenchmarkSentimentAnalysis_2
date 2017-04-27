@@ -8,6 +8,7 @@
 https://www.knime.org/blog/sentiment-analysis-with-n-grams
 http://blog.chapagain.com.np/machine-learning-sentiment-analysis-text-classification-using-python-nltk/
 http://streamhacker.com/2010/05/24/text-classification-sentiment-analysis-stopwords-collocations/
+http://stackoverflow.com/questions/38541644/confusion-matrix-testing-sentiment-analysis-model
 
 dataset
 https://www.yelp.com/dataset_challenge

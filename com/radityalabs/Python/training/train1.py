@@ -2,14 +2,25 @@
 # http://textblob.readthedocs.io/en/dev/classifiers.html#evaluating-classifiers
 # http://streamhacker.com/2010/05/24/text-classification-sentiment-analysis-stopwords-collocations/
 from sklearn.externals import joblib
+from nltk.classify import NaiveBayesClassifier
+from nltk.corpus import stopwords
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from nltk.collocations import BigramCollocationFinder
+from nltk.metrics import *
 from textblob import TextBlob
 from textblob.classifiers import NaiveBayesClassifier
 from textblob.sentiments import NaiveBayesAnalyzer
+from nltk.collocations import BigramCollocationFinder
+from nltk.metrics import *
+import random
 import collections
+import itertools
 import _pickle as cPickle
 import os
 
 # variables
+stopset = set(stopwords.words('english')) - {'over', 'under', 'below', 'more', 'most', 'no', 'not', 'only', 'such', 'few', 'so', 'too', 'very', 'just', 'any', 'once'}
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
 def end_word_extractor(document):
@@ -49,5 +60,15 @@ def testing(sentence):
     print("positive", sentiment.sentiment.p_pos)
     print("negative", sentiment.sentiment.p_neg)
     print("Accuracy: {0}".format(classifier.accuracy(test())))
+
+    test_result = []
+    gold_result = []
+
+    for i in range(len(test())):
+        test_result.append(classifier.classify(test()[i][0]))
+        gold_result.append(test()[i][1])
+
+    print('Clasification report :', classification_report(gold_result, test_result))
+    print('Confussion matrix :', confusion_matrix(gold_result, test_result))
 
 testing(sentence = "Twitter Its descent Im on it a lot more now but 1 thing it needs is a way to chat live with people. I think it would be cool to enhance the bubble tweets so people can live chat on Twitter with the followers.")
