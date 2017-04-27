@@ -123,8 +123,6 @@ def evaluate_classifier(featx):
     negfeats = [(featx(f), 'neg') for f in word_split(my_neg_data)]
     posfeats = [(featx(f), 'pos') for f in word_split(my_pos_data)]
 
-    print(negfeats)
-
     ## CROSS VALIDATION
     trainfeats = negfeats + posfeats
 
