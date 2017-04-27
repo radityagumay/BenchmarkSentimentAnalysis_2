@@ -5,9 +5,6 @@ lakukan scenario dibawah
 4. classification dengan bi-gram corpus sendiri.
 5. classification dengan bi-gram corpus nltk.
 6. classification dengan bi-gram corpus sendiri & nltk.
-7. classification dengan three-gram corpus sendiri.
-8. classification dengan three-gram corpus nltk.
-9. classification dengan three-gram corpus sendiri & nltk.
 
 
 Hasil:
@@ -17,6 +14,12 @@ Hasil:
 > textblob
 > first using 64k datas (60:40) = 70%
 > second using 74k datas (60:40) = 71%
+::
+polarity 0.28068181818181814
+subjectivity 0.5375
+positive 0.9652749388818137
+negative 0.03472506111818421
+Accuracy: 0.7103435090179083
 
 > nltk
 ---------------------------------------
