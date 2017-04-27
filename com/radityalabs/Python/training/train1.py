@@ -68,7 +68,7 @@ def testing(sentence):
         test_result.append(classifier.classify(test()[i][0]))
         gold_result.append(test()[i][1])
 
-    print('Clasification report :', classification_report(gold_result, test_result))
-    print('Confussion matrix :', confusion_matrix(gold_result, test_result))
+    print('Clasification report:\n', classification_report(gold_result, test_result))
+    print('Confussion matrix:\n', confusion_matrix(gold_result, test_result))
 
 testing(sentence = "Twitter Its descent Im on it a lot more now but 1 thing it needs is a way to chat live with people. I think it would be cool to enhance the bubble tweets so people can live chat on Twitter with the followers.")
