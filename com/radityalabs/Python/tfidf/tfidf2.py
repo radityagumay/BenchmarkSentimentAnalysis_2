@@ -58,7 +58,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 sklearn_tfidf = TfidfVectorizer(norm='l2',min_df=0, use_idf=True, smooth_idf=False, sublinear_tf=True, tokenizer=tokenize)
 sklearn_representation = sklearn_tfidf.fit_transform(all_documents)
 
-
 ########### END BLOG POST 1 #############
 
 def cosine_similarity(vector1, vector2):

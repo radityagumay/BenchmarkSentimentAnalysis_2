@@ -27,6 +27,7 @@ class tfidf:
         # normalizing the dictionary
         length = float(len(list_of_words))
         for k in doc_dict:
+            print(k)
             doc_dict[k] = doc_dict[k] / length
 
         # add the normalized document to the corpus
@@ -58,7 +59,7 @@ class tfidf:
 
 
 table = tfidf()
-table.addDocument("foo", ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel"])
+table.addDocument("performance", ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel"])
 table.addDocument("bar", ["alpha", "bravo", "charlie", "india", "juliet", "kilo"])
 table.addDocument("baz", ["kilo", "lima", "mike", "november"])
 
