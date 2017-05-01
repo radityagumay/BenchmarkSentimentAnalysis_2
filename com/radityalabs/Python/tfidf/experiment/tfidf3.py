@@ -2,15 +2,15 @@ from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
 import sys, unicodedata
+import re
 
 stemmer = EnglishStemmer()
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
-
 class tfidf:
     def __init__(self):
         self.documents = []
-        self.query = ""
+        self.term = ""
         self.tablePunctuation = dict.fromkeys(
             i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
@@ -32,11 +32,11 @@ class tfidf:
             self.documents.append(new_doc)
         self.documents = documents
 
-    def addDocumentQuery(self, query):
-        self.query = query
+    def addDocumentQuery(self, term):
+        self.term = term
 
     def calcTfidf(self):
-        print("Query : ", self.query)
+        print("Query : ", self.term)
 
     def simpleSplit(self, document):
         return document.lower().split(None)
@@ -47,12 +47,21 @@ class tfidf:
     def termCount(self, term, document_tokens):
         return document_tokens.count(term.lower)
 
-    def termFrequency(self, id, term, document_tokens):
-        print("========================")
-        print("Id : ", id)
-        print("TermFrequency : ", self.termCount(term, document_tokens) / float(self.tokenCount(document_tokens)))
-        self.termCount(term, document_tokens) / float(self.tokenCount(document_tokens))
-        print("========================\n")
+    def getTokens(self, str):
+        return re.findall(r"<a.*?/a>|<[^\>]*>|[\w'@#]+", str.lower())
+
+    # TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
+    def termFrequency(self):
+        container = []
+        for document in self.documents:
+            tokens_query = self.getTokens(self.term)
+            tokens_current_document = self.getTokens(document[1])
+            words_in_terms = {}
+            for word in tokens_current_document:
+                tf = float(tokens_query.count(word)) / len(tokens_current_document)
+                words_in_terms[word] = tf
+            container.append((document[0], words_in_terms))
+        print(container)
 
     def doCalculation(self):
         index = 0
@@ -63,11 +72,11 @@ class tfidf:
             #     newTokens.append(token.translate(self.tablePunctuation))
 
             # calc term frequency
-            self.termFrequency(index, self.query, tokens)
+            self.termFrequency(index, self.term, tokens)
             index += 1
 
 tfidf = tfidf()
-document_query = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
+document_term = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
 document_tokens1 = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
 document_tokens2 = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
 document_tokens3 = "Japan's prime minister, Shinzo Abe, is working towards healing the economic turmoil in his own country for his view on the future of his people."
@@ -80,5 +89,5 @@ documents = [(0, document_tokens1), (1, document_tokens2), (2, document_tokens3)
              (4, document_tokens5), (5, document_tokens6), (6, document_tokens7)]
 
 tfidf.addDocuments(documents)
-tfidf.addDocumentQuery(document_query)
-tfidf.doCalculation()
+tfidf.addDocumentQuery(document_term)
+tfidf.termFrequency()
