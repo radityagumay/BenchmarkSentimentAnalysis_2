@@ -38,6 +38,7 @@ def getNeighbors(trainingSet, testInstance, k):
     neighbors = []
     for x in range(k):
         neighbors.append(distances[x][0])
+    print("neighbors", neighbors)
     return neighbors
 
 def getResponse(neighbors):
