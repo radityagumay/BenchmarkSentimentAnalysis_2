@@ -45,12 +45,28 @@ class tfidf:
                         new_document += str(punct) + " "
         return new_document
 
+    def loadTfIdfCollection(self):
+        with open(path + "/Python/bimbingan_data/tf-idf_clean_documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def saveDocuments(self, documents):
+        with open(path + "/Python/bimbingan_data/tf-idf_clean_documents.pickle", "wb") as handle:
+            cPickle.dump(documents, handle)
+            print("saving documents data's is done")
+
+    def loadTfIdfDocuments(self):
+        documents = self.loadTfIdfCollection()
+        for document in documents:
+            print(document[1])
+
     def loadDocuments(self):
         collection = self.train() + self.test()
         index = 0
         for doc in collection:
             self.documents.append((index, self.preprocessing(doc[0])))
             index += 1
+        self.saveDocuments(self.documents)
+        print(self.documents)
 
     def addDocument(self, document):
         self.documents.append(document)
@@ -144,7 +160,7 @@ tfidf = tfidf()
 
 document_term = "Force close Once I updated my header it just automatically closing down and I cant even look at my wall cause Twitter isnt responding but I can tweet anyway please fix. Thanks"
 
-tfidf.loadDocuments()
-tfidf.addDocumentQuery(document_term)
-tfidf.calc()
-tfidf.showInformation()
+tfidf.loadTfIdfDocuments()
+#tfidf.addDocumentQuery(document_term)
+#tfidf.calc()
+#tfidf.showInformation()
