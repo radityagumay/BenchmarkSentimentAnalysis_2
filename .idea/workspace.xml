@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +17,11 @@
       <file leaf-file-name="tfidf3.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="104" column="72" lean-forward="false" selection-start-line="104" selection-start-column="72" selection-end-line="104" selection-end-column="72" />
+            <state relative-caret-position="583">
+              <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1493696882000" expanded="true" signature="681:722" ph="..." />
+                <marker date="1493697354000" expanded="true" signature="730:770" ph="..." />
               </folding>
             </state>
           </provider>
@@ -31,8 +30,8 @@
       <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/builtins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="3588" column="8" lean-forward="false" selection-start-line="3588" selection-start-column="8" selection-end-line="3588" selection-end-column="8" />
+            <state relative-caret-position="304">
+              <caret line="522" column="56" lean-forward="false" selection-start-line="522" selection-start-column="56" selection-end-line="522" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -61,7 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>training_data</find>
       <find>local_model_data_negative</find>
       <find>negative_sentence</find>
       <find>sentence</find>
@@ -91,6 +89,7 @@
       <find>violan</find>
       <find>stopw</find>
       <find>term_num_docs</find>
+      <find>desac</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1253,14 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="3588" column="8" lean-forward="false" selection-start-line="3588" selection-start-column="8" selection-end-line="3588" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/google-achieve/tfidf/trunk/tfidf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-120">
@@ -1271,13 +1262,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="522" column="56" lean-forward="false" selection-start-line="522" selection-start-column="56" selection-end-line="522" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="104" column="72" lean-forward="false" selection-start-line="104" selection-start-column="72" selection-end-line="104" selection-end-column="72" />
+        <state relative-caret-position="583">
+          <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <marker date="1493696882000" expanded="true" signature="681:722" ph="..." />
+            <marker date="1493697354000" expanded="true" signature="730:770" ph="..." />
           </folding>
         </state>
       </provider>

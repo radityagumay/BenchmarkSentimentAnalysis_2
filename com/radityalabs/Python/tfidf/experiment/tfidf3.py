@@ -1,6 +1,7 @@
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
+from operator import itemgetter
 import sys, unicodedata
 import re
 import math
@@ -17,26 +18,11 @@ class tfidf:
     def __init__(self):
         self.documents = []
         self.term = ""
-        self.tablePunctuation = dict.fromkeys(
-            i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
+        self.tablePunctuation = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
+        self.container = None
 
     def addDocument(self, document):
         self.documents.append(document)
-
-    # def addDocuments(self, documents):
-    #     for document in documents:
-    #         tokens = word_tokenize(document[1])
-    #         new_doc = ""
-    #         for token in tokens:
-    #             if len(token) > 3:
-    #                 stem = stemmer.stem(token)
-    #                 punct = stem.translate(tbl)
-    #                 if punct is not None:
-    #                     stop = punct not in set(stopwords.words('english'))
-    #                     if stop:
-    #                         new_doc += str(punct) + " "
-    #         self.documents.append(new_doc)
-    #     self.documents = documents
 
     def addDocuments(self, documents):
         for document in documents:
@@ -103,10 +89,14 @@ class tfidf:
                 number_of_all_term += number
 
             container.append((document, word_in_term, number_of_all_term))
-        print(container)
+        self.container = container
+
+    def showInformation(self):
+        sort = sorted(self.container, key=itemgetter(2), reverse=True)
+        print(sort)
 
 tfidf = tfidf()
-document_term = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
+document_term = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
 document_tokens1 = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
 document_tokens2 = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
 document_tokens3 = "Japan's prime minister, Shinzo Abe, is working towards healing the economic turmoil in his own country for his view on the future of his people."
@@ -121,3 +111,4 @@ documents = [(0, document_tokens1), (1, document_tokens2), (2, document_tokens3)
 tfidf.addDocuments(documents)
 tfidf.addDocumentQuery(document_term)
 tfidf.calc()
+tfidf.showInformation()
