@@ -1,0 +1,36 @@
+[topic categorized keyword mapping]
+
+1 [Bug]
+ - Crash
+ - Force Close
+ - Hung up
+ - Lagging
+ - Lag
+ - Freeze
+ - stopped working
+ - closing down
+ - not responding
+
+2. [User Interface]
+ - UI
+ - Explore
+ - TAB
+ - Smooth
+ - Uniqueness
+ - Theme
+ - DESIGN
+ - Button
+
+3. [Feature]
+ - Features
+ - Feature
+ - Text Limit
+ - Communicate
+ - Browsing
+ - Notification
+ - Notifications
+ - Picture
+ - Pictures
+ - Uploading
+ - Videos
+ - Prioritize

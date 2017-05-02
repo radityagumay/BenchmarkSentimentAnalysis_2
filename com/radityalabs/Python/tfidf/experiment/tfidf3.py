@@ -37,8 +37,10 @@ class tfidf:
         tokens = word_tokenize(document)
         for token in tokens:
             if len(token) > 3:
-                stem = stemmer.stem(token)
-                punct = stem.translate(tbl)
+                # stem = stemmer.stem(token)
+                # punct = stem.translate(tbl)
+
+                punct = token.translate(tbl)
                 if punct is not None:
                     stop = punct not in set(stopwords.words('english'))
                     if stop:
@@ -82,7 +84,7 @@ class tfidf:
                     if punct is not None:
                         stop = punct not in set(stopwords.words('english'))
                         if stop:
-                            new_doc += str(punct) + " "
+                            new_doc += str(punct.lower()) + " "
             self.documents.append(new_doc)
         self.documents = documents
 
