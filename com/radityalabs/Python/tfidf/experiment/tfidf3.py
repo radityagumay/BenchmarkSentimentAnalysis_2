@@ -58,8 +58,7 @@ class tfidf:
 
     def loadTfIdfDocuments(self):
         documents = self.loadTfIdfCollection()
-        for document in documents:
-            print(document[1])
+        self.documents = documents
 
     def loadDocuments(self):
         collection = self.train() + self.test()
@@ -159,10 +158,8 @@ tfidf = tfidf()
 # documents = [(0, document_tokens1), (1, document_tokens2), (2, document_tokens3), (3, document_tokens4),
 #              (4, document_tokens5), (5, document_tokens6), (6, document_tokens7)]
 
-
 document_term = "Force close Once I updated my header it just automatically closing down and I cant even look at my wall cause Twitter isnt responding but I can tweet anyway please fix. Thanks"
-
 tfidf.loadTfIdfDocuments()
-#tfidf.addDocumentQuery(document_term)
-#tfidf.calc()
-#tfidf.showInformation()
+tfidf.addDocumentQuery(document_term)
+tfidf.calc()
+tfidf.showInformation()
