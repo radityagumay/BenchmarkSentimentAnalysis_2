@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 
 class tfidf4():
     def __init__(self):
-        self.document = ""
+        self.document = []
         self.punctuation = dict.fromkeys(
             i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
@@ -18,23 +18,31 @@ class tfidf4():
 
     def get_tokens(self):
         # make lower all word
-        doc = self.document.lower()
-        # remove all punctuation
-        doc = doc.translate(self.punctuation)
-        tokens = word_tokenize(doc)
-        new_tokens = []
-        for token in tokens:
-            if token not in self.stop_word():
-                if token:
-                    new_tokens.append(token)
-        return new_tokens
+        index = 0
+        collection = []
+        for document in self.document:
+            doc = document.lower()
+            # remove all punctuation
+            doc = doc.translate(self.punctuation)
+            tokens = word_tokenize(doc)
+            new_tokens = []
+            for token in tokens:
+                if token not in self.stop_word():
+                    if token:
+                        new_tokens.append(token)
+            collection.append((index, new_tokens))
+        return collection
 
     def add_document(self, document):
-        self.document = document
+        self.document.append(document)
+
+    def add_documents(self, documents):
+        self.document = documents
 
     def show_information(self):
-        count = Counter(self.get_tokens())
-        print(count.most_common(10))
+        for collection in self.get_tokens():
+            count = Counter(collection[1])
+            print(collection, count.most_common(10))
 
 tfidf = tfidf4()
 tfidf.add_document(
