@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/tfidf5.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf4.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf4.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf5.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf5.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +17,7 @@
       <file leaf-file-name="tfidf4.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
+            <state relative-caret-position="1798">
               <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding>
                 <element signature="e#77#88#0" expanded="true" />
@@ -32,7 +29,7 @@
       <file leaf-file-name="tfidf5.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/tfidf5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="551">
               <caret line="25" column="37" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -51,11 +48,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tfidf3.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tfidf3.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="148" column="0" lean-forward="true" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+            <state relative-caret-position="41">
+              <caret line="141" column="8" lean-forward="true" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tfidf5.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf5.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="197" column="41" lean-forward="false" selection-start-line="197" selection-start-column="41" selection-end-line="197" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <marker date="1493916758000" expanded="true" signature="1212:8994" ph="..." />
+                <marker date="1493916758000" expanded="true" signature="6668:8994" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/builtins.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="2823" column="8" lean-forward="false" selection-start-line="2823" selection-start-column="8" selection-end-line="2823" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -122,7 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/com/radityalabs/Python/Training/train1.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/Training/train2.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/origin2.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/origin3.py" />
@@ -173,6 +193,7 @@
         <option value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf4.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/tfidf5.py" />
         <option value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py" />
+        <option value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf5.py" />
       </list>
     </option>
   </component>
@@ -348,19 +369,19 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/radityagumay/Library/Python/3.6/lib/python/site-packages/nltk/metrics/association.py" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/tfidf" />
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/training" />
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python" />
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/preprocessing" />
-      <recent name="$PROJECT_DIR$/com/radityalabs/Python/training_data" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/tfidf/google-achieve" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/tfidf" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/twztblob" />
       <recent name="$PROJECT_DIR$/com/radityalabs/Python/Training" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment" />
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/tfidf" />
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/training" />
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python" />
+      <recent name="$PROJECT_DIR$/com/radityalabs/Python/preprocessing" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -375,7 +396,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.tfidf3">
+  <component name="RunManager" selected="Python.tfidf5 (1)">
     <configuration default="false" name="tfidf3" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -389,24 +410,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SamplePython3" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="tfidf (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/google-achieve/tfidf/trunk" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SamplePython3" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/google-achieve/tfidf/trunk/tfidf.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -461,6 +464,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SamplePython3" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/tfidf5.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="tfidf5 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SamplePython3" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf5.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -703,18 +724,18 @@
       <item index="7" class="java.lang.String" itemvalue="Python.new_text_blob_train_1" />
       <item index="8" class="java.lang.String" itemvalue="Python.train1" />
       <item index="9" class="java.lang.String" itemvalue="Python.tfidf3" />
-      <item index="10" class="java.lang.String" itemvalue="Python.tfidf (1)" />
-      <item index="11" class="java.lang.String" itemvalue="Python.sampleKnn" />
-      <item index="12" class="java.lang.String" itemvalue="Python.tfidf4" />
-      <item index="13" class="java.lang.String" itemvalue="Python.tfidf5" />
+      <item index="10" class="java.lang.String" itemvalue="Python.sampleKnn" />
+      <item index="11" class="java.lang.String" itemvalue="Python.tfidf4" />
+      <item index="12" class="java.lang.String" itemvalue="Python.tfidf5" />
+      <item index="13" class="java.lang.String" itemvalue="Python.tfidf5 (1)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.tfidf3" />
-        <item index="1" class="java.lang.String" itemvalue="Python.tfidf5" />
-        <item index="2" class="java.lang.String" itemvalue="Python.tfidf4" />
-        <item index="3" class="java.lang.String" itemvalue="Python.sampleKnn" />
-        <item index="4" class="java.lang.String" itemvalue="Python.tfidf (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.tfidf5 (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.tfidf3" />
+        <item index="2" class="java.lang.String" itemvalue="Python.tfidf5" />
+        <item index="3" class="java.lang.String" itemvalue="Python.tfidf4" />
+        <item index="4" class="java.lang.String" itemvalue="Python.sampleKnn" />
       </list>
     </recent_temporary>
   </component>
@@ -773,10 +794,11 @@
     <frame x="0" y="23" width="1920" height="1121" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25665602" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19808307" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5254237" sideWeight="0.5042598" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07477567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64007974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5333998" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46261215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -790,7 +812,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -801,11 +822,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5254237" sideWeight="0.5042598" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55134594" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07477567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5333998" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46261215" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5254237" sideWeight="0.49574015" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17518637" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2593184" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -859,13 +880,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/textblob/en/sentiments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="52" column="8" lean-forward="false" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing/bimbingan_pre_ori_1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-916">
@@ -1032,13 +1046,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="522" column="56" lean-forward="false" selection-start-line="522" selection-start-column="56" selection-end-line="522" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/nltk/stem/snowball.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
@@ -1183,7 +1190,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
+        <state relative-caret-position="1798">
           <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
             <element signature="e#77#88#0" expanded="true" />
@@ -1193,7 +1200,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/tfidf5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="551">
           <caret line="25" column="37" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -1203,9 +1210,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="148" column="0" lean-forward="true" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        <state relative-caret-position="41">
+          <caret line="141" column="8" lean-forward="true" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="2823" column="8" lean-forward="false" selection-start-line="2823" selection-start-column="8" selection-end-line="2823" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="197" column="41" lean-forward="false" selection-start-line="197" selection-start-column="41" selection-end-line="197" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1493916758000" expanded="true" signature="1212:8994" ph="..." />
+            <marker date="1493916758000" expanded="true" signature="6668:8994" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

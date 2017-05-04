@@ -4,9 +4,24 @@ from nltk.corpus import stopwords
 from operator import itemgetter
 import sys, unicodedata
 import re
+import collections
 import math
 import _pickle as cPickle
 import os
+
+# Term Frequency
+# Number of occurence terms t in document i
+# For example:
+# we have vector = i love reading a book in evening and also drinking a milk everyday entire my life rarely
+# d1 = i love reading a book
+# d2 = i rarely reading a book
+# d3 = i never drinking milk entire my life
+
+# ---------------------------------------------------------------------------------------------------
+# word     | i love reading a book in evening and also drinking a milk everyday entire my life rarely
+# ---------------------------------------------------------------------------------------------------
+# document
+# d1       : 1  1   1
 
 stemmer = EnglishStemmer()
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
@@ -23,6 +38,7 @@ class tfidf:
         self.term = ""
         self.tablePunctuation = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
         self.container = None
+        self.vector_terms = []
 
     def train(self):
         with open(path + "/Python/bimbingan_data/twitter_train_23536_1.pickle", "rb") as handle:
@@ -72,7 +88,7 @@ class tfidf:
     def addDocument(self, document):
         self.documents.append(document)
 
-    def addDocuments(self, documents):
+    def add_documents(self, documents):
         for document in documents:
             tokens = word_tokenize(document[1])
             new_doc = ""
@@ -145,8 +161,44 @@ class tfidf:
         sort = sorted(self.container, key=itemgetter(2), reverse=False)
         print(sort)
 
-tfidf = tfidf()
+    def preprocessing_token(self, documents):
+        vector_terms = []
+        for document in documents:
+            tokens = word_tokenize(document[1])
+            for token in tokens:
+                if len(token) > 3:
+                    stem = stemmer.stem(token)
+                    punct = stem.translate(tbl)
+                    if punct is not None:
+                        stop = punct not in set(stopwords.words('english'))
+                        if stop:
+                            if punct not in vector_terms:
+                                vector_terms.append(punct)
+        return vector_terms
 
+    def SortedDisplayDict(self, dict):
+            return "{" + ", ".join("%r: %r" % (key, dict[key]) for key in sorted(dict)) + "}"
+
+    def create_vector(self):
+        self.vector_terms = self.preprocessing_token(self.documents)
+        print(sorted(self.vector_terms))
+        print(len(self.vector_terms))
+        collection_documents_vector = []
+        current_document_vector_terms = sorted(self.preprocessing_token([(0, document_tokens1)]))
+        dict_document_vector_terms = {}
+        for token_vector in self.vector_terms:
+            for token in current_document_vector_terms:
+                if token == token_vector:
+                    dict_document_vector_terms[token_vector] = 1
+                    break
+                else:
+                    dict_document_vector_terms[token_vector] = 0
+                #dict_document_vector_terms = collections.OrderedDict(sorted(dict_document_vector_terms.items()))
+        collection_documents_vector.append(dict_document_vector_terms)
+        print(collection_documents_vector)
+        #print("Collection of vector : {} | length : {}".format(collection_documents_vector, len(collection_documents_vector[0])))
+
+tfidf = tfidf()
 document_term = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
 document_tokens1 = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
 document_tokens2 = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
@@ -159,8 +211,5 @@ document_tokens7 = "Vladimir Putin is riding a horse while hunting deer. Vladimi
 documents = [(0, document_tokens1), (1, document_tokens2), (2, document_tokens3), (3, document_tokens4),
              (4, document_tokens5), (5, document_tokens6), (6, document_tokens7)]
 
-# document_term = "Force close Once I updated my header it just automatically closing down and I cant even look at my wall cause Twitter isnt responding but I can tweet anyway please fix. Thanks"
-# tfidf.loadTfIdfDocuments()
-# tfidf.addDocumentQuery(document_term)
-# tfidf.calc()
-# tfidf.showInformation()
+tfidf.add_documents(documents)
+tfidf.create_vector()
