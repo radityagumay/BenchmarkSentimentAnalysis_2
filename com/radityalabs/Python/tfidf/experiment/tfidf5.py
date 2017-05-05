@@ -1,3 +1,4 @@
+# http://stackoverflow.com/questions/27446204/how-do-i-use-use-the-tfidf-calculating-functions-in-scikit-learn
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
 from nltk.corpus import stopwords
@@ -27,18 +28,22 @@ stemmer = EnglishStemmer()
 tbl = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
+
 class termObject:
     def __init__(self, term=None, value=None):
         self.term = term
         self.value = value
 
+
 class tfidf:
     def __init__(self):
         self.documents = []
         self.term = ""
-        self.tablePunctuation = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
+        self.tablePunctuation = dict.fromkeys(
+            i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
         self.container = None
         self.vector_terms = []
+        self.collection_documents_vector_terms = []
 
     def train(self):
         with open(path + "/Python/bimbingan_data/twitter_train_23536_1.pickle", "rb") as handle:
@@ -120,7 +125,7 @@ class tfidf:
 
     def getTokens(self, str):
         return word_tokenize(str)
-        #return re.findall(r"<a.*?/a>|<[^\>]*>|[\w'@#]+", str.lower())
+        # return re.findall(r"<a.*?/a>|<[^\>]*>|[\w'@#]+", str.lower())
 
     # TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
     # IDF(t) = log_e(Total number of documents / Number of documents with term t in it).
@@ -155,11 +160,25 @@ class tfidf:
 
             container.append((document, word_in_term, number_of_all_term))
         self.container = container
-        #print(self.container)
+        # print(self.container)
 
     def showInformation(self):
         sort = sorted(self.container, key=itemgetter(2), reverse=False)
         print(sort)
+
+    def preprocessing_document_item_token(self, document):
+        vector_terms = []
+        tokens = word_tokenize(document[1])
+        for token in tokens:
+            if len(token) > 3:
+                stem = stemmer.stem(token)
+                punct = stem.translate(tbl)
+                if punct is not None:
+                    stop = punct not in set(stopwords.words('english'))
+                    if stop:
+                        if punct not in vector_terms:
+                            vector_terms.append(punct)
+        return vector_terms
 
     def preprocessing_token(self, documents):
         vector_terms = []
@@ -177,26 +196,65 @@ class tfidf:
         return vector_terms
 
     def SortedDisplayDict(self, dict):
-            return "{" + ", ".join("%r: %r" % (key, dict[key]) for key in sorted(dict)) + "}"
+        return "{" + ", ".join("%r: %r" % (key, dict[key]) for key in sorted(dict)) + "}"
+
+    # def create_vector(self):
+    #     self.vector_terms = self.preprocessing_token(self.documents)
+    #     print(sorted(self.vector_terms))
+    #     print(len(self.vector_terms))
+    #
+    #     documents_vector_terms = []
+    #     for document in self.documents:
+    #         current_document_vector_terms = sorted(self.preprocessing_token(document))
+    #         dict_document_vector_terms = {}
+    #         for token_vector in self.vector_terms:
+    #             for token in current_document_vector_terms:
+    #                 if token == token_vector:
+    #                     dict_document_vector_terms[token_vector] = 1
+    #                     break
+    #                 else:
+    #                     dict_document_vector_terms[token_vector] = 0
+    #         documents_vector_terms.append((document[0], dict_document_vector_terms))
+    #     print(documents_vector_terms)
 
     def create_vector(self):
         self.vector_terms = self.preprocessing_token(self.documents)
         print(sorted(self.vector_terms))
         print(len(self.vector_terms))
+
         collection_documents_vector = []
-        current_document_vector_terms = sorted(self.preprocessing_token([(0, document_tokens1)]))
-        dict_document_vector_terms = {}
-        for token_vector in self.vector_terms:
-            for token in current_document_vector_terms:
-                if token == token_vector:
-                    dict_document_vector_terms[token_vector] = 1
-                    break
-                else:
-                    dict_document_vector_terms[token_vector] = 0
-                #dict_document_vector_terms = collections.OrderedDict(sorted(dict_document_vector_terms.items()))
-        collection_documents_vector.append(dict_document_vector_terms)
-        print(collection_documents_vector)
-        #print("Collection of vector : {} | length : {}".format(collection_documents_vector, len(collection_documents_vector[0])))
+        for document in documents:
+            tokens = word_tokenize(document[1])
+            vector_terms = []
+            for token in tokens:
+                if len(token) > 3:
+                    stem = stemmer.stem(token)
+                    punct = stem.translate(tbl)
+                    if punct is not None:
+                        stop = punct not in set(stopwords.words('english'))
+                        if stop:
+                            if punct not in vector_terms:
+                                vector_terms.append(punct)
+            collection_documents_vector.append(vector_terms)
+
+        vector_documents = []
+        for vector in collection_documents_vector:
+            dict_document_vector_terms = {}
+            for token_vector in self.vector_terms:
+                for token in vector:
+                    if token == token_vector:
+                        dict_document_vector_terms[token_vector] = 1
+                        break
+                    else:
+                        dict_document_vector_terms[token_vector] = 0
+            vector_documents.append(dict_document_vector_terms)
+        print(vector_documents)
+
+    def calc_tfidf(self):
+        tfidf_vector = {}
+        # for item in self.collection_documents_vector_terms:
+        #     print(item)
+
 
 tfidf = tfidf()
 document_term = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
@@ -213,3 +271,28 @@ documents = [(0, document_tokens1), (1, document_tokens2), (2, document_tokens3)
 
 tfidf.add_documents(documents)
 tfidf.create_vector()
+tfidf.calc_tfidf()
+
+# from sklearn.feature_extraction.text import TfidfVectorizer
+#
+# corpus = ["This is very strange", "This is very nice"]
+# vectorizer = TfidfVectorizer(min_df=1)
+# X = vectorizer.fit_transform(corpus)
+# idf = vectorizer.idf_
+# print(dict(zip(vectorizer.get_feature_names(), idf)))
+
+# from sklearn.feature_extraction.text import TfidfVectorizer
+# from sklearn.linear_model import SGDClassifier
+#
+# corpus = ['This is the first document.',
+#           'This is the second second document.',
+#           'And the third one.',
+#           'Is this the first document?']
+# vect = TfidfVectorizer()
+# X = vect.fit_transform(corpus)
+# print(X.todense())
+#
+# y = ['Relationships', 'Games']
+# model = SGDClassifier()
+# print(model.fit(X, y))
+
