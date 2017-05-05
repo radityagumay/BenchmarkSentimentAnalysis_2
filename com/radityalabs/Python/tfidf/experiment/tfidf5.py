@@ -44,6 +44,7 @@ class tfidf:
         self.container = None
         self.vector_terms = []
         self.collection_documents_vector_terms = []
+        self.collection_documents_vector = []
 
     def train(self):
         with open(path + "/Python/bimbingan_data/twitter_train_23536_1.pickle", "rb") as handle:
@@ -219,10 +220,10 @@ class tfidf:
 
     def create_vector(self):
         self.vector_terms = self.preprocessing_token(self.documents)
-        print(sorted(self.vector_terms))
-        print(len(self.vector_terms))
+        #print(sorted(self.vector_terms))
+        #print(len(self.vector_terms))
 
-        collection_documents_vector = []
+        self.collection_documents_vector = []
         for document in documents:
             tokens = word_tokenize(document[1])
             vector_terms = []
@@ -235,10 +236,9 @@ class tfidf:
                         if stop:
                             if punct not in vector_terms:
                                 vector_terms.append(punct)
-            collection_documents_vector.append(vector_terms)
+            self.collection_documents_vector.append(vector_terms)
 
-        vector_documents = []
-        for vector in collection_documents_vector:
+        for vector in self.collection_documents_vector:
             dict_document_vector_terms = {}
             for token_vector in self.vector_terms:
                 for token in vector:
@@ -247,13 +247,28 @@ class tfidf:
                         break
                     else:
                         dict_document_vector_terms[token_vector] = 0
-            vector_documents.append(dict_document_vector_terms)
-        print(vector_documents)
+            self.collection_documents_vector_terms.append(dict_document_vector_terms)
 
     def calc_tfidf(self):
-        tfidf_vector = {}
+        tfidf_vector = []
+        document_index = 0
+        for terms in self.collection_documents_vector:
+            print(self.documents[document_index])
+            total_occurence_terms_in_documents = 0
+            for term in terms:
+                documents_vector = self.collection_documents_vector
+                print(documents_vector)
+                documents_vector = documents_vector.remove(document_index)
+                for other_terms in documents_vector:
+                    total_occurence_terms_in_documents += other_terms.count(term)
+            document_index += 1
+
         # for item in self.collection_documents_vector_terms:
-        #     print(item)
+        #     keys = item.keys()
+        #     for document in self.documents:
+        #         tokens = word_tokenize(document[1])
+
+
 
 
 tfidf = tfidf()
