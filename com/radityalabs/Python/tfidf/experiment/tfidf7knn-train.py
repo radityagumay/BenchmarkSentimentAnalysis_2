@@ -98,6 +98,7 @@ class Similarity:
     def tfidf(self, documents):
         self.tokenized_documents = [self.tokenize(d) for d in documents]
         idf = self.inverse_document_frequencies(self.tokenized_documents)
+        print(idf)
         tfidf_documents = []
         document_index = 0
         for document in self.tokenized_documents:
@@ -111,13 +112,12 @@ class Similarity:
 
     def tfidf_query_with_predefine(self, document):
         # out predefine document with tfidf
+        # [0.0 , 3.5, ...]
         local_tfidf_documents = self.load_predefine_documents()
 
+        # ["Hello", "World"]
         tokenized_query_tfidf = self.tokenize(document)
         idf = self.inverse_document_frequencies(tokenized_query_tfidf)
-
-        print(idf)
-        idf = self.inverse_document_frequencies(local_tfidf_documents)
         tfidf_documents = []
         document_index = 0
         for document in local_tfidf_documents:
@@ -153,14 +153,7 @@ class Similarity:
         return dot_product / magnitude
 
 similarity = Similarity()
-#similarity.tfidf_query_with_predefine(similarity.load_document_query())
-
-document1 = similarity.load_predefine_documents()[0]
-query1 = similarity.tfidf_query(similarity.load_document_query())
-
-print("Document 1 : {} {}".format(document1, len(document1)))
-print("Query 1 : {} {}".format(query1[0], len(query1[0])))
-
+similarity.tfidf(similarity.load_documents())
 
 #document = similarity.tfidf(similarity.load_documents())[0]
 #print(similarity.cosine_similarity(document, document))
