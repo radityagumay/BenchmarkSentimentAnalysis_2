@@ -29,7 +29,7 @@ class Similarity:
         return [document_0, document_1, document_2, document_3, document_4, document_5, document_6]
 
     def load_document_query(self):
-        return "China has president obama"
+        return "china has president obama"
 
     def add_documents(self, documents):
         self.documents = documents
@@ -87,18 +87,35 @@ class Similarity:
         max_count = max([self.term_frequency(t, tokenized_document) for t in tokenized_document])
         return (0.5 + ((0.5 * self.term_frequency(term, tokenized_document)) / max_count))
 
+    def save_vector_space(self, words):
+        with open(path + "/Python/bimbingan_data/tfidf-vector-space-words.pickle", "wb") as handle:
+                cPickle.dump(words, handle)
+                print("saving vector space is done")
+
+    def load_vector_space(self):
+        with open(path + "/Python/bimbingan_data/tfidf-vector-space-words.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
     def inverse_document_frequencies(self, tokenized_documents):
         idf_values = {}
         all_tokens_set = set([item for sublist in tokenized_documents for item in sublist])
+        self.save_vector_space(all_tokens_set)
         for tkn in all_tokens_set:
             contains_token = map(lambda doc: tkn in doc, tokenized_documents)
             idf_values[tkn] = 1 + math.log(len(tokenized_documents) / (sum(contains_token)))
         return idf_values
 
+    def inverse_document_frequencies_single(self, tokenized_document):
+        idf_values = {}
+        for tkn in tokenized_document:
+            contains_token = map(lambda doc: tkn in doc, tokenized_document)
+            idf_values[tkn] = 1 + math.log(len(tokenized_document) / (sum(contains_token)))
+        return idf_values
+
+    # dont forget to lower all word, cz calc will be case sensitive
     def tfidf(self, documents):
         self.tokenized_documents = [self.tokenize(d) for d in documents]
         idf = self.inverse_document_frequencies(self.tokenized_documents)
-        print(idf)
         tfidf_documents = []
         document_index = 0
         for document in self.tokenized_documents:
@@ -110,36 +127,30 @@ class Similarity:
             document_index += 1
         return tfidf_documents
 
+    def tfidf_query(self, document):
+        tokenized_query_document = self.tokenize(document)
+        idf = self.inverse_document_frequencies_single(tokenized_query_document)
+        doc_query_tfidf = []
+        for term in idf.keys():
+            tf = self.sublinear_term_frequency(term, document)
+            doc_query_tfidf.append(tf * idf[term])
+        tfidf_query_document = doc_query_tfidf
+        return tfidf_query_document
+
     def tfidf_query_with_predefine(self, document):
         # out predefine document with tfidf
         # [0.0 , 3.5, ...]
         local_tfidf_documents = self.load_predefine_documents()
 
         # ["Hello", "World"]
-        tokenized_query_tfidf = self.tokenize(document)
-        idf = self.inverse_document_frequencies(tokenized_query_tfidf)
-        tfidf_documents = []
-        document_index = 0
-        for document in local_tfidf_documents:
-            doc_tfidf = []
-            for term in idf.keys():
-                tf = self.sublinear_term_frequency(term, document)
-                doc_tfidf.append(tf * idf[term])
-            tfidf_documents.append(doc_tfidf)
-            document_index += 1
-        print(tfidf_documents)
-
-    def tfidf_query(self, document):
-        #self.tokenized_documents = self.tokenized_documents + [self.tokenize(d) for d in documents]
-        tokenized_query = self.tokenize(document)
-        idf = self.inverse_document_frequencies(tokenized_query)
-        tfidf_documents = []
-        doc_tfidf = []
+        tokenized_query_document = self.tokenize(document)
+        idf = self.inverse_document_frequencies_single(tokenized_query_document)
+        doc_query_tfidf = []
         for term in idf.keys():
             tf = self.sublinear_term_frequency(term, document)
-            doc_tfidf.append(tf * idf[term])
-        tfidf_documents.append(doc_tfidf)
-        return tfidf_documents
+            doc_query_tfidf.append(tf * idf[term])
+        tfidf_query_document = doc_query_tfidf
+
 
     def sklearn_tfidf(self):
         sklearn_tfidf = TfidfVectorizer(norm='l2', min_df=0, use_idf=True, smooth_idf=False, sublinear_tf=True, tokenizer=self.tokenize)
