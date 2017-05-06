@@ -7,8 +7,11 @@ from nltk.stem.porter import *
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 import string
-import sys, unicodedata
+import _pickle as cPickle
+import sys, unicodedata, os
 import math
+
+path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
 class Similarity:
     def __init__(self):
@@ -26,13 +29,22 @@ class Similarity:
         return [document_0, document_1, document_2, document_3, document_4, document_5, document_6]
 
     def load_document_query(self):
-        return ["obama"]
+        return "China has president obama"
 
     def add_documents(self, documents):
         self.documents = documents
 
     def add_document(self, document):
         self.document = document
+
+    def save_predefine_documents(self):
+        with open(path + "/Python/bimbingan_data/tfidf-predefine.pickle", "wb") as handle:
+                cPickle.dump(self.tfidf(self.load_documents()), handle)
+                print("saving predefine data's is done")
+
+    def load_predefine_documents(self):
+        with open(path + "/Python/bimbingan_data/tfidf-predefine.pickle", "rb") as handle:
+            return cPickle.load(handle)
 
     def euclidian(self, a, b):
         return distance.euclidean(a, b)
@@ -97,18 +109,36 @@ class Similarity:
             document_index += 1
         return tfidf_documents
 
-    def tfidf_query(self, documents):
-        self.tokenized_documents = self.tokenized_documents + [self.tokenize(d) for d in documents]
-        idf = self.inverse_document_frequencies(self.tokenized_documents)
+    def tfidf_query_with_predefine(self, document):
+        # out predefine document with tfidf
+        local_tfidf_documents = self.load_predefine_documents()
+
+        tokenized_query_tfidf = self.tokenize(document)
+        idf = self.inverse_document_frequencies(tokenized_query_tfidf)
+
+        print(idf)
+        idf = self.inverse_document_frequencies(local_tfidf_documents)
         tfidf_documents = []
         document_index = 0
-        for document in self.tokenized_documents:
+        for document in local_tfidf_documents:
             doc_tfidf = []
             for term in idf.keys():
                 tf = self.sublinear_term_frequency(term, document)
                 doc_tfidf.append(tf * idf[term])
             tfidf_documents.append(doc_tfidf)
             document_index += 1
+        print(tfidf_documents)
+
+    def tfidf_query(self, document):
+        #self.tokenized_documents = self.tokenized_documents + [self.tokenize(d) for d in documents]
+        tokenized_query = self.tokenize(document)
+        idf = self.inverse_document_frequencies(tokenized_query)
+        tfidf_documents = []
+        doc_tfidf = []
+        for term in idf.keys():
+            tf = self.sublinear_term_frequency(term, document)
+            doc_tfidf.append(tf * idf[term])
+        tfidf_documents.append(doc_tfidf)
         return tfidf_documents
 
     def sklearn_tfidf(self):
@@ -123,16 +153,31 @@ class Similarity:
         return dot_product / magnitude
 
 similarity = Similarity()
+#similarity.tfidf_query_with_predefine(similarity.load_document_query())
 
-tfidf_representation = similarity.tfidf(similarity.load_documents())
+document1 = similarity.load_predefine_documents()[0]
+query1 = similarity.tfidf_query(similarity.load_document_query())
 
-query_tfidf_representation = similarity.tfidf_query(similarity.load_document_query())
+print("Document 1 : {} {}".format(document1, len(document1)))
+print("Query 1 : {} {}".format(query1[0], len(query1[0])))
 
-our_tfidf_comparisons = []
-for count_0, doc_0 in enumerate(tfidf_representation):
-    for count_1, doc_1 in enumerate(tfidf_representation):
-        our_tfidf_comparisons.append((similarity.cosine_similarity(doc_0, doc_1), count_0, count_1))
+
+#document = similarity.tfidf(similarity.load_documents())[0]
+#print(similarity.cosine_similarity(document, document))
+
+#similarity.tfidf_query_with_predefine(similarity.load_document_query())
+#print("{} {}".format(similarity.load_predefine_documents(), len(similarity.load_predefine_documents())))
+
+
+
+
+# tfidf_representation = similarity.tfidf(similarity.load_documents())
+# query_tfidf_representation = similarity.tfidf_query(similarity.load_document_query())
+# our_tfidf_comparisons = []
+# for count_0, doc_0 in enumerate(tfidf_representation):
+#     for count_1, doc_1 in enumerate(tfidf_representation):
+#         our_tfidf_comparisons.append((similarity.cosine_similarity(doc_0, doc_1), count_0, count_1))
 
 #print(query_tfidf_representation[len(query_tfidf_representation) - 1])
-print(query_tfidf_representation)
+#print(query_tfidf_representation)
 
