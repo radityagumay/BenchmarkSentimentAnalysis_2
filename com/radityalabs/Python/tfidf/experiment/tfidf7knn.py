@@ -125,14 +125,14 @@ class Similarity:
 similarity = Similarity()
 
 tfidf_representation = similarity.tfidf(similarity.load_documents())
-
-query_tfidf_representation = similarity.tfidf_query(similarity.load_document_query())
-
-our_tfidf_comparisons = []
-for count_0, doc_0 in enumerate(tfidf_representation):
-    for count_1, doc_1 in enumerate(tfidf_representation):
-        our_tfidf_comparisons.append((similarity.cosine_similarity(doc_0, doc_1), count_0, count_1))
-
-#print(query_tfidf_representation[len(query_tfidf_representation) - 1])
-print(query_tfidf_representation)
+print(tfidf_representation)
+# query_tfidf_representation = similarity.tfidf_query(similarity.load_document_query())
+#
+# our_tfidf_comparisons = []
+# for count_0, doc_0 in enumerate(tfidf_representation):
+#     for count_1, doc_1 in enumerate(tfidf_representation):
+#         our_tfidf_comparisons.append((similarity.cosine_similarity(doc_0, doc_1), count_0, count_1))
+#
+# #print(query_tfidf_representation[len(query_tfidf_representation) - 1])
+# print(query_tfidf_representation)
 
