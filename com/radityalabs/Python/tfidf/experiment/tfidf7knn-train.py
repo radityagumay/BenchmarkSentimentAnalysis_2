@@ -21,9 +21,11 @@ class Similarity:
     def DEBUG(self, boolean):
         self.is_debug = boolean
 
-    def log(self, message):
+    def log(self, func, message):
         if self.is_debug:
+            print("=========== " + func.capitalize() + " ===========")
             print(message)
+            print("")
 
     def load_documents(self):
         document_0 = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
@@ -53,10 +55,10 @@ class Similarity:
                         if stop:
                             sentence += str(punct.lower()) + " "
             docs.append(sentence)
-        self.log(docs)
+        self.log("preprocessing_document", docs)
         with open(path + "/Python/bimbingan_data/tfidf-new-document-preprocessing.pickle", "wb") as handle:
                 cPickle.dump(docs, handle)
-                self.log("saving new document preprocessing is done")
+                self.log("preprocessing_document", "save document preprocessing done")
 
     def load_document_query(self):
         return "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
@@ -117,10 +119,19 @@ class Similarity:
         max_count = max([self.term_frequency(t, tokenized_document) for t in tokenized_document])
         return (0.5 + ((0.5 * self.term_frequency(term, tokenized_document)) / max_count))
 
+    # save documents tfidf
+    def save_tfidf_document(self, tfidf):
+        with open(path + "/Python/bimbingan_data/tfidf-documents.pickle", "wb") as handle:
+                cPickle.dump(tfidf, handle)
+
+    def load_tfidf_document(self):
+        with open(path + "/Python/bimbingan_data/tfidf-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    # save all tokens into vector #
     def save_vector_space(self, words):
         with open(path + "/Python/bimbingan_data/tfidf-vector-space-words.pickle", "wb") as handle:
                 cPickle.dump(words, handle)
-                print("saving vector space is done")
 
     def load_vector_space(self):
         with open(path + "/Python/bimbingan_data/tfidf-vector-space-words.pickle", "rb") as handle:
@@ -129,6 +140,8 @@ class Similarity:
     def inverse_document_frequencies(self, tokenized_documents):
         idf_values = {}
         all_tokens_set = set([item for sublist in tokenized_documents for item in sublist])
+        self.log("inverse_document_frequencies", all_tokens_set)
+        self.save_vector_space(all_tokens_set)
         for tkn in all_tokens_set:
             contains_token = map(lambda doc: tkn in doc, tokenized_documents)
             idf_values[tkn] = 1 + math.log(len(tokenized_documents) / (sum(contains_token)))
@@ -145,20 +158,41 @@ class Similarity:
             idf_values[tkn] = 1 + math.log(len(tokenized_document) / (contains_token))
         return idf_values
 
-    # dont forget to lower all word, cz calc will be case sensitive
+    def processing_tfidf(self):
+        processing_documents = self.load_preprocessing_document()
+        tfidf_document = self.tfidf(processing_documents)
+        self.log("processing_tfidf", tfidf_document)
+        self.save_tfidf_document(tfidf_document)
+
     def tfidf(self, documents):
-        self.tokenized_documents = [self.tokenize(d) for d in documents]
-        idf = self.inverse_document_frequencies(self.tokenized_documents)
+        tokenized_document = [self.tokenize(d) for d in documents]
+        idf = self.inverse_document_frequencies(tokenized_document)
+        self.log("tfidf", idf)
         tfidf_documents = []
         document_index = 0
-        for document in self.tokenized_documents:
-            doc_tfidf = []
+        for document in tokenized_document:
+            tfidf = []
             for term in idf.keys():
                 tf = self.sublinear_term_frequency(term, document)
-                doc_tfidf.append(tf * idf[term])
-            tfidf_documents.append(doc_tfidf)
+                tfidf.append(tf * idf[term])
+            tfidf_documents.append(tfidf)
             document_index += 1
         return tfidf_documents
+
+    # dont forget to lower all word, cz calc will be case sensitive
+    # def tfidf(self, documents):
+    #     self.tokenized_documents = [self.tokenize(d) for d in documents]
+    #     idf = self.inverse_document_frequencies(self.tokenized_documents)
+    #     tfidf_documents = []
+    #     document_index = 0
+    #     for document in self.tokenized_documents:
+    #         doc_tfidf = []
+    #         for term in idf.keys():
+    #             tf = self.sublinear_term_frequency(term, document)
+    #             doc_tfidf.append(tf * idf[term])
+    #         tfidf_documents.append(doc_tfidf)
+    #         document_index += 1
+    #     return tfidf_documents
 
     def tfidf_query(self, document):
         tokenized_query_document = self.tokenize(document)
@@ -248,4 +282,8 @@ sim.DEBUG(True)
 # 1. Preprocessing all document
 # we also save into pickle
 sim.preprocessing_document()
+
+# 2. Calc TF-IDF
+# save result into pickle
+sim.processing_tfidf()
 
