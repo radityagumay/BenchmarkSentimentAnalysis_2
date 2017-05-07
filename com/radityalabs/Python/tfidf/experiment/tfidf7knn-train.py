@@ -329,10 +329,3 @@ for document in tfidf_documents:
     tfidf_comparison.append(sim.cosine_similarity(tfidf_doc_query, document))
 
 print(sorted(tfidf_comparison, reverse=True))
-
-# our_tfidf_comparisons = []
-# for count_0, doc_0 in enumerate(tfidf_documents):
-#     for count_1, doc_1 in enumerate(tfidf_doc_query):
-#         our_tfidf_comparisons.append((sim.cosine_similarity(doc_0, doc_1), count_0, count_1))
-#
-# sim.log("our_tfidf_comparisons", our_tfidf_comparisons)
