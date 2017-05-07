@@ -18,6 +18,13 @@ class Similarity:
         self.stemmer = PorterStemmer()
         self.tablePunctuation = dict.fromkeys(i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
+    def DEBUG(self, boolean):
+        self.is_debug = boolean
+
+    def log(self, message):
+        if self.is_debug:
+            print(message)
+
     def load_documents(self):
         document_0 = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
         document_1 = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
@@ -34,7 +41,6 @@ class Similarity:
 
     def preprocessing_document(self):
         docs = []
-        print(self.load_documents())
         for document in self.load_documents():
             sentence = ""
             tokens = word_tokenize(document)
@@ -45,11 +51,12 @@ class Similarity:
                     if punct is not None:
                         stop = punct not in set(stopwords.words('english'))
                         if stop:
-                            sentence += str(punct) + " "
+                            sentence += str(punct.lower()) + " "
             docs.append(sentence)
+        self.log(docs)
         with open(path + "/Python/bimbingan_data/tfidf-new-document-preprocessing.pickle", "wb") as handle:
                 cPickle.dump(docs, handle)
-                print("saving new document preprocessing is done")
+                self.log("saving new document preprocessing is done")
 
     def load_document_query(self):
         return "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
@@ -188,44 +195,57 @@ class Similarity:
             return 0
         return dot_product / magnitude
 
-similarity = Similarity()
-#print(similarity.tfidf_query(similarity.load_document_query()))
-
-#similarity.tfidf(similarity.load_documents())
-#print(similarity.tfidf(similarity.load_documents()))
-
-#similarity.tfidf_query(similarity.load_document_query())
-
-#document = similarity.tfidf(similarity.load_documents())[0]
-#print(similarity.cosine_similarity(document, document))
-
-#similarity.tfidf_query_with_predefine(similarity.load_document_query())
-#print("{} {}".format(similarity.load_predefine_documents(), len(similarity.load_predefine_documents())))
-
-from collections import Counter
-
-# doc1 = "nasi goreng petaka"
-# doc2 = "nasi bebek hitam"
+# similarity = Similarity()
+# #print(similarity.tfidf_query(similarity.load_document_query()))
 #
-# number_of_occurence = 0
-# doc_coll = [doc1, doc2]
-# for sentence in doc_coll:
-#     sen = sentence.split()
-#     number_of_occurence += sen.count("kotak")
+# #similarity.tfidf(similarity.load_documents())
+# #print(similarity.tfidf(similarity.load_documents()))
 #
-# print(number_of_occurence)
+# #similarity.tfidf_query(similarity.load_document_query())
+#
+# #document = similarity.tfidf(similarity.load_documents())[0]
+# #print(similarity.cosine_similarity(document, document))
+#
+# #similarity.tfidf_query_with_predefine(similarity.load_document_query())
+# #print("{} {}".format(similarity.load_predefine_documents(), len(similarity.load_predefine_documents())))
+#
+# from collections import Counter
+#
+# # doc1 = "nasi goreng petaka"
+# # doc2 = "nasi bebek hitam"
+# #
+# # number_of_occurence = 0
+# # doc_coll = [doc1, doc2]
+# # for sentence in doc_coll:
+# #     sen = sentence.split()
+# #     number_of_occurence += sen.count("kotak")
+# #
+# # print(number_of_occurence)
+#
+# tfidf_representation = similarity.tfidf(similarity.load_documents())
+# query_tfidf_representation = similarity.tfidf_query(similarity.load_document_query())
+# our_tfidf_comparisons = []
+# for count_0, doc_0 in enumerate(tfidf_representation):
+#     for count_1, doc_1 in enumerate(tfidf_representation):
+#         our_tfidf_comparisons.append((similarity.cosine_similarity(doc_0, doc_1), count_0, count_1))
+#
+# #print(query_tfidf_representation[len(query_tfidf_representation) - 1])
+# #print(query_tfidf_representation)
+#
+# documentt = similarity.tfidf(similarity.load_preprocessing_document())
+# print(similarity.cosine_similarity(documentt[0], documentt[0]))
 
-tfidf_representation = similarity.tfidf(similarity.load_documents())
-query_tfidf_representation = similarity.tfidf_query(similarity.load_document_query())
-our_tfidf_comparisons = []
-for count_0, doc_0 in enumerate(tfidf_representation):
-    for count_1, doc_1 in enumerate(tfidf_representation):
-        our_tfidf_comparisons.append((similarity.cosine_similarity(doc_0, doc_1), count_0, count_1))
 
-#print(query_tfidf_representation[len(query_tfidf_representation) - 1])
-#print(query_tfidf_representation)
+###########
+# 1. Preprocessing all documents
+# 2. Calc TF-IDF
+# 3. Create vector space of tokens with []
+# 4. Do a same with query
 
-document = similarity.load_preprocessing_document()[0]
-print(document)
-#print(similarity.cosine_similarity(similarity.load_documents()[0], similarity.load_documents()[0]))
+sim = Similarity()
+sim.DEBUG(True)
+
+# 1. Preprocessing all document
+# we also save into pickle
+sim.preprocessing_document()
 
