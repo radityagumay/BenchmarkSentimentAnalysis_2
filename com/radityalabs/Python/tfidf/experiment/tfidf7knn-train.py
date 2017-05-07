@@ -41,6 +41,19 @@ class Similarity:
         with open(path + "/Python/bimbingan_data/tfidf-new-document-preprocessing.pickle", "rb") as handle:
             return cPickle.load(handle)
 
+    def preprocessing_query(self, document_query):
+        doc_query = ""
+        tokeninzed_query = word_tokenize(document_query)
+        for token in tokeninzed_query:
+            if len(token) > 3:
+                stem = self.stemmer.stem(token)
+                punct = stem.translate(self.tablePunctuation)
+                if punct is not None:
+                    stop = punct not in set(stopwords.words('english'))
+                    if stop:
+                        doc_query += str(punct.lower()) + " "
+        return doc_query
+
     def preprocessing_document(self):
         docs = []
         for document in self.load_documents():
@@ -145,24 +158,50 @@ class Similarity:
         for tkn in all_tokens_set:
             contains_token = map(lambda doc: tkn in doc, tokenized_documents)
             idf_values[tkn] = 1 + math.log(len(tokenized_documents) / (sum(contains_token)))
-        return idf_values
 
-    def inverse_document_frequencies_single(self, tokenized_document):
+        sorted_idf_values = {}
+        for key in sorted(idf_values):
+            sorted_idf_values[key] = idf_values[key]
+
+        return sorted_idf_values
+
+    def inverse_document_frequencies_query(self, tokenized_query_document):
         idf_values = {}
+        query_tokens_set = set(tokenized_query_document)
+        self.log("query_tokens_set", query_tokens_set)
+
         all_tokens_set = self.load_vector_space()
+        self.log("all_tokens_set", all_tokens_set)
+
         all_documents = self.load_preprocessing_document()
-        for tkn in all_tokens_set:
+        for token in query_tokens_set:
             contains_token = 0
             for document in all_documents:
-                contains_token += document.count(tkn)
-            idf_values[tkn] = 1 + math.log(len(tokenized_document) / (contains_token))
-        return idf_values
+                contains_token += document.count(token)
+            idf_values[token] = 1 + math.log(len(all_documents) / (contains_token))
 
-    def processing_tfidf(self):
+        for token in all_tokens_set:
+            if idf_values.get(token):
+                self.log("inverse_document_frequencies_query", idf_values.get(token))
+            else:
+                idf_values[token] = 0.0
+
+        sorted_idf_values = {}
+        for key in sorted(idf_values):
+            sorted_idf_values[key] = idf_values[key]
+
+        # for token in all_tokens_set:
+        #     contains_token = 0
+        #     for document in all_documents:
+        #         contains_token += document.count(token)
+        #     idf_values[token] = 1 + math.log(len(all_documents) / (contains_token))
+        return sorted_idf_values
+
+    def processing_tfidf_and_save(self):
         processing_documents = self.load_preprocessing_document()
-        tfidf_document = self.tfidf(processing_documents)
-        self.log("processing_tfidf", tfidf_document)
-        self.save_tfidf_document(tfidf_document)
+        tfidf_documents = self.tfidf(processing_documents)
+        self.log("processing_tfidf", tfidf_documents)
+        self.save_tfidf_document(tfidf_documents)
 
     def tfidf(self, documents):
         tokenized_document = [self.tokenize(d) for d in documents]
@@ -179,6 +218,18 @@ class Similarity:
             document_index += 1
         return tfidf_documents
 
+    def tfidf_query(self, document):
+        tokenized_query_document = self.tokenize(document)
+        idf = self.inverse_document_frequencies_query(tokenized_query_document)
+        self.log("tfidf_query", idf)
+
+        doc_query_tfidf = []
+        for term in idf.keys():
+            tf = self.sublinear_term_frequency(term, document)
+            doc_query_tfidf.append(tf * idf[term])
+        tfidf_query_document = doc_query_tfidf
+        return tfidf_query_document
+
     # dont forget to lower all word, cz calc will be case sensitive
     # def tfidf(self, documents):
     #     self.tokenized_documents = [self.tokenize(d) for d in documents]
@@ -193,30 +244,6 @@ class Similarity:
     #         tfidf_documents.append(doc_tfidf)
     #         document_index += 1
     #     return tfidf_documents
-
-    def tfidf_query(self, document):
-        tokenized_query_document = self.tokenize(document)
-        idf = self.inverse_document_frequencies_single(tokenized_query_document)
-        doc_query_tfidf = []
-        for term in idf.keys():
-            tf = self.sublinear_term_frequency(term, document)
-            doc_query_tfidf.append(tf * idf[term])
-        tfidf_query_document = doc_query_tfidf
-        return tfidf_query_document
-
-    def tfidf_query_with_predefine(self, query_document):
-        # out predefine document with tfidf
-        # [0.0 , 3.5, ...]
-        local_tfidf_documents = self.load_predefine_documents()
-
-        # ["Hello", "World"]
-        tokenized_query_document = self.tokenize(query_document)
-        idf = self.inverse_document_frequencies_single(tokenized_query_document)
-        doc_query_tfidf = []
-        for term in idf.keys():
-            tf = self.sublinear_term_frequency(term, query_document)
-            doc_query_tfidf.append(tf * idf[term])
-        tfidf_query_document = doc_query_tfidf
 
     def sklearn_tfidf(self):
         sklearn_tfidf = TfidfVectorizer(norm='l2', min_df=0, use_idf=True, smooth_idf=False, sublinear_tf=True, tokenizer=self.tokenize)
@@ -283,7 +310,29 @@ sim.DEBUG(True)
 # we also save into pickle
 sim.preprocessing_document()
 
-# 2. Calc TF-IDF
+# 2. Calc TF-IDF & 3
 # save result into pickle
-sim.processing_tfidf()
+sim.processing_tfidf_and_save()
 
+# 4. Preprocessing Query
+doc_query_preprop = sim.preprocessing_query(sim.load_document_query())
+tfidf_doc_query = sim.tfidf_query(doc_query_preprop)
+
+# 5. Calc Similary between Documents and Query
+tfidf_documents = sim.load_tfidf_document()
+
+sim.log("tfidf_doc_query", tfidf_doc_query)
+sim.log("tfidf_documents", tfidf_documents[1])
+
+tfidf_comparison = []
+for document in tfidf_documents:
+    tfidf_comparison.append(sim.cosine_similarity(tfidf_doc_query, document))
+
+print(sorted(tfidf_comparison, reverse=True))
+
+# our_tfidf_comparisons = []
+# for count_0, doc_0 in enumerate(tfidf_documents):
+#     for count_1, doc_1 in enumerate(tfidf_doc_query):
+#         our_tfidf_comparisons.append((sim.cosine_similarity(doc_0, doc_1), count_0, count_1))
+#
+# sim.log("our_tfidf_comparisons", our_tfidf_comparisons)
