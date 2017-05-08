@@ -140,9 +140,18 @@ class Similarity:
         print("\n")
         print("=================== FINISH TOKENIZED DOCUMENT ================")
 
+    def save_idf_document(self, idf):
+        with open(path + "/Python/bimbingan_data/tfidf-final-idf-documents.pickle", "wb") as handle:
+            cPickle.dump(idf, handle)
+
+    def load_idf_document(self):
+        with open(path + "/Python/bimbingan_data/tfidf-final-idf-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
     def tfidf(self):
         tokenized_document = self.load_tokenized_document() #[self.tokenize(d[0]) for d in documents
-        idf = self.inverse_document_frequencies(tokenized_document)
+        #idf = self.inverse_document_frequencies(tokenized_document)
+        idf = self.load_idf_document()
         tfidf_documents = []
         bar = progressbar.ProgressBar(maxval=len(tokenized_document), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
         bar.start()
@@ -171,3 +180,4 @@ similary.DEBUG(True)
 # 3. Calc TF-IDF documents and save both vector space and TF-IDF
 tfidf = similary.tfidf()
 similary.save_tfidf_document(tfidf)
+
