@@ -57,13 +57,16 @@ class Similarity:
             docs.append((sentence, document[1]))
         return docs
 
-    def save_documents(self):
+    def load_train_documents(self):
         with open(path + "/Python/bimbingan_data/twitter_nltk_train_25036_3.pickle", "rb") as handle:
-            train = cPickle.load(handle)
-        with open(path + "/Python/bimbingan_data/twitter_nltk_test_16191_3.pickle", "rb") as handle:
-            test = cPickle.load(handle)
-        documents = self.preprocessing_documents(train + test)
+            return cPickle.load(handle)
 
+    def load_test_documents(self):
+        with open(path + "/Python/bimbingan_data/twitter_nltk_test_16191_3.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def save_documents(self):
+        documents = self.preprocessing_documents(self.load_train_documents() + self.load_test_documents())
         #self.log("save_documents", documents)
 
         with open(path + "/Python/bimbingan_data/tfidf-final-corpus-preprocessing-document.pickle", "wb") as handle:
@@ -134,7 +137,8 @@ similary.DEBUG(True)
 
 # 1. Preprocessing document and save
 # we have done, so we are not run this again
-similary.save_documents()
+#similary.save_documents()
 
 # 2. Calc TF-IDF documents and save both vector space and TF-IDF
 #similary.tfidf(similary.load_documents())
+
