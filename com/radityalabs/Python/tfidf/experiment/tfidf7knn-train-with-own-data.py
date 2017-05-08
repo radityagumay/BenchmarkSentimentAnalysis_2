@@ -8,6 +8,7 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 import string
 import _pickle as cPickle
+import progressbar
 import sys, unicodedata, os
 import math
 
@@ -74,9 +75,9 @@ class Similarity:
 
     def load_documents(self):
         with open(path + "/Python/bimbingan_data/tfidf-final-corpus-preprocessing-document.pickle", "rb") as handle:
-            documents = cPickle.load(handle)
+            return cPickle.load(handle)
             #self.log("load_documents",  documents)
-            return documents
+            #return documents
 
     def sublinear_term_frequency(self, term, tokenized_document):
         count = tokenized_document.count(term)
@@ -107,29 +108,54 @@ class Similarity:
         all_tokens_set = set([item for sublist in tokenized_documents for item in sublist])
         #self.log("inverse_document_frequencies", all_tokens_set)
         self.save_vector_space(all_tokens_set)
+        bar = progressbar.ProgressBar(maxval=len(all_tokens_set), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+        bar.start()
+        bar_index = 0
         for tkn in all_tokens_set:
+            bar_index += 1
+            bar.update(bar_index)
             contains_token = map(lambda doc: tkn in doc, tokenized_documents)
             idf_values[tkn] = 1 + math.log(len(tokenized_documents) / (sum(contains_token)))
+        bar.finish()
 
         sorted_idf_values = {}
         for key in sorted(idf_values):
             sorted_idf_values[key] = idf_values[key]
-
         return sorted_idf_values
 
-    def tfidf(self, documents):
-        tokenized_document = [self.tokenize(d[0]) for d in documents]
+    def load_tokenized_document(self):
+        with open(path + "/Python/bimbingan_data/tfidf-final-tokenized-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def save_tokenized_document(self, documents):
+        tok_document = []
+        for document in documents:
+            tokens = self.tokenize(document[0])
+            print(tokens)
+            tok_document.append(tokens)
+
+        with open(path + "/Python/bimbingan_data/tfidf-final-tokenized-documents.pickle", "wb") as handle:
+            cPickle.dump(tok_document, handle)
+
+        print("\n")
+        print("=================== FINISH TOKENIZED DOCUMENT ================")
+
+    def tfidf(self):
+        tokenized_document = self.load_tokenized_document() #[self.tokenize(d[0]) for d in documents
         idf = self.inverse_document_frequencies(tokenized_document)
-        #self.log("tfidf", idf)
         tfidf_documents = []
+        bar = progressbar.ProgressBar(maxval=len(tokenized_document), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+        bar.start()
+        bar_index = 0
         for document in tokenized_document:
             tfidf = []
+            bar_index += 1
+            bar.update(bar_index)
             for term in idf.keys():
                 tf = self.sublinear_term_frequency(term, document)
                 tfidf.append(tf * idf[term])
             tfidf_documents.append(tfidf)
-
-        self.save_tfidf_document(tfidf_documents)
+        bar.finish()
         return tfidf_documents
 
 similary = Similarity()
@@ -139,6 +165,9 @@ similary.DEBUG(True)
 # we have done, so we are not run this again
 #similary.save_documents()
 
-# 2. Calc TF-IDF documents and save both vector space and TF-IDF
-#similary.tfidf(similary.load_documents())
+# 2. Tokenzied Documents
+#similary.tokenized_document(similary.load_documents())
 
+# 3. Calc TF-IDF documents and save both vector space and TF-IDF
+tfidf = similary.tfidf()
+similary.save_tfidf_document(tfidf)
