@@ -91,7 +91,7 @@ class Similarity:
         for document in self.tokenized_documents:
             doc_tfidf = []
             for term in idf.keys():
-                tf = self.sublinear_term_frequency(term, document)
+                tf = self.term_frequency(term, document)
                 doc_tfidf.append(tf * idf[term])
             tfidf_documents.append(doc_tfidf)
             document_index += 1
