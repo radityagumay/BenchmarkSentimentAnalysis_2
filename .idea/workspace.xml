@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/cobagan.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py" />
     </list>
@@ -19,9 +18,11 @@
       <file leaf-file-name="tfidf7knn-train-with-own-data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train-with-own-data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="507">
+              <caret line="61" column="9" lean-forward="false" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+              <folding>
+                <element signature="e#198#229#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,7 +30,7 @@
       <file leaf-file-name="tfidf7.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
+            <state relative-caret-position="2233">
               <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="83" selection-end-column="89" />
               <folding />
             </state>
@@ -39,7 +40,7 @@
       <file leaf-file-name="cobagan.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/cobagan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
+            <state relative-caret-position="261">
               <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -51,7 +52,7 @@
       <file leaf-file-name="new_train_1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/new_train_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-557">
+            <state relative-caret-position="0">
               <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="46" />
               <folding />
             </state>
@@ -61,7 +62,7 @@
       <file leaf-file-name="new_train_3.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/new_train_3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
+            <state relative-caret-position="2871">
               <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="175" selection-end-column="48" />
               <folding />
             </state>
@@ -81,8 +82,8 @@
       <file leaf-file-name="tfidf7knn-train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3306">
-              <caret line="114" column="32" lean-forward="false" selection-start-line="102" selection-start-column="3" selection-end-line="114" selection-end-column="32" />
+            <state relative-caret-position="536">
+              <caret line="103" column="4" lean-forward="true" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="4" />
               <folding>
                 <element signature="e#198#229#0" expanded="true" />
               </folding>
@@ -93,8 +94,20 @@
       <file leaf-file-name="tfidf7knn.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3451">
-              <caret line="127" column="20" lean-forward="false" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+            <state relative-caret-position="418">
+              <caret line="171" column="24" lean-forward="true" selection-start-line="171" selection-start-column="24" selection-end-line="171" selection-end-column="24" />
+              <folding>
+                <element signature="e#198#229#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="punkt.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/nltk/tokenize/punkt.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1288" column="0" lean-forward="false" selection-start-line="1288" selection-start-column="0" selection-end-line="1288" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -111,7 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>stopwords</find>
       <find>violan</find>
       <find>stopw</find>
       <find>term_num_docs</find>
@@ -141,6 +153,7 @@
       <find>load_documents</find>
       <find>save_tfidf_document</find>
       <find>term_frequency</find>
+      <find>itemgetter</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -226,7 +239,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -394,6 +406,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -826,10 +839,10 @@
     <frame x="0" y="23" width="1920" height="1121" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21938232" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22364217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5254237" sideWeight="0.5042598" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.89830506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64705884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5333998" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46261215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -942,13 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/nltk/tokenize/punkt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37004">
-          <caret line="1288" column="0" lean-forward="false" selection-start-line="1288" selection-start-column="0" selection-end-line="1288" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="783">
@@ -1013,14 +1019,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/data.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="57" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1235,19 +1241,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3306">
-          <caret line="114" column="32" lean-forward="false" selection-start-line="102" selection-start-column="3" selection-end-line="114" selection-end-column="32" />
-          <folding>
-            <element signature="e#198#229#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/cobagan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
+        <state relative-caret-position="261">
           <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -1257,7 +1253,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/new_train_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-557">
+        <state relative-caret-position="0">
           <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="46" />
           <folding />
         </state>
@@ -1265,7 +1261,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/training/new_train_3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
+        <state relative-caret-position="2871">
           <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="175" selection-end-column="48" />
           <folding />
         </state>
@@ -1279,27 +1275,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train-with-own-data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
+        <state relative-caret-position="2233">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="83" selection-end-column="89" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/nltk/tokenize/punkt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1288" column="0" lean-forward="false" selection-start-line="1288" selection-start-column="0" selection-end-line="1288" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="103" column="4" lean-forward="true" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="4" />
+          <folding>
+            <element signature="e#198#229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train-with-own-data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="61" column="9" lean-forward="false" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+          <folding>
+            <element signature="e#198#229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3451">
-          <caret line="127" column="20" lean-forward="false" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="418">
+          <caret line="171" column="24" lean-forward="true" selection-start-line="171" selection-start-column="24" selection-end-line="171" selection-end-column="24" />
+          <folding>
+            <element signature="e#198#229#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
