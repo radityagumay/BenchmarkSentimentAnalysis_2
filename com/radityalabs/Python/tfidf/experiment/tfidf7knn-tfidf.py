@@ -18,21 +18,20 @@ from sklearn.metrics import accuracy_score
 
 iris = datasets.load_iris()
 
-X = iris.data
-y = iris.target
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.5)
-
-my_classifier = KNeighborsClassifier()
-my_classifier.fit(X_train, y_train)
-
-predictions = my_classifier.predict(X_test)
-
-print(my_classifier.predict([[6.7, 3.1, 5.6, 2.4]]))
-print(accuracy_score(y_test, predictions))
+# X = iris.data
+# y = iris.target
+#
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.5)
+#
+# my_classifier = KNeighborsClassifier()
+# my_classifier.fit(X_train, y_train)
+#
+# predictions = my_classifier.predict(X_test)
+#
+# print(my_classifier.predict([[6.7, 3.1, 5.6, 2.4]]))
+# print(accuracy_score(y_test, predictions))
 
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
-
 
 class Similarity:
     def __init__(self):
@@ -91,15 +90,15 @@ class Similarity:
 
         all_tokens_set = self.load_twitter_tokens()
 
-        for token in query_tokenized:
+        for token in all_tokens_set:
             contains_token = 0
             loaded_documents = self.load_twitter_documents()
             for document in loaded_documents:
                 contains_token += document[0].count(token)
-            if contains_token == 0:
-                idf_values[token] = 0.0
-            else:
-                idf_values[token] = 1 + math.log(len(loaded_documents) / (contains_token))
+                if contains_token == 0:
+                    idf_values[token] = 0.0
+                else:
+                    idf_values[token] = 1 + math.log(len(loaded_documents) / (contains_token))
 
         for token in all_tokens_set:
             if not idf_values.get(token):
@@ -161,9 +160,13 @@ class Similarity:
         idf = self.query_inverse_document_frequencies(query_token)
 
         doc_tfidf = []
+        doc_tfidf_term = []
         for term in idf.keys():
             tf = self.term_frequency(term, query_token)
             doc_tfidf.append(tf * idf[term])
+            doc_tfidf_term.append((term, tf * idf[term]))
+
+        print(doc_tfidf_term)
         return doc_tfidf
 
     def save_twitter_tokenized_documents(self, tokens):
@@ -198,21 +201,21 @@ class Similarity:
         with open(path + "/Python/bimbingan_data/tfidf-twitter-tokens.pickle", "rb") as handle:
             return cPickle.load(handle)
 
-# code = Similarity()
-#
-# # tfidf = code.documents_twitter_tfidf(code.preprocessing_documents(code.load_twitter_documents()))
-# # print(tfidf)
-# # print(code.cosine_similarity(tfidf[0][0], tfidf[2][0]))
-#
-# # doc = code.load_twitter_documents()[1][0]
-# query_doc = code.load_twitter_query()
-#
-# # print(code.load_twitter_tokens())
-# # print(query_doc)
-#
-# tfidf_query = code.query_documents_twitter_tfidf(query_doc)
-# tfidf_documents = code.load_twitter_tfidf()
-#
+code = Similarity()
+
+# tfidf = code.documents_twitter_tfidf(code.preprocessing_documents(code.load_twitter_documents()))
+# print(tfidf)
+# print(code.cosine_similarity(tfidf[0][0], tfidf[2][0]))
+
+# doc = code.load_twitter_documents()[1][0]
+query_doc = code.load_twitter_query()
+
+# print(code.load_twitter_tokens())
+# print(query_doc)
+
+tfidf_query = code.query_documents_twitter_tfidf(query_doc)
+tfidf_documents = code.load_twitter_tfidf()
+
 # print(tfidf_query)
 # print(tfidf_documents)
 #
@@ -221,3 +224,24 @@ class Similarity:
 
 # print(code.load_twitter_tfidf_with_term())
 # print(code.load_twitter_tokens())
+
+data = []
+target = []
+
+for document in tfidf_documents:
+    data.append(document[0])
+    target.append(document[1])
+
+X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=.5)
+
+my_classifier = KNeighborsClassifier()
+my_classifier.fit(X_train, y_train)
+
+predictions = my_classifier.predict(X_test)
+
+print(tfidf_query, len(tfidf_query))
+print(data[0], len(data[0]))
+
+
+print(my_classifier.predict([[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.6094379124341005, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.302585092994046, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]))
+print(accuracy_score(y_test, predictions))
