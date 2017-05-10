@@ -11,8 +11,28 @@ import operator
 import _pickle as cPickle
 import sys, unicodedata, os
 import math
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import datasets
+from sklearn.cross_validation import train_test_split
+from sklearn.metrics import accuracy_score
+
+iris = datasets.load_iris()
+
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.5)
+
+my_classifier = KNeighborsClassifier()
+my_classifier.fit(X_train, y_train)
+
+predictions = my_classifier.predict(X_test)
+
+print(my_classifier.predict([[6.7, 3.1, 5.6, 2.4]]))
+print(accuracy_score(y_test, predictions))
 
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
+
 
 class Similarity:
     def __init__(self):
@@ -76,7 +96,6 @@ class Similarity:
             loaded_documents = self.load_twitter_documents()
             for document in loaded_documents:
                 contains_token += document[0].count(token)
-            print(token, contains_token)
             if contains_token == 0:
                 idf_values[token] = 0.0
             else:
@@ -129,7 +148,7 @@ class Similarity:
         for document in tokenized_documents:
             doc_tfidf = []
             for term in idf.keys():
-                tf = self.sublinear_term_frequency(term, document)
+                tf = self.term_frequency(term, document)
                 doc_tfidf.append((term, tf * idf[term]))
             tfidf = [doc_tfidf, documents[doc_index][1]]
             tfidf_documents.append(tfidf)
@@ -140,26 +159,12 @@ class Similarity:
     def query_documents_twitter_tfidf(self, query_document):
         query_token = word_tokenize(query_document)
         idf = self.query_inverse_document_frequencies(query_token)
-        print(idf)
 
-        # tokenized_documents = []
-        # for document in documents:
-        #     tokens = word_tokenize(document[0])
-        #     tokenized_documents.append(tokens)
-        # idf = self.inverse_document_frequencies(tokenized_documents)
-        # tfidf_documents = []
-        #
-        # doc_index = 0
-        # for document in tokenized_documents:
-        #     doc_tfidf = []
-        #     for term in idf.keys():
-        #         tf = self.sublinear_term_frequency(term, document)
-        #         doc_tfidf.append((term, tf * idf[term]))
-        #     tfidf = [doc_tfidf, documents[doc_index][1]]
-        #     tfidf_documents.append(tfidf)
-        #     doc_index += 1
-        # self.save_twitter_tfidf_with_term(tfidf_documents)
-        #return tfidf_documents
+        doc_tfidf = []
+        for term in idf.keys():
+            tf = self.term_frequency(term, query_token)
+            doc_tfidf.append(tf * idf[term])
+        return doc_tfidf
 
     def save_twitter_tokenized_documents(self, tokens):
         with open(path + "/Python/bimbingan_data/tfidf-twitter-tokenized-documents.pickle", "wb") as handle:
@@ -193,20 +198,26 @@ class Similarity:
         with open(path + "/Python/bimbingan_data/tfidf-twitter-tokens.pickle", "rb") as handle:
             return cPickle.load(handle)
 
-code = Similarity()
+# code = Similarity()
+#
+# # tfidf = code.documents_twitter_tfidf(code.preprocessing_documents(code.load_twitter_documents()))
+# # print(tfidf)
+# # print(code.cosine_similarity(tfidf[0][0], tfidf[2][0]))
+#
+# # doc = code.load_twitter_documents()[1][0]
+# query_doc = code.load_twitter_query()
+#
+# # print(code.load_twitter_tokens())
+# # print(query_doc)
+#
+# tfidf_query = code.query_documents_twitter_tfidf(query_doc)
+# tfidf_documents = code.load_twitter_tfidf()
+#
+# print(tfidf_query)
+# print(tfidf_documents)
+#
+# for document in tfidf_documents:
+#     print(code.cosine_similarity(document[0], tfidf_query), document[1])
 
-#tfidf = code.documents_twitter_tfidf(code.preprocessing_documents(code.load_twitter_documents()))
-# print(tfidf)
-# print(code.cosine_similarity(tfidf[0][0], tfidf[2][0]))
-
-
-doc = code.load_twitter_documents()[1][0]
-query_doc = code.load_twitter_query()
-
-print(code.load_twitter_tokens())
-print(query_doc)
-
-code.query_documents_twitter_tfidf(query_doc)
-
-#print(code.load_twitter_tfidf_with_term())
-#print(code.load_twitter_tokens())
+# print(code.load_twitter_tfidf_with_term())
+# print(code.load_twitter_tokens())

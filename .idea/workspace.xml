@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7731bd8-3a18-4995-ba14-e792953161c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-tfidf.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-tfidf.py" afterPath="$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-tfidf.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,9 +17,11 @@
       <file leaf-file-name="tfidf7knn-train-with-own-data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train-with-own-data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2266">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="304">
+              <caret line="117" column="89" lean-forward="false" selection-start-line="117" selection-start-column="75" selection-end-line="117" selection-end-column="89" />
+              <folding>
+                <element signature="e#198#229#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,8 +29,8 @@
       <file leaf-file-name="tfidf7knn-tfidf.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-tfidf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+            <state relative-caret-position="366">
+              <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
               <folding>
                 <element signature="e#198#229#0" expanded="true" />
               </folding>
@@ -38,14 +38,34 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="classification.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/sklearn/neighbors/classification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="128" column="8" lean-forward="false" selection-start-line="128" selection-start-column="8" selection-end-line="128" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="tfidf7knn-train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="175" column="58" lean-forward="true" selection-start-line="175" selection-start-column="58" selection-end-line="175" selection-end-column="58" />
+            <state relative-caret-position="304">
+              <caret line="179" column="30" lean-forward="false" selection-start-line="179" selection-start-column="16" selection-end-line="179" selection-end-column="30" />
               <folding>
                 <element signature="e#198#229#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tfidf7knn.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="155" column="0" lean-forward="false" selection-start-line="151" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,9 +81,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>term_num_docs</find>
-      <find>desac</find>
-      <find>Force close Once I updated my heade</find>
       <find>5421</find>
       <find>word_tokenize</find>
       <find>tbl</find>
@@ -91,6 +108,9 @@
       <find>itemgetter</find>
       <find>preprocessing_documents</find>
       <find>cosine_similarity</find>
+      <find>contains_token</find>
+      <find>stop</find>
+      <find>query_documents_twitter_tfidf</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -904,13 +924,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/origin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/preprocessing3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="783">
@@ -1248,10 +1261,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py">
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train-with-own-data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="122" column="0" lean-forward="true" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="117" column="89" lean-forward="false" selection-start-line="117" selection-start-column="75" selection-end-line="117" selection-end-column="89" />
           <folding>
             <element signature="e#198#229#0" expanded="true" />
           </folding>
@@ -1260,26 +1273,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="175" column="58" lean-forward="true" selection-start-line="175" selection-start-column="58" selection-end-line="175" selection-end-column="58" />
+        <state relative-caret-position="304">
+          <caret line="179" column="30" lean-forward="false" selection-start-line="179" selection-start-column="16" selection-end-line="179" selection-end-column="30" />
           <folding>
             <element signature="e#198#229#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-train-with-own-data.py">
+    <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2266">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="25" />
+        <state relative-caret-position="377">
+          <caret line="155" column="0" lean-forward="false" selection-start-line="151" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/sklearn/neighbors/classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="128" column="8" lean-forward="false" selection-start-line="128" selection-start-column="8" selection-end-line="128" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/com/radityalabs/Python/tfidf/experiment/tfidf7knn-tfidf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+        <state relative-caret-position="366">
+          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
           <folding>
             <element signature="e#198#229#0" expanded="true" />
           </folding>
