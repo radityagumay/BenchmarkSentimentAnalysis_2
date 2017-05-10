@@ -174,7 +174,7 @@ def documents_tf(documents):
         doc_tfidf = []
         for term in idf.keys():
             tf = code.sublinear_term_frequency(term, document)
-            doc_tfidf.append((term, tf * idf[term]))
+            doc_tfidf.append(tf * idf[term])
         tfidf_documents.append(doc_tfidf)
     print(tfidf_documents)
 
