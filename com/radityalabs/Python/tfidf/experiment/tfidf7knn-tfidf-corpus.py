@@ -8,6 +8,7 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 import string
 import operator
+import csv
 import _pickle as cPickle
 import sys, unicodedata, os
 import math
@@ -39,15 +40,10 @@ class Similarity:
         self.tablePunctuation = dict.fromkeys(
             i for i in range(sys.maxunicode) if unicodedata.category(chr(i)).startswith('P'))
 
+    # preprocessing documents
     def load_documents(self):
-        document_0 = "China has a strong economy that is growing at a rapid pace. However politically it differs greatly from the US Economy."
-        document_1 = "At last, China seems serious about confronting an endemic problem: domestic violence and corruption."
-        document_2 = "Japan's prime minister, Shinzo Abe, is working towards healing the economic turmoil in his own country for his view on the future of his people."
-        document_3 = "Vladimir Putin is working hard to fix the economy in Russia as the Ruble has tumbled."
-        document_4 = "What's the future of Abenomics? We asked Shinzo Abe for his views"
-        document_5 = "Obama has eased sanctions on Cuba while accelerating those against the Russian Economy, even as the Ruble's value falls almost daily."
-        document_6 = "Vladimir Putin is riding a horse while hunting deer. Vladimir Putin always seems so serious about things - even riding horses. Is he crazy?"
-        return [document_0, document_1, document_2, document_3, document_4, document_5, document_6]
+        with open(path + "/Python/bimbingan_data/tfidf-final-corpus-preprocessing-document.pickle", "rb") as handle:
+            return cPickle.load(handle)
 
     def load_twitter_query(self):
         return "Stop the updates Twitter is becoming more like facebook everyday. We already have a Facebook & thats not even right. If I wanna use Facebook Ill just log on to it & uninstall twitter. Messing up again"
@@ -201,20 +197,52 @@ class Similarity:
         with open(path + "/Python/bimbingan_data/tfidf-twitter-tokens.pickle", "rb") as handle:
             return cPickle.load(handle)
 
+    def load_corpus_with_sentiment_and_category(self):
+        with open(path + "/Python/bimbingan_data/tfidf-final-corpus-with-sentiment.csv", 'r') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            collection = []
+            index = 0
+            for row in spamreader:
+                if index != 0:
+                    collection.append(', '.join(row))
+                index += 1
+            return collection
+
+    def save_corpus_with_sentiment_and_category(self):
+        range_documents = []
+        preprocessing_documents = code.load_documents()
+
+        for index in range(0, 20):
+            range_documents.append((preprocessing_documents[index], "Economy"))
+
+        with open(path + "/Python/bimbingan_data/tfidf-final-corpus-with-sentiment.csv", 'a') as outcsv:
+            writer = csv.writer(outcsv, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            writer.writerow(['document', 'label_sentiment', 'label_category'])
+            for item in range_documents:
+                document = item[0][0]
+                label_sentiment = item[0][1]
+                label_category = item[1]
+                writer.writerow([document, label_sentiment, label_category])
+
 code = Similarity()
+
+doc = code.load_corpus_with_sentiment_and_category()
+
+for d in doc:
+    print(d.split(",")[0])
 
 # tfidf = code.documents_twitter_tfidf(code.preprocessing_documents(code.load_twitter_documents()))
 # print(tfidf)
 # print(code.cosine_similarity(tfidf[0][0], tfidf[2][0]))
 
 # doc = code.load_twitter_documents()[1][0]
-query_doc = code.load_twitter_query()
+#query_doc = code.load_twitter_query()
 
 # print(code.load_twitter_tokens())
 # print(query_doc)
 
-tfidf_query = code.query_documents_twitter_tfidf(query_doc)
-tfidf_documents = code.load_twitter_tfidf()
+# tfidf_query = code.query_documents_twitter_tfidf(query_doc)
+# tfidf_documents = code.load_twitter_tfidf()
 
 # print(tfidf_query)
 # print(tfidf_documents)
@@ -225,23 +253,23 @@ tfidf_documents = code.load_twitter_tfidf()
 # print(code.load_twitter_tfidf_with_term())
 # print(code.load_twitter_tokens())
 
-data = []
-target = []
-
-for document in tfidf_documents:
-    data.append(document[0])
-    target.append(document[1])
-
-X_train, X_test, y_train, y_test = train_test_split(data, target, test_size= .5)
-
-my_classifier = KNeighborsClassifier()
-my_classifier.fit(X_train, y_train)
-
-predictions = my_classifier.predict(X_test)
-
-print(tfidf_query, len(tfidf_query))
-print(data[0], len(data[0]))
-
-
-print(my_classifier.predict([[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.6094379124341005, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.302585092994046, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]))
-print(accuracy_score(y_test, predictions))
+# data = []
+# target = []
+#
+# for document in tfidf_documents:
+#     data.append(document[0])
+#     target.append(document[1])
+#
+# X_train, X_test, y_train, y_test = train_test_split(data, target, test_size= .5)
+#
+# my_classifier = KNeighborsClassifier()
+# my_classifier.fit(X_train, y_train)
+#
+# predictions = my_classifier.predict(X_test)
+#
+# print(tfidf_query, len(tfidf_query))
+# print(data[0], len(data[0]))
+#
+#
+# print(my_classifier.predict([[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.6094379124341005, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.302585092994046, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]))
+# print(accuracy_score(y_test, predictions))
