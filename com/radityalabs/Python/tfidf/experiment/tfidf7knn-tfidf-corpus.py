@@ -78,7 +78,7 @@ class Similarity:
             sorted_idf_values[key] = idf_values[key]
 
         print(all_tokens_set)
-        self.save_twitter_tokens(all_tokens_set)
+        #self.save_twitter_tokens(all_tokens_set)
         return sorted_idf_values
 
     def query_inverse_document_frequencies(self, query_tokenized):
@@ -226,10 +226,51 @@ class Similarity:
 
 code = Similarity()
 
-doc = code.load_corpus_with_sentiment_and_category()
+# 1. we have preprocessing documents with sentiment label and category label
+def tfidf():
+    tokenized_documents = []
+    documents = code.load_corpus_with_sentiment_and_category()
+    for document in documents:
+        doc = document.split(",")
+        tokens = word_tokenize(doc[0])
+        tokenized_documents.append(tokens)
 
-for d in doc:
-    print(d.split(",")[0])
+    idf = code.inverse_document_frequencies(tokenized_documents)
+    tfidf_documents = []
+    doc_index = 0
+    for document in tokenized_documents:
+        doc_tfidf = []
+        for term in idf.keys():
+            tf = code.term_frequency(term, document)
+            doc_tfidf.append(tf * idf[term])
+
+        doc = documents[doc_index].split(",")
+        tfidf = [doc_tfidf, doc[1], doc[2]]
+        tfidf_documents.append(tfidf)
+        doc_index += 1
+    return tfidf_documents
+
+tfidf_representation = tfidf()
+
+data = []
+target = []
+
+for tfidf in tfidf_representation:
+    data.append(tfidf[0])
+    target.append(tfidf[2])
+
+X_train, X_test, y_train, y_test = train_test_split(data, target, test_size= .5)
+
+my_classifier = KNeighborsClassifier()
+my_classifier.fit(X_train, y_train)
+
+predictions = my_classifier.predict(X_test)
+print(data, accuracy_score(y_test, predictions))
+
+#documents = code.load_corpus_with_sentiment_and_category()
+
+# print(documents[18].split(",")[0], my_classifier.predict([data[18]]))
+# print(accuracy_score(y_test, predictions))
 
 # tfidf = code.documents_twitter_tfidf(code.preprocessing_documents(code.load_twitter_documents()))
 # print(tfidf)
