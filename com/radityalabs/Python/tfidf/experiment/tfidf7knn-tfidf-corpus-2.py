@@ -35,6 +35,7 @@ iris = datasets.load_iris()
 
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
+
 class Similarity:
     def __init__(self):
         self.stemmer = PorterStemmer()
@@ -99,6 +100,7 @@ class Similarity:
     " 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.064725145040942, 0.0, 0.0, 0.0, 0.0, 
     " 4.401197381662156, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.401197381662156, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.70805020110221, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 8.727975590428642, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.912023005428146, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], ' neg', ' performance']]"
     """
+
     def tfidf(self):
         tokenized_documents = []
         documents = self.load_document_with_categorized_label()
@@ -106,7 +108,6 @@ class Similarity:
             doc = document.split(",")
             tokens = word_tokenize(doc[0])
             tokenized_documents.append(tokens)
-
         idf = self.inverse_document_frequencies(tokenized_documents)
         tfidf_documents = []
         doc_index = 0
@@ -121,18 +122,19 @@ class Similarity:
             doc_index += 1
         return tfidf_documents
 
+    def save_data_target_tfidf_for_knn(self):
+        with open(path + "/Python/bimbingan_data/knn/tfidf-150-documents.pickle", "wb") as handle:
+            cPickle.dump(tfidf, handle)
+
     # 4. training and testing knn
     def knn(self):
         data = []
         target = []
-
         tfidf = self.tfidf()
-        pick_sample = tfidf[15]
-        print(pick_sample[0], pick_sample[2])
-
         for item in tfidf:
             data.append(item[0])
             target.append(item[2])
+
         X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=.5)
         my_classifier = KNeighborsClassifier()
         my_classifier.fit(X_train, y_train)
@@ -140,5 +142,34 @@ class Similarity:
         # predictions = my_classifier.predict(X_test)
         # print(data, accuracy_score(y_test, predictions))
 
+    def load_unpreprocessing_train_data(self):
+        with open(path + "/Python/bimbingan_data/twitter_nltk_train_25036_3.pickle", "rb") as handle:
+            files = cPickle.load(handle)
+            collection_positive = []
+            collection_negative = []
+            for file in files:
+                if file[1] == 'pos':
+                    collection_positive.append(file[0])
+                elif file[1] == 'neg':
+                    collection_negative.append(file[0])
+            return collection_positive, collection_negative
+
+    def load_unpreprocessing_test_data(self):
+        with open(path + "/Python/bimbingan_data/twitter_nltk_test_16191_3.pickle", "rb") as handle:
+            files = cPickle.load(handle)
+            collection_positive = []
+            collection_negative = []
+            for file in files:
+                if file[1] == 'pos':
+                    collection_positive.append(file[0])
+                elif file[1] == 'neg':
+                    collection_negative.append(file[0])
+            return collection_positive, collection_negative
+
+    def load_collection_of_unpreprocessing_train_and_test_data(self):
+        train_pos, train_neg = self.load_unpreprocessing_train_data()
+        test_pos, test_neg = self.load_unpreprocessing_test_data()
+        collection = train_pos + train_neg + test_pos + test_neg
+        return collection
+
 code = Similarity()
-print(code.tfidf())

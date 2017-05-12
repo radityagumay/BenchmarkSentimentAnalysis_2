@@ -1,0 +1,16 @@
+1. Crashed
+2. Bug
+3. UI
+4. Feature 
+[ 	news, 
+	interests
+]
+5. Performance 
+[ 	Slow,
+	Takes, 
+	minutes, 
+	load,
+]
+
+
+
