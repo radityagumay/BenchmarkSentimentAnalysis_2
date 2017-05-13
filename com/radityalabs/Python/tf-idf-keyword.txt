@@ -4,7 +4,6 @@
  - Crash
  - Force Close
  - Hung up
- - Lagging
  - Lag
  - Freeze
  - stopped working
@@ -22,15 +21,12 @@
  - Button
 
 3. [Feature]
- - Features
  - Feature
  - Text Limit
  - Communicate
  - Browsing
  - Notification
- - Notifications
  - Picture
- - Pictures
  - Uploading
  - Videos
  - Prioritize
