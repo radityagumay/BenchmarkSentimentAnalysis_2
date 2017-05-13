@@ -30,3 +30,8 @@
  - Uploading
  - Videos
  - Prioritize
+
+4. Performance
+ - Slow
+ - Memory
+ - Leak

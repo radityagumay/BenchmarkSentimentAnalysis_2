@@ -22,8 +22,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn import neighbors, datasets
 
-
-#iris = datasets.load_iris()
+# iris = datasets.load_iris()
 # X = iris.data
 # y = iris.target
 #
@@ -52,14 +51,32 @@ class Similarity:
         idf_values = {}
         all_tokens_set = set([item for sublist in tokenized_documents for item in sublist])
         all_tokens_set = sorted(all_tokens_set)
+
+        length = len(all_tokens_set)
+        index = 0
         for tkn in all_tokens_set:
             contains_token = map(lambda doc: tkn in doc, tokenized_documents)
             idf_values[tkn] = 1 + math.log(len(tokenized_documents) / (sum(contains_token)))
+            index += 1
+            print("{} from {}".format(index, length))
+
         sorted_idf_values = {}
         for key in sorted(idf_values):
             sorted_idf_values[key] = idf_values[key]
+
         print(all_tokens_set)
+        self.save_vector_space_terms_41227(all_tokens_set)
+        self.save_idf_41227(sorted_idf_values)
+
         return sorted_idf_values
+
+    def save_vector_space_terms_41227(self, tfidf):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-vector-space-41227.pickle", "wb") as handle:
+            cPickle.dump(tfidf, handle)
+
+    def save_idf_41227(self, idf):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-idf-41227.pickle", "wb") as handle:
+            cPickle.dump(idf, handle)
 
     def save_tfidf_150_documents(self, tfidf):
         with open(path + "/Python/bimbingan_data/knn/tfidf-150-documents.pickle", "wb") as handle:
@@ -300,5 +317,107 @@ class Similarity:
         collection = train_pos + train_neg + test_pos + test_neg
         return collection
 
+    def load_preprocessing_document_with_tfidf(self):
+        with open(path + "/Python/bimbingan_data/tfidf-twitter-tfidf-sample.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def save_preprocessing_document_tfidf(self, tfidf):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-preprocessing-documents-41227.pickle", "wb") as handle:
+            cPickle.dump(tfidf, handle)
+
+    def training_and_testing_tfidf_knn_manual_labeled_category(self):
+        # 1. Load Documents
+        documents = self.load_documents_with_preprocessing_and_sentiment_label()
+        """
+        " forc close onc updat header automat close cant even look wall caus twitter isnt respond tweet anyway pleas thank , 
+        " neg, 
+        """
+        tokenized_documents = []
+        for document in documents:
+            tokens = word_tokenize(document[0])
+            tokenized_documents.append(tokens)
+
+        idf = self.inverse_document_frequencies(tokenized_documents)
+        # tfidf_documents = []
+        # doc_index = 0
+        # for document in tokenized_documents:
+        #     doc_tfidf = []
+        #     for term in idf.keys():
+        #         tf = self.term_frequency(term, document)
+        #         doc_tfidf.append(tf * idf[term])
+        #     doc = new_documents[doc_index]
+        #     tfidf = [doc_tfidf, doc[0], doc[1]]
+        #     tfidf_documents.append(tfidf)
+        #     doc_index += 1
+
+
+
+        # # 2. Select Only 1000 Documents
+        # random.shuffle(documents)
+        # new_documents = []
+        # for index in range(0, 100):
+        #     new_documents.append(documents[index])
+        #
+        # # 3. Tf-Idf
+        # tokenized_documents = []
+        # for document in new_documents:
+        #     tokens = word_tokenize(document[0])
+        #     tokenized_documents.append(tokens)
+        #
+        # idf = self.inverse_document_frequencies(tokenized_documents)
+        # tfidf_documents = []
+        # doc_index = 0
+        # for document in tokenized_documents:
+        #     doc_tfidf = []
+        #     for term in idf.keys():
+        #         tf = self.term_frequency(term, document)
+        #         doc_tfidf.append(tf * idf[term])
+        #     doc = new_documents[doc_index]
+        #     tfidf = [doc_tfidf, doc[0], doc[1]]
+        #     tfidf_documents.append(tfidf)
+        #     doc_index += 1
+        #
+        # # 4. knn
+        # data = self.load_data_tfidf_for_knn()
+        # target = self.load_target_tfidf_for_knn()
+        # X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=.5)
+        # my_classifier = KNeighborsClassifier(5)
+        # my_classifier.fit(X_train, y_train)
+        #
+        # # iteration
+        # for item in tfidf_documents:
+        #     print(len(data[0]), len(item[0]))
+        #     predictions = my_classifier.predict([item[0]])
+        #     print(predictions, item[1], item[2])
+
+        # save result
+
+    # Load Labeled Categorised [1] Bug, [2] UI, [3] Feature, [4] performance
+    def load_corpus_with_sentiment_and_category(self):
+        with open(path + "/Python/bimbingan_data/knn/tfidf-final-corpus-2-with-sentiment-category.csv", 'r') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            collection = []
+            index = 0
+            for row in spamreader:
+                if index != 0:
+                    collection.append(', '.join(row))
+                index += 1
+            return collection
+
+    # Manually Labeled Categorised [1] Bug, [2] UI, [3] Feature, [4] performance
+    def save_corpus_with_sentiment_and_category(self):
+        range_documents = []
+        documents = self.load_documents_with_preprocessing_and_sentiment_label()
+        for index in range(149, 1000):
+            range_documents.append((documents[index], "undefine"))
+        with open(path + "/Python/bimbingan_data/knn/tfidf-manually-labeled.csv", 'a') as outcsv:
+            writer = csv.writer(outcsv, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            writer.writerow(['document', 'label_sentiment', 'label_category'])
+            for item in range_documents:
+                document = item[0][0]
+                label_sentiment = item[0][1]
+                label_category = item[1]
+                writer.writerow([document, label_sentiment, label_category])
+
 code = Similarity()
-print(code.knn_classification())
+code.training_and_testing_tfidf_knn_manual_labeled_category()
