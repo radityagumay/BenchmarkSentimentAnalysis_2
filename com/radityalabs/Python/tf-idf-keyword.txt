@@ -9,6 +9,9 @@
  - stopped working
  - closing down
  - not responding
+ - Slow
+ - Memory
+ - Leak
 
 2. [User Interface]
  - UI
@@ -31,7 +34,22 @@
  - Videos
  - Prioritize
 
-4. Performance
- - Slow
- - Memory
- - Leak
+// collection
+
+[ Crash, Force Close, Hung up, Lag, Freeze, stopped working, closing down, not responding, Slow, Memory, Leak, UI, Explore
+ ,TAB
+,Smooth
+ ,Uniqueness, Theme, DESIGN, Button,
+  Feature
+ ,Text Limit
+ ,Communicate
+ ,Browsing
+ ,Notification
+ ,Picture
+ ,Uploading
+ ,Videos
+ ,Prioritize
+]
+
+
+

@@ -136,7 +136,7 @@ class Similarity:
 
         self.save_twitter_tokenized_documents(tokenized_documents)
 
-        idf = self.(tokenized_documents)
+        idf = self.tok(tokenized_documents)
         tfidf_documents = []
 
         doc_index = 0

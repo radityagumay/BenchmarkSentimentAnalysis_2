@@ -13,3 +13,73 @@ http://stevenloria.com/finding-important-words-in-a-document-using-tf-idf/
 
 dataset
 https://www.yelp.com/dataset_challenge
+
+[topic categorized keyword mapping]
+
+1 [Bug]
+ - Crash
+ - Crashed
+ - Crashes
+ - Force
+ - Hung
+ - Lagging
+ - Lag
+ - Freeze
+ - Freezes
+ - Freezing
+ - speed
+ - buffer
+ - bug
+ - buggi
+ - bullshit
+ - caught
+ - close
+ - complain
+ - complaint
+ - corrupt
+ - crap
+ - crazi
+ - damn
+ - delay
+ - destroy
+ - dumb
+ - error
+
+2. [User Interface]
+ - UI
+ - design
+ - Explore
+ - TAB
+ - Smooth
+ - Uniqueness
+ - Theme
+ - button
+
+3. [Feature]
+ - Features
+ - Feature
+ - Text Limit
+ - Communicate
+ - Browsing
+ - Notification
+ - Notifications
+ - Picture
+ - Pictures
+ - Uploading
+ - Videos
+ - camera
+ - campaign
+ - catagoris
+ - celeb
+ - celebr
+ - celebrati
+ - changelog
+ - characters
+ - chat
+ - cheap
+ - comfort
+ - communic
+ - configura
+ - content
+
+ [(0.0, 'feature'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'ui'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'bug'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'feature'), (5.199705077879927, 'bug'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'ui'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'ui'), (0.0, 'feature'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'bug'), (0.0, 'feature'), (0.0, 'feature'), (0.0, 'ui'), (0.0, 'bug'), (0.0, 'ui'), (0.0, 'ui'), (0.0, 'ui'), (0.0, 'ui'), (0.0, 'feature'), (0.0, 'feature')] bug

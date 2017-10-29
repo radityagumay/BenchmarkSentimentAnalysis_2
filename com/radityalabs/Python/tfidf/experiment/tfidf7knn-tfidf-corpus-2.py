@@ -18,20 +18,6 @@ from sklearn import datasets
 from sklearn.cross_validation import train_test_split
 from sklearn.metrics import accuracy_score
 
-iris = datasets.load_iris()
-
-# X = iris.data
-# y = iris.target
-#
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.5)
-#
-# my_classifier = KNeighborsClassifier()
-# my_classifier.fit(X_train, y_train)
-#
-# predictions = my_classifier.predict(X_test)
-#
-# print(my_classifier.predict([[6.7, 3.1, 5.6, 2.4]]))
-# print(accuracy_score(y_test, predictions))
 
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
@@ -73,7 +59,7 @@ class Similarity:
 
     # 2. manually label
     def load_document_with_categorized_label(self):
-        with open(path + "/Python/bimbingan_data/tfidf-final-corpus-2-with-sentiment-category.csv", 'r') as csvfile:
+        with open(path + "/Python/bimbingan_data/tfidf-final-manually-labeled-217-with-sentiment-category.csv", 'r') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
             collection = []
             index = 0
@@ -172,4 +158,145 @@ class Similarity:
         collection = train_pos + train_neg + test_pos + test_neg
         return collection
 
-code = Similarity()
+
+from sklearn.metrics import classification_report
+
+class TfIdfRunner:
+    def load_document_with_categorized_label_217(self):
+        with open(path + "/Python/bimbingan_data/knn/tfidf-final-manually-labeled-217-with-sentiment-category.csv", 'r') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            collection = []
+            index = 0
+            for row in spamreader:
+                if index != 0:
+                    collection.append(', '.join(row))
+                index += 1
+            return collection
+
+    def term_frequency(self, term, tokenized_document):
+        return tokenized_document.count(term)
+
+    def inverse_document_frequencies(self, tokenized_documents):
+        idf_values = {}
+        all_tokens_set = set([item for sublist in tokenized_documents for item in sublist])
+        all_tokens_set = sorted(all_tokens_set)
+
+        length = len(all_tokens_set)
+        index = 0
+        for tkn in all_tokens_set:
+            contains_token = map(lambda doc: tkn in doc, tokenized_documents)
+            idf_values[tkn] = 1 + math.log(len(tokenized_documents) / (sum(contains_token)))
+            index += 1
+            print("{} from {}".format(index, length))
+
+        sorted_idf_values = {}
+        for key in sorted(idf_values):
+            sorted_idf_values[key] = idf_values[key]
+
+        print(all_tokens_set)
+
+        self.save_vector_space_terms_217_for_knn(all_tokens_set)
+        return sorted_idf_values
+
+    def tfidf(self):
+        tokenized_documents = []
+        documents = self.load_document_with_categorized_label_217()
+        for document in documents:
+            doc = document.split(",")
+            tokens = word_tokenize(doc[0])
+            tokenized_documents.append(tokens)
+        idf = self.inverse_document_frequencies(tokenized_documents)
+        tfidf_documents = []
+        doc_index = 0
+        for document in tokenized_documents:
+            doc_tfidf = []
+            for term in idf.keys():
+                tf = self.term_frequency(term, document)
+                doc_tfidf.append(tf * idf[term])
+            doc = documents[doc_index].split(",")
+            tfidf = [doc_tfidf, doc[1], doc[2]]
+            tfidf_documents.append(tfidf)
+            doc_index += 1
+
+        # save tfidf
+        self.save_tfidf_217_for_knn(tfidf_documents)
+        return tfidf_documents
+
+    def save_tfidf_217_for_knn(self, tfidf):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-217-documents.pickle", "wb") as handle:
+            cPickle.dump(tfidf, handle)
+
+    def load_tfidf_217_for_knn(self):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-217-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def save_vector_space_terms_217_for_knn(self, terms):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-217-vector-space-terms-documents.pickle", "wb") as handle:
+            cPickle.dump(terms, handle)
+
+    def load_vector_space_terms_217_for_knn(self):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-217-vector-space-terms-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def load_data_tfidf(self):
+        with open(path + "/Python/bimbingan_data/knn/tfidf-data-150-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def load_target_tfidf(self):
+        with open(path + "/Python/bimbingan_data/knn/tfidf-target-150-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def knn(self):
+
+        X = [] #self.load_data_tfidf()
+        y = [] #self.load_target_tfidf()
+
+        tfidf_documents = self.load_tfidf_217_for_knn()
+        for index in range(0, len(tfidf_documents)):
+            X.append(tfidf_documents[index][0])
+            y.append(tfidf_documents[index][2])
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.5)
+
+        my_classifier = KNeighborsClassifier(5)
+        my_classifier.fit(X_train, y_train)
+    
+        predictions = my_classifier.predict(X_test)
+        print(accuracy_score(y_test, predictions))
+        new_y_test = []
+        for index in range(0, len(y_train)):
+            new_y_test.append(y[index])
+        print(classification_report(y_train, y_train, target_names=['ui', 'bug', 'feature']))
+
+    # 1000
+    def tfidf_1000_preprocessing_documents(self):
+        # tfidf_217_documents = self.load_tfidf_217_for_knn()
+        # print(tfidf_217_documents)
+
+        tfidf_217_vector_space = self.load_vector_space_terms_217_for_knn()
+        print(tfidf_217_vector_space)
+
+    def load_documents(self):
+        with open(path + "/Python/bimbingan_data/tfidf-final-corpus-preprocessing-document.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+runner = TfIdfRunner()
+#runner.knn()
+runner.tfidf_1000_preprocessing_documents()
+
+# iris = datasets.load_iris()
+#
+# X = iris.data
+# y = iris.target
+#
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.5)
+#
+# my_classifier = KNeighborsClassifier(5)
+# my_classifier.fit(X_train, y_train)
+#
+# predictions = my_classifier.predict(X_test)
+#
+# print(my_classifier.predict([[6.7, 3.1, 5.6, 2.4]]))
+# print(accuracy_score(y_test, predictions))
+# target_names = ["1", "2", "3"]
+# print(classification_report(y_train, y_test, target_names=target_names))

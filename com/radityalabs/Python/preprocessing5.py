@@ -3,6 +3,7 @@
 from nltk.corpus import movie_reviews
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import EnglishStemmer
+
 from nltk.corpus import stopwords
 import asyncio
 import progressbar

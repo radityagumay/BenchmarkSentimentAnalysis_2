@@ -173,4 +173,4 @@ def evaluate_classifier(featx):
     print("")
 
 evaluate_classifier_default(word_feats)
-evaluate_classifier(bigram_word_feats_stopwords)
+#evaluate_classifier(bigram_word_feats_stopwords)

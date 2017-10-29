@@ -38,6 +38,7 @@ from sklearn import neighbors, datasets
 
 path = os.path.expanduser("~/Python/SamplePython3/com/radityalabs/")
 
+
 class Similarity:
     def __init__(self):
         self.stemmer = PorterStemmer()
@@ -74,9 +75,29 @@ class Similarity:
         with open(path + "/Python/bimbingan_data/tfidf/tfidf-vector-space-41227.pickle", "wb") as handle:
             cPickle.dump(tfidf, handle)
 
+    def load_vector_space_terms_41227(self):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-vector-space-41227.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
+    def save_tfidf_41227(self, tfidf):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-documents-tfidf-final-41227.pickle", "wb") as handle:
+            cPickle.dump(tfidf, handle)
+
+    def save_tfidf_41227(self, tfidf, iteration):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-documents-tfidf-final-41227-" + str(iteration) + ".pickle", "wb") as handle:
+            cPickle.dump(tfidf, handle)
+
+    def load_tfidf_41227(self):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-documents-tfidf-final-41227.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
     def save_idf_41227(self, idf):
         with open(path + "/Python/bimbingan_data/tfidf/tfidf-idf-41227.pickle", "wb") as handle:
             cPickle.dump(idf, handle)
+
+    def load_idf_41227(self):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-idf-41227.pickle", "rb") as handle:
+            return cPickle.load(handle)
 
     def save_tfidf_150_documents(self, tfidf):
         with open(path + "/Python/bimbingan_data/knn/tfidf-150-documents.pickle", "wb") as handle:
@@ -91,9 +112,13 @@ class Similarity:
         with open(path + "/Python/bimbingan_data/tfidf-final-corpus-preprocessing-document.pickle", "rb") as handle:
             return cPickle.load(handle)
 
+    def load_tokenized_preprocessing_documents(self):
+        with open(path + "/Python/bimbingan_data/tfidf-final-tokenized-documents.pickle", "rb") as handle:
+            return cPickle.load(handle)
+
     # 2. manually label
     def load_document_with_categorized_label(self):
-        with open(path + "/Python/bimbingan_data/tfidf-final-corpus-2-with-sentiment-category.csv", 'r') as csvfile:
+        with open(path + "/Python/bimbingan_data/tfidf-final-manually-labeled-217-with-sentiment-category.csv", 'r') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
             collection = []
             index = 0
@@ -181,7 +206,7 @@ class Similarity:
         self.save_target_tfidf_for_knn(target)
         self.save_sentiment_label_tfidf_for_knn(sentiment)
         X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=.5)
-        #self.chart(X_train, X_test, y_train, y_test)
+        # self.chart(X_train, X_test, y_train, y_test)
         my_classifier = KNeighborsClassifier()
         my_classifier.fit(X_train, y_train)
         predictions = my_classifier.predict(X_test)
@@ -244,7 +269,7 @@ class Similarity:
             predictions = my_classifier.predict([item[0]])
             print(predictions, item[1], item[2])
 
-        # save result
+            # save result
 
     def save_knn_1000_documents(self, knn):
         with open(path + "/Python/bimbingan_data/knn/tfidf-knn-1000-documents.pickle", "wb") as handle:
@@ -332,25 +357,36 @@ class Similarity:
         " forc close onc updat header automat close cant even look wall caus twitter isnt respond tweet anyway pleas thank , 
         " neg, 
         """
-        tokenized_documents = []
-        for document in documents:
-            tokens = word_tokenize(document[0])
-            tokenized_documents.append(tokens)
+        tokenized_documents = self.load_tokenized_preprocessing_documents()
+        idf = self.load_idf_41227()
+        doc_length = len(documents)
+        for iteration in range(0, 9):
+            tfidf_documents = []
+            for index in range(iteration, 4000):
+                doc_tfidf = []
+                for term in idf.keys():
+                    tf = self.term_frequency(term, tokenized_documents[index])
+                    doc_tfidf.append(tf * idf[term])
+                doc = documents[index]
+                tfidf = [doc_tfidf, doc[0], doc[1]]
+                tfidf_documents.append(tfidf)
+                print("{} from {} document {}".format(index, doc_length, doc[0]))
 
-        idf = self.inverse_document_frequencies(tokenized_documents)
-        # tfidf_documents = []
+            self.save_tfidf_41227(tfidf_documents, iteration)
+
+
         # doc_index = 0
         # for document in tokenized_documents:
         #     doc_tfidf = []
         #     for term in idf.keys():
         #         tf = self.term_frequency(term, document)
         #         doc_tfidf.append(tf * idf[term])
-        #     doc = new_documents[doc_index]
+        #     doc = documents[doc_index]
         #     tfidf = [doc_tfidf, doc[0], doc[1]]
         #     tfidf_documents.append(tfidf)
         #     doc_index += 1
-
-
+        #     print("{} from {} document {}".format(doc_index, doc_length, doc[0]))
+        # self.save_tfidf_41227(tfidf_documents)
 
         # # 2. Select Only 1000 Documents
         # random.shuffle(documents)
@@ -394,7 +430,7 @@ class Similarity:
 
     # Load Labeled Categorised [1] Bug, [2] UI, [3] Feature, [4] performance
     def load_corpus_with_sentiment_and_category(self):
-        with open(path + "/Python/bimbingan_data/knn/tfidf-final-corpus-2-with-sentiment-category.csv", 'r') as csvfile:
+        with open(path + "/Python/bimbingan_data/knn/tfidf-final-manually-labeled-217-with-sentiment-category.csv", 'r') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
             collection = []
             index = 0
@@ -418,6 +454,11 @@ class Similarity:
                 label_sentiment = item[0][1]
                 label_category = item[1]
                 writer.writerow([document, label_sentiment, label_category])
+
+    def rx_load_documents_with_categorized_labeled(self):
+        with open(path + "/Python/bimbingan_data/tfidf/tfidf-preprocessing-documents-41227.pickle", "wb") as handle:
+            cPickle.dump(tfidf, handle)
+
 
 code = Similarity()
 code.training_and_testing_tfidf_knn_manual_labeled_category()
