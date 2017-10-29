@@ -2,6 +2,8 @@ from nltk.tokenize import word_tokenize
 from nltk.stem.porter import *
 from nltk.corpus import stopwords
 import sys, unicodedata, os
+import nltk
+nltk.download('punkt')
 
 stemmer = PorterStemmer()
 tablePunctuation = dict.fromkeys(i for i in range(sys.maxunicode)
